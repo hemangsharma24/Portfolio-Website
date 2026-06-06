@@ -1,0 +1,15 @@
+<svg width="1248" height="496" viewBox="0 0 1248 496" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="1248" height="496" rx="24" fill="url(#pattern0_668_36)"></rect>
+<path d="M303 76C303 70.4772 307.477 66 313 66H935C940.523 66 945 70.4772 945 76V496H303V76Z" fill="#E5A58F"></path>
+<path d="M311 82C311 77.5817 314.582 74 319 74H929C933.418 74 937 77.5817 937 82V496H311V82Z" fill="url(#pattern1_668_36)"></path>
+<defs>
+<pattern id="pattern0_668_36" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_668_36" transform="matrix(0.000720981 0 0 0.00181408 0 -0.195599)"></use>
+</pattern>
+<pattern id="pattern1_668_36" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image1_668_36" transform="matrix(0.000244141 0 0 0.000362161 0 -0.00123112)"></use>
+</pattern>
+<image id="image0_668_36" width="1387" height="768" preserveAspectRatio="none"></image>
+<image id="image1_668_36" width="4096" height="2768" preserveAspectRatio="none"></image>
+</defs>
+</svg>

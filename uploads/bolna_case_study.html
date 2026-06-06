@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bolna.ai — Website in 14 Days · Hemang Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #F4ECDF;
+    --bg-soft:   #FBF6EC;
+    --ink:       #1A1310;
+    --ink-2:     #3A2E26;
+    --muted:     #7A6B5F;
+    --line:      #E5D9C6;
+    --line-2:    #D8C8B0;
+    --accent:    #A6361F;
+    --accent-2:  #C9522E;
+    --accent-bg: #F7E4D8;
+    --green:     #2E6B4A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9999;
+    opacity: 0.35; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  .display, h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  p { color: var(--ink-2); }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .container.wide { max-width: 1320px; }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 236, 223, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1180px; margin: 0 auto;
+  }
+  nav .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 500; letter-spacing: -0.02em;
+  }
+  nav .logo span { color: var(--accent); }
+  nav .links { display: flex; gap: 28px; align-items: center; }
+  nav .links a {
+    color: var(--ink-2); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--accent); }
+  nav .cta {
+    padding: 8px 16px; border: 1px solid var(--ink);
+    border-radius: 100px; font-size: 13px; font-weight: 500;
+    color: var(--ink) !important; transition: all 0.2s;
+  }
+  nav .cta:hover { background: var(--ink); color: var(--bg) !important; }
+
+  /* Section */
+  section { padding: 90px 0; position: relative; }
+  section.tight { padding: 60px 0; }
+  section.dark { background: var(--ink); color: var(--bg); }
+  section.dark h2, section.dark h3 { color: var(--bg); }
+  section.dark p { color: rgba(244, 236, 223, 0.8); }
+  section.soft { background: var(--bg-soft); }
+
+  .kicker {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px; color: var(--accent);
+  }
+  .kicker .num, .kicker .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .kicker .line { flex: 0 0 32px; height: 1px; background: var(--accent); }
+  section.dark .kicker { color: var(--accent-2); }
+  section.dark .kicker .line { background: var(--accent-2); }
+
+  .sec-h {
+    font-size: clamp(34px, 4.2vw, 52px);
+    line-height: 1.05;
+    margin-bottom: 16px;
+    font-weight: 350;
+  }
+  .sec-h em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .sec-sub {
+    font-size: 17px; color: var(--muted);
+    max-width: 620px; margin-bottom: 48px;
+  }
+  section.dark .sec-sub { color: rgba(244, 236, 223, 0.6); }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 80px 0 70px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 30%, rgba(201, 82, 46, 0.08), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 10% 80%, rgba(166, 54, 31, 0.05), transparent 70%);
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center; gap: 10px;
+    padding: 6px 14px;
+    border: 1px solid var(--line-2);
+    color: var(--accent);
+    background: var(--bg-soft);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-tag .live-dot {
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: livepulse 2s ease-in-out infinite;
+  }
+  @keyframes livepulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(46, 107, 74, 0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(46, 107, 74, 0); }
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+    font-weight: 350;
+    max-width: 15ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .hero .lede {
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.55;
+    max-width: 700px;
+    color: var(--ink-2);
+    margin-bottom: 48px;
+  }
+
+  /* Hero browser mockup */
+  .hero-frame {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-soft);
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 60px rgba(26, 19, 16, 0.08), 0 2px 8px rgba(26, 19, 16, 0.04);
+  }
+  .browser-chrome {
+    height: 36px;
+    background: linear-gradient(180deg, #ECE1CC 0%, #E5D9C6 100%);
+    border-bottom: 1px solid var(--line-2);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 10px;
+  }
+  .browser-dots { display: flex; gap: 6px; }
+  .browser-dots span {
+    width: 11px; height: 11px; border-radius: 50%;
+  }
+  .browser-dots span:nth-child(1) { background: #E96E5C; }
+  .browser-dots span:nth-child(2) { background: #E8B84F; }
+  .browser-dots span:nth-child(3) { background: #5CC273; }
+  .browser-url {
+    flex: 1;
+    background: rgba(255,255,255,0.5);
+    border-radius: 100px;
+    padding: 4px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin: 0 14px;
+    max-width: 320px;
+    text-align: center;
+  }
+  .browser-body {
+    height: calc(100% - 36px);
+    background: linear-gradient(135deg, #1A2A3A 0%, #2A1F2A 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .browser-body::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(166, 54, 31, 0.15), transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(46, 107, 74, 0.1), transparent 50%);
+  }
+  .placeholder { position: relative; z-index: 1; text-align: center; padding: 20px; }
+  .placeholder .mono { color: var(--accent-2); display: block; margin-bottom: 8px; }
+  .placeholder .desc {
+    font-family: 'Fraunces', serif; font-style: italic;
+    color: rgba(244, 236, 223, 0.8); font-size: 16px;
+  }
+
+  .meta-strip {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+    padding-top: 32px; border-top: 1px solid var(--line);
+  }
+  .meta-item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .meta-item .value {
+    font-family: 'Fraunces', serif; font-size: 16px;
+    color: var(--ink); line-height: 1.3;
+  }
+
+  /* ============ THE CONSTRAINT ============ */
+  .constraint-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .constraint-statement {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(24px, 2.8vw, 36px);
+    line-height: 1.2;
+    color: var(--ink);
+    font-weight: 350;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .constraint-statement em {
+    font-style: italic;
+    color: var(--accent);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .constraint-body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin-bottom: 16px;
+  }
+  .constraint-body:last-child { margin-bottom: 0; }
+
+  .audience-list {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px;
+  }
+  .audience-list .mono { color: var(--accent); margin-bottom: 20px; display: block; }
+  .audience-list ul {
+    list-style: none;
+  }
+  .audience-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .audience-list li:last-child { border-bottom: none; }
+  .audience-list li .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    flex: 0 0 24px;
+    padding-top: 2px;
+  }
+  .audience-list li h5 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .audience-list li p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* ============ BEFORE FIGMA — sitemap + competitor ============ */
+  .pre-figma-intro {
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 760px;
+    margin-bottom: 56px;
+    color: var(--ink-2);
+  }
+
+  .pre-figma-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* Sitemap card */
+  .pf-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 36px;
+  }
+  .pf-card .step-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: inline-block;
+    padding: 3px 10px;
+    border: 1px solid var(--accent);
+    border-radius: 100px;
+  }
+  .pf-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    margin-bottom: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .pf-card h3 em {
+    font-style: italic; color: var(--accent);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .pf-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-2);
+    margin-bottom: 20px;
+  }
+  .pf-visual {
+    margin-top: 24px;
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+  }
+  .pf-visual svg { width: 100%; height: 100%; }
+
+  /* ============ PROCESS / SPRINT TIMELINE ============ */
+  .sprint-intro {
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 760px;
+    margin-bottom: 48px;
+    color: var(--ink-2);
+  }
+  .sprint-board {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 36px;
+    overflow-x: auto;
+  }
+  .sprint-grid {
+    display: grid;
+    grid-template-columns: 110px repeat(14, 1fr);
+    gap: 2px;
+    min-width: 760px;
+    align-items: stretch;
+  }
+  .sprint-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .sprint-header.row-label {
+    text-align: left;
+    border-bottom: none;
+  }
+  .sprint-cell {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .sprint-label {
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 14px 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    font-weight: 500;
+  }
+  .sprint-bar {
+    background: var(--accent);
+    height: 14px;
+    border-radius: 100px;
+    margin: 4px 0;
+    position: relative;
+  }
+  .sprint-bar.subtle {
+    background: var(--accent-bg);
+    border: 1px solid var(--line-2);
+  }
+  .sprint-bar.subtle::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(166, 54, 31, 0.15) 4px, rgba(166, 54, 31, 0.15) 8px);
+    border-radius: 100px;
+  }
+  .sprint-divider {
+    grid-column: 9;
+    grid-row: 1 / -1;
+    border-left: 1px dashed var(--line-2);
+    margin: 0 -1px;
+  }
+
+  .sprint-legend {
+    margin-top: 28px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .sprint-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sprint-legend .swatch {
+    width: 14px; height: 8px;
+    border-radius: 100px;
+  }
+  .sprint-legend .swatch.solid { background: var(--accent); }
+  .sprint-legend .swatch.subtle {
+    background: var(--accent-bg);
+    border: 1px solid var(--line-2);
+  }
+
+  .process-note {
+    margin-top: 40px;
+    padding: 28px 32px;
+    background: var(--accent-bg);
+    border-radius: 4px;
+    border-left: 3px solid var(--accent);
+  }
+  .process-note .mono { color: var(--accent); margin-bottom: 8px; display: block; }
+  .process-note p {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 350;
+  }
+
+  /* ============ FIGMA EMBED ============ */
+  .figma-frame {
+    width: 100%;
+    background: #1A1310;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 60px rgba(26, 19, 16, 0.1), 0 2px 8px rgba(26, 19, 16, 0.04);
+    border: 1px solid var(--line-2);
+  }
+  .figma-toolbar {
+    height: 40px;
+    background: linear-gradient(180deg, #2A2018 0%, #1A1310 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+  }
+  .figma-toolbar .dots { display: flex; gap: 6px; }
+  .figma-toolbar .dots span {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+  .figma-toolbar .title {
+    flex: 1;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(244, 236, 223, 0.5);
+  }
+  .figma-toolbar .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    padding: 3px 8px;
+    background: rgba(201, 82, 46, 0.12);
+    border-radius: 100px;
+  }
+  .figma-embed-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, #1A2A3A 0%, #2A1F2A 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .figma-embed-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  /* Placeholder shown when iframe src is the default */
+  .figma-placeholder {
+    text-align: center;
+    color: rgba(244, 236, 223, 0.7);
+    padding: 40px;
+  }
+  .figma-placeholder .mono {
+    color: var(--accent-2);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .figma-placeholder .desc {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: rgba(244, 236, 223, 0.85);
+    margin-bottom: 24px;
+    max-width: 460px;
+    line-height: 1.4;
+  }
+  .figma-placeholder code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(244, 236, 223, 0.5);
+    background: rgba(244, 236, 223, 0.05);
+    padding: 8px 14px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .figma-meta {
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .figma-meta .left {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .figma-meta .right {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .figma-meta .live-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .figma-meta .live-link:hover { background: var(--accent); }
+  .figma-meta .live-link::after {
+    content: "→";
+    font-family: 'Fraunces', serif;
+  }
+
+  /* ============ TRUST DYNAMIC ============ */
+  .trust-quote {
+    padding: 56px 48px;
+    background: rgba(244, 236, 223, 0.04);
+    border: 1px solid rgba(244, 236, 223, 0.15);
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .trust-quote q {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(22px, 2.5vw, 30px);
+    line-height: 1.35;
+    color: var(--bg);
+    font-style: italic;
+    font-weight: 350;
+    quotes: none;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .trust-quote q::before { content: "\201C"; color: var(--accent-2); }
+  .trust-quote q::after { content: "\201D"; color: var(--accent-2); }
+
+  .trust-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .trust-point {
+    padding: 24px;
+    border-left: 2px solid var(--accent-2);
+    background: rgba(244, 236, 223, 0.03);
+    border-radius: 0 4px 4px 0;
+  }
+  .trust-point .mono { color: var(--accent-2); margin-bottom: 10px; display: block; }
+  .trust-point h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--bg);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .trust-point p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(244, 236, 223, 0.65);
+  }
+
+  /* ============ WHAT OUTLASTED ============ */
+  .outlast-quote {
+    padding: 48px;
+    background: var(--accent-bg);
+    border-radius: 4px;
+    border-left: 3px solid var(--accent);
+    margin-bottom: 40px;
+  }
+  .outlast-quote .mono { color: var(--accent); margin-bottom: 14px; display: block; }
+  .outlast-quote p {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 350;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+
+  .outcome-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .outcome-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px;
+  }
+  .outcome-card .mono { color: var(--accent); margin-bottom: 10px; display: block; }
+  .outcome-card .big {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.15;
+    color: var(--ink);
+    font-weight: 350;
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+  }
+  .outcome-card .big em {
+    font-style: italic;
+    color: var(--accent);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .outcome-card p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--ink); color: var(--bg);
+    padding: 80px 0 40px;
+  }
+  footer h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.15; color: var(--bg);
+    margin-bottom: 20px; font-weight: 350;
+    max-width: 700px;
+  }
+  footer h2 em {
+    color: var(--accent-2); font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  footer .lede {
+    font-size: 16px; color: rgba(244, 236, 223, 0.65);
+    margin-bottom: 36px; max-width: 540px;
+  }
+  footer .actions {
+    display: flex; gap: 14px; margin-bottom: 56px; flex-wrap: wrap;
+  }
+  footer .btn {
+    padding: 13px 22px; border-radius: 100px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  footer .btn.primary { background: var(--accent-2); color: #fff; }
+  footer .btn.primary:hover { background: var(--accent); }
+  footer .btn.ghost {
+    background: transparent; color: var(--bg);
+    border: 1px solid rgba(244, 236, 223, 0.3);
+  }
+  footer .btn.ghost:hover { background: rgba(244, 236, 223, 0.08); }
+  footer .bottom {
+    border-top: 1px solid rgba(244, 236, 223, 0.15);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(244, 236, 223, 0.45);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    nav.top .inner { padding: 14px 20px; }
+    nav .links { gap: 14px; }
+    nav .links a:not(.cta) { display: none; }
+    section { padding: 60px 0; }
+    .hero { padding: 40px 0 50px; }
+    .meta-strip { grid-template-columns: repeat(2, 1fr); }
+    .constraint-block { grid-template-columns: 1fr; gap: 32px; }
+    .pre-figma-grid { grid-template-columns: 1fr; }
+    .trust-points, .outcome-row { grid-template-columns: 1fr; }
+    .trust-quote, .outlast-quote { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="top">
+  <div class="inner">
+    <a href="#" class="logo">Hemang<span>.</span></a>
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+      <a href="#" class="cta">View Resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">
+      <span class="live-dot"></span>
+      <span>Bolna.ai · Voice AI for India · Live for YC launch</span>
+    </div>
+
+    <h1>
+      From sitemap to launch,<br>
+      <em>in 14 days.</em>
+    </h1>
+
+    <p class="lede">
+      Bolna.ai is a Voice AI platform built for India. Ahead of their Y Combinator announcement, they had two weeks to replace a website that hadn't kept up with the company. I led the redesign end to end — starting with structure, not screens.
+    </p>
+
+    <div class="hero-frame">
+      <div class="browser-chrome">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">bolna.ai</div>
+      </div>
+      <div class="browser-body">
+        <div class="placeholder">
+          <span class="mono">[ Hero screenshot ]</span>
+          <span class="desc">Bolna homepage —<br>the moment after the YC announcement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta-strip">
+      <div class="meta-item">
+        <div class="label">Role</div>
+        <div class="value">UI Designer<br>(Freelance)</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Team</div>
+        <div class="value">Founders + Me</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Duration</div>
+        <div class="value">2 weeks</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Stage</div>
+        <div class="value">Live</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Context</div>
+        <div class="value">YC announcement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 · THE CONSTRAINT ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">01</span>
+      <span class="line"></span>
+      <span class="label">The Constraint</span>
+    </div>
+    <h2 class="sec-h">Two weeks <em>wasn't a design problem.</em></h2>
+    <p class="sec-sub">It was a prioritisation problem. With timelines that tight, every decision either creates momentum or quietly costs it.</p>
+
+    <div class="constraint-block">
+      <div>
+        <div class="constraint-statement">
+          The company had evolved.<br>
+          <em>The website hadn't.</em>
+        </div>
+        <p class="constraint-body">
+          The messaging felt outdated. The structure couldn't carry a growing product ecosystem. The visual language no longer reflected the credibility of a YC-backed company about to step in front of a much larger audience.
+        </p>
+        <p class="constraint-body">
+          Inside a short window, I had to understand the Voice AI space, learn the product, align with stakeholders, and ship a site that worked for three different visitors at once.
+        </p>
+      </div>
+
+      <div class="audience-list">
+        <span class="mono">Three audiences, one home page</span>
+        <ul>
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h5>Enterprise customers</h5>
+              <p>Looking for credibility, scale signals, and proof the product can carry their use case.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h5>Developers</h5>
+              <p>Wanting documentation, APIs, and a fast route to the technical detail.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h5>Casual visitors</h5>
+              <p>Curious about Voice AI in India — needing a clear, plain-language entry point.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · BEFORE OPENING FIGMA ============ -->
+<section class="soft">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">02</span>
+      <span class="line"></span>
+      <span class="label">Before Opening Figma</span>
+    </div>
+    <h2 class="sec-h">Starting with the sitemap, <em>not the pixels.</em></h2>
+    <p class="pre-figma-intro">
+      The first thing I pushed back on was jumping straight into screens. Two parallel pieces had to happen before Figma made sense — defining the structure that everything else would hang from, and understanding the field Bolna was about to step into.
+    </p>
+
+    <div class="pre-figma-grid">
+      <!-- Sitemap card -->
+      <div class="pf-card">
+        <span class="step-tag">Step 01</span>
+        <h3>The <em>sitemap</em> first.</h3>
+        <p>What pages existed, how users moved between them, what content deserved prominence, what could live deeper. Getting that structure right early meant the design work had a frame to push against — and meant no painful re-shuffling once we hit high-fidelity.</p>
+        <div class="pf-visual">
+          <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Home (root) -->
+            <rect x="160" y="14" width="80" height="28" rx="4" fill="#A6361F"/>
+            <text x="200" y="32" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#FBF6EC" letter-spacing="0.5" font-weight="600">HOME</text>
+
+            <!-- Connectors level 1 -->
+            <line x1="200" y1="42" x2="60" y2="74" stroke="#D8C8B0" stroke-width="1"/>
+            <line x1="200" y1="42" x2="130" y2="74" stroke="#D8C8B0" stroke-width="1"/>
+            <line x1="200" y1="42" x2="200" y2="74" stroke="#D8C8B0" stroke-width="1"/>
+            <line x1="200" y1="42" x2="270" y2="74" stroke="#D8C8B0" stroke-width="1"/>
+            <line x1="200" y1="42" x2="340" y2="74" stroke="#D8C8B0" stroke-width="1"/>
+
+            <!-- Level 1 -->
+            <rect x="22" y="74" width="76" height="22" rx="3" fill="#FBF6EC" stroke="#D8C8B0"/>
+            <text x="60" y="89" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#1A1310" letter-spacing="0.5">PRODUCT</text>
+
+            <rect x="92" y="74" width="76" height="22" rx="3" fill="#FBF6EC" stroke="#D8C8B0"/>
+            <text x="130" y="89" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#1A1310" letter-spacing="0.5">USE CASES</text>
+
+            <rect x="162" y="74" width="76" height="22" rx="3" fill="#FBF6EC" stroke="#D8C8B0"/>
+            <text x="200" y="89" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#1A1310" letter-spacing="0.5">DEVELOPERS</text>
+
+            <rect x="232" y="74" width="76" height="22" rx="3" fill="#FBF6EC" stroke="#D8C8B0"/>
+            <text x="270" y="89" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#1A1310" letter-spacing="0.5">PRICING</text>
+
+            <rect x="302" y="74" width="76" height="22" rx="3" fill="#FBF6EC" stroke="#D8C8B0"/>
+            <text x="340" y="89" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#1A1310" letter-spacing="0.5">COMPANY</text>
+
+            <!-- Level 2 connectors under Product -->
+            <line x1="60" y1="96" x2="30" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="60" y1="96" x2="60" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="60" y1="96" x2="90" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+
+            <!-- Level 2 — Product children -->
+            <rect x="6" y="120" width="48" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="30" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">FEATURES</text>
+
+            <rect x="36" y="142" width="48" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="60" y="153" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">VOICES</text>
+
+            <rect x="66" y="120" width="48" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="90" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">INTEGRATIONS</text>
+
+            <!-- Level 2 under Use Cases -->
+            <line x1="130" y1="96" x2="110" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="130" y1="96" x2="130" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="130" y1="96" x2="150" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+
+            <rect x="92" y="120" width="40" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="112" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">SALES</text>
+
+            <rect x="126" y="142" width="40" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="146" y="153" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">SUPPORT</text>
+
+            <rect x="134" y="120" width="40" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="154" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">HIRING</text>
+
+            <!-- Level 2 under Developers -->
+            <line x1="200" y1="96" x2="180" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="200" y1="96" x2="220" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+
+            <rect x="160" y="120" width="40" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="180" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">DOCS</text>
+
+            <rect x="200" y="120" width="40" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="220" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">API</text>
+
+            <!-- Level 2 under Company -->
+            <line x1="340" y1="96" x2="320" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            <line x1="340" y1="96" x2="360" y2="120" stroke="#D8C8B0" stroke-width="0.7" stroke-dasharray="2 2"/>
+
+            <rect x="300" y="120" width="40" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="320" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">ABOUT</text>
+
+            <rect x="340" y="120" width="40" height="16" rx="2" fill="#FFFFFF" stroke="#E5D9C6"/>
+            <text x="360" y="131" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.3">CAREERS</text>
+
+            <!-- Note -->
+            <text x="200" y="194" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="11" fill="#A6361F">Illustrative sitemap — actual hierarchy refined with founders</text>
+            <text x="200" y="218" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="1">3 PRIMARY PATHS · 2 LEVELS DEEP · ROOM TO GROW</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Competitor research card -->
+      <div class="pf-card">
+        <span class="step-tag">Step 02</span>
+        <h3>Then the <em>landscape.</em></h3>
+        <p>A fast review of Voice AI sites — both global names and Indian players. The question wasn't who looked best. It was where Bolna should align with familiar industry patterns, and where it had a real opportunity to stand apart.</p>
+        <div class="pf-visual">
+          <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Axes -->
+            <line x1="40" y1="200" x2="380" y2="200" stroke="#D8C8B0" stroke-width="1"/>
+            <line x1="40" y1="20" x2="40" y2="200" stroke="#D8C8B0" stroke-width="1"/>
+
+            <!-- Axis labels -->
+            <text x="48" y="15" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="0.5">CHARACTER</text>
+            <text x="332" y="218" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="0.5">DEPTH</text>
+
+            <!-- Quadrant labels -->
+            <text x="120" y="42" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="0.5" opacity="0.6">EXPRESSIVE · LIGHT</text>
+            <text x="290" y="42" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="0.5" opacity="0.6">EXPRESSIVE · DEEP</text>
+            <text x="120" y="194" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="0.5" opacity="0.6">PLAIN · LIGHT</text>
+            <text x="290" y="194" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="0.5" opacity="0.6">PLAIN · DEEP</text>
+
+            <!-- Competitor dots — generic -->
+            <circle cx="100" cy="110" r="6" fill="#D8C8B0"/>
+            <text x="100" y="98" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F">A</text>
+
+            <circle cx="180" cy="80" r="6" fill="#D8C8B0"/>
+            <text x="180" y="68" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F">B</text>
+
+            <circle cx="280" cy="160" r="6" fill="#D8C8B0"/>
+            <text x="280" y="148" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F">C</text>
+
+            <circle cx="240" cy="130" r="6" fill="#D8C8B0"/>
+            <text x="240" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F">D</text>
+
+            <circle cx="320" cy="100" r="6" fill="#D8C8B0"/>
+            <text x="320" y="88" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F">E</text>
+
+            <!-- Bolna position (highlighted) -->
+            <circle cx="220" cy="90" r="11" fill="#A6361F"/>
+            <text x="220" y="94" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#FBF6EC" letter-spacing="0.5" font-weight="600">BOLNA</text>
+
+            <!-- Position arrow / target zone -->
+            <circle cx="220" cy="90" r="20" fill="none" stroke="#A6361F" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5"/>
+
+            <!-- Caption -->
+            <text x="200" y="232" text-anchor="middle" font-family="Fraunces" font-style="italic" font-size="11" fill="#A6361F">Where to align. Where to stand out.</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · PROCESS / SPRINT TIMELINE ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">03</span>
+      <span class="line"></span>
+      <span class="label">The Sprint</span>
+    </div>
+    <h2 class="sec-h">Fast feedback loops, <em>not perfect deliverables.</em></h2>
+    <p class="sprint-intro">
+      With two weeks to ship, I optimised for momentum. Low-fidelity wireframes built for discussion — not polish — went in front of founders, product, and engineering early. By the time high-fidelity designs landed, the core decisions had already been reviewed multiple times. No surprises at the end.
+    </p>
+
+    <div class="sprint-board">
+      <div class="sprint-grid">
+        <!-- Header row -->
+        <div class="sprint-header row-label"></div>
+        <div class="sprint-header">D1</div>
+        <div class="sprint-header">D2</div>
+        <div class="sprint-header">D3</div>
+        <div class="sprint-header">D4</div>
+        <div class="sprint-header">D5</div>
+        <div class="sprint-header">D6</div>
+        <div class="sprint-header">D7</div>
+        <div class="sprint-header" style="background: rgba(166, 54, 31, 0.04);">D8</div>
+        <div class="sprint-header">D9</div>
+        <div class="sprint-header">D10</div>
+        <div class="sprint-header">D11</div>
+        <div class="sprint-header">D12</div>
+        <div class="sprint-header">D13</div>
+        <div class="sprint-header">D14</div>
+
+        <!-- Row 1: Discovery -->
+        <div class="sprint-label">Discovery</div>
+        <div class="sprint-cell" style="grid-column: 2 / 5;">
+          <div class="sprint-bar"></div>
+        </div>
+        <div class="sprint-cell" style="grid-column: 5 / 16;"></div>
+
+        <!-- Row 2: Sitemap -->
+        <div class="sprint-label">Sitemap</div>
+        <div class="sprint-cell" style="grid-column: 2 / 2;"></div>
+        <div class="sprint-cell" style="grid-column: 3 / 6;">
+          <div class="sprint-bar"></div>
+        </div>
+        <div class="sprint-cell" style="grid-column: 6 / 16;"></div>
+
+        <!-- Row 3: Competitor -->
+        <div class="sprint-label">Competitor scan</div>
+        <div class="sprint-cell" style="grid-column: 2 / 2;"></div>
+        <div class="sprint-cell" style="grid-column: 3 / 5;">
+          <div class="sprint-bar"></div>
+        </div>
+        <div class="sprint-cell" style="grid-column: 5 / 16;"></div>
+
+        <!-- Row 4: Wireframes -->
+        <div class="sprint-label">Wireframes</div>
+        <div class="sprint-cell" style="grid-column: 2 / 5;"></div>
+        <div class="sprint-cell" style="grid-column: 5 / 9;">
+          <div class="sprint-bar"></div>
+        </div>
+        <div class="sprint-cell" style="grid-column: 9 / 16;"></div>
+
+        <!-- Row 5: High-fi -->
+        <div class="sprint-label">High-fidelity</div>
+        <div class="sprint-cell" style="grid-column: 2 / 8;"></div>
+        <div class="sprint-cell" style="grid-column: 8 / 14;">
+          <div class="sprint-bar"></div>
+        </div>
+        <div class="sprint-cell" style="grid-column: 14 / 16;"></div>
+
+        <!-- Row 6: Founder reviews (ongoing) -->
+        <div class="sprint-label">Founder reviews</div>
+        <div class="sprint-cell" style="grid-column: 2 / 4;"></div>
+        <div class="sprint-cell" style="grid-column: 4 / 15;">
+          <div class="sprint-bar subtle"></div>
+        </div>
+        <div class="sprint-cell" style="grid-column: 15 / 16;"></div>
+
+        <!-- Row 7: Dev handoff & launch -->
+        <div class="sprint-label">Dev &amp; launch</div>
+        <div class="sprint-cell" style="grid-column: 2 / 11;"></div>
+        <div class="sprint-cell" style="grid-column: 11 / 16;">
+          <div class="sprint-bar"></div>
+        </div>
+      </div>
+
+      <div class="sprint-legend">
+        <span><span class="swatch solid"></span> Focused work</span>
+        <span><span class="swatch subtle"></span> Ongoing review loop</span>
+        <span>D8 → wireframes signed off, high-fi begins</span>
+        <span>D14 → live for YC</span>
+      </div>
+    </div>
+
+    <div class="process-note">
+      <span class="mono">The principle</span>
+      <p>Show something, align on it, keep moving. Done beats perfect when the launch date doesn't.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · THE LIVE SITE — FIGMA EMBED ============ -->
+<section class="soft">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">04</span>
+      <span class="line"></span>
+      <span class="label">The Live Site</span>
+    </div>
+    <h2 class="sec-h">A site that <em>reflected the moment.</em></h2>
+    <p class="sec-sub">Best experienced live or in the embedded Figma prototype below. Designed for desktop — open on a larger screen for the intended view.</p>
+
+    <div class="figma-frame">
+      <div class="figma-toolbar">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="title">Bolna.ai · Figma Prototype</div>
+        <div class="badge">Embed</div>
+      </div>
+      <div class="figma-embed-wrap">
+
+        <!--
+          ===========================================================
+          REPLACE THE iframe BELOW WITH YOUR FIGMA EMBED CODE
+          ===========================================================
+          How to get it:
+          1. Open your Figma prototype
+          2. Click "Share" (top-right) → "Get embed code"
+          3. Copy the src URL and paste it into the iframe below
+          4. Keep width="100%" height="100%" — the wrapper handles sizing
+
+          Example src:
+          https://embed.figma.com/proto/FILE_ID/Project-Name?node-id=NODE-ID&page-id=PAGE-ID&starting-point-node-id=NODE-ID&embed-host=share
+
+          Until you paste the real URL, the placeholder block below will show.
+          To use the iframe instead, uncomment it and delete the placeholder div.
+          ===========================================================
+        -->
+
+        <!--
+        <iframe
+          src="REPLACE_WITH_YOUR_FIGMA_EMBED_URL"
+          width="100%"
+          height="100%"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+        -->
+
+        <!-- Placeholder shown until iframe is added -->
+        <div class="figma-placeholder">
+          <span class="mono">[ Figma prototype embed ]</span>
+          <p class="desc">Paste your Figma embed URL into the iframe in the HTML above — the toolbar and frame are already in place.</p>
+          <code>Figma → Share → Get embed code</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="figma-meta">
+      <div class="left">Designed for web. Open the live site for the full experience.</div>
+      <div class="right">
+        <a href="https://bolna.ai" target="_blank" rel="noopener" class="live-link">
+          Visit bolna.ai
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · TRUST DYNAMIC ============ -->
+<section class="dark">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">05</span>
+      <span class="line"></span>
+      <span class="label">Working with the founders</span>
+    </div>
+    <h2 class="sec-h" style="color: var(--bg);">The kind of project you remember<br><em>for the people.</em></h2>
+    <p class="sec-sub">A two-week timeline only works when trust is already there. Bolna's team treated me as part of the team from day one — and that made every decision faster.</p>
+
+    <div class="trust-quote">
+      <q>When I pushed for decisions — start with the sitemap, simplify scope here — the founders were open, asked thoughtful questions, and trusted the process. That trust is the only reason a two-week launch was possible at all.</q>
+    </div>
+
+    <div class="trust-points">
+      <div class="trust-point">
+        <span class="mono">Founders</span>
+        <h4>Decisive, open to pushback.</h4>
+        <p>Strategic calls landed in the same call they were raised. Nothing got stuck waiting for "next week."</p>
+      </div>
+      <div class="trust-point">
+        <span class="mono">Developers</span>
+        <h4>Context, not assumptions.</h4>
+        <p>Working alongside the engineers helped me understand the product as it actually worked — so the design didn't promise things it couldn't ship.</p>
+      </div>
+      <div class="trust-point">
+        <span class="mono">Across the team</span>
+        <h4>Feedback that moved.</h4>
+        <p>Reviews happened in parallel, not in series. Founders, product, and engineering stayed aligned without long redesign cycles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · WHAT OUTLASTED ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">06</span>
+      <span class="line"></span>
+      <span class="label">What Outlasted</span>
+    </div>
+    <h2 class="sec-h">The site shipped. <em>The thinking stayed.</em></h2>
+    <p class="sec-sub">The website went live in time for the YC announcement — but the part I'm proudest of isn't a visual decision.</p>
+
+    <div class="outlast-quote">
+      <span class="mono">The real outcome</span>
+      <p>What I value most is that the sitemap and competitor work continued to guide the team after the project ended. The foundation outlasted the redesign — which felt like a sign that the thinking behind it was built to last.</p>
+    </div>
+
+    <div class="outcome-row">
+      <div class="outcome-card">
+        <span class="mono">Launched</span>
+        <div class="big">On time, <em>for the YC moment.</em></div>
+        <p>Site went live ahead of the Y Combinator announcement without slipping the deadline.</p>
+      </div>
+      <div class="outcome-card">
+        <span class="mono">Carried forward</span>
+        <div class="big">Sitemap &amp; <em>research</em> still in use.</div>
+        <p>The structure and positioning work continued to guide the team's content and product decisions past launch.</p>
+      </div>
+      <div class="outcome-card">
+        <span class="mono">Set up for</span>
+        <div class="big">A bigger <em>moment.</em></div>
+        <p>Bolna entered YC with a website that reflected who the company had become — not where it had been.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <h2>Selected work shown here.<br>The full prototype is best <em>experienced live.</em></h2>
+    <p class="lede">
+      Happy to walk through the design decisions, the wireframes, and the parts that didn't make it past day three.
+    </p>
+
+    <div class="actions">
+      <a href="mailto:kshamahemang@gmail.com" class="btn primary">kshamahemang@gmail.com</a>
+      <a href="https://bolna.ai" target="_blank" rel="noopener" class="btn ghost">Visit bolna.ai →</a>
+      <a href="#" class="btn ghost">View resume</a>
+    </div>
+
+    <div class="bottom">
+      <span>© 2026 Hemang Sharma</span>
+      <span>Product Designer · UI/UX</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

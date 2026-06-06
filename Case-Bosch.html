@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bosch CXP — Customer Experience Platform · Hemang Sharma</title>
+<meta name="description" content="Case study: Bosch Customer Experience Platform — an internal concept bringing orders, returns, projects, and escalations into one connected view for every team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Big+Shoulders+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/casestudy.css">
+<style id="ld-critical">
+  #loader{display:none}
+  html.loading{overflow:hidden}
+  html.loading body{overflow:hidden}
+  html.loading #loader{display:flex}
+</style>
+<script>
+  (function(){
+    try{
+      var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+      var isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+      var seen = false;
+      try { seen = !!sessionStorage.getItem('hs_loaded'); } catch(e){}
+      if(!seen || isReload){ document.documentElement.classList.add('loading'); }
+    }catch(e){}
+  })();
+</script>
+</head>
+<body class="cs-body">
+
+<!-- ============================ LOADER ============================ -->
+<div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+  <div class="ld-vignette" aria-hidden="true"></div>
+  <div class="ld-top">
+    <span class="ld-tag">PORTFOLIO</span>
+    <span class="ld-tag">&copy; 2026</span>
+  </div>
+
+  <div class="ld-center">
+    <div class="ld-mono" aria-hidden="true">
+      <svg class="ghost" viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+        <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+      </svg>
+      <div class="ld-fill" id="ldFill">
+        <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+          <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="ld-name" id="ldName" aria-hidden="true"></div>
+    <div class="ld-role">PRODUCT &amp; UI/UX DESIGNER</div>
+  </div>
+
+  <div class="ld-bottom">
+    <div class="ld-track"><span class="ld-track-fill" id="ldTrackFill"></span></div>
+    <div class="ld-count"><span id="ldCount">0</span><i>%</i></div>
+  </div>
+</div>
+<script>
+  (function(){
+    var root = document.documentElement;
+    var loader = document.getElementById('loader');
+    if(!loader) return;
+    var NAME = 'HEMANG SHARMA';
+
+    // Build name letters with stagger index
+    var nameEl = document.getElementById('ldName');
+    for(var i=0;i<NAME.length;i++){
+      var ch = NAME[i];
+      var s = document.createElement('span');
+      s.className = 'ld-ltr' + (ch === ' ' ? ' sp' : '');
+      s.style.setProperty('--i', i);
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      nameEl.appendChild(s);
+    }
+
+    // If we decided NOT to show the loader, clean up instantly.
+    if(!root.classList.contains('loading')){ loader.parentNode && loader.parentNode.removeChild(loader); return; }
+    try { sessionStorage.setItem('hs_loaded','1'); } catch(e){}
+
+    var fill = document.getElementById('ldFill');
+    var trackFill = document.getElementById('ldTrackFill');
+    var countEl = document.getElementById('ldCount');
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var DURATION = reduce ? 600 : 2000;
+    var start = null, done = false;
+
+    // easeOutExpo for a fast-then-settle feel
+    function ease(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+    function render(p){ // p: 0..1
+      var pct = Math.round(p * 100);
+      countEl.textContent = pct;
+      fill.style.clipPath = 'inset(' + (100 - p*100).toFixed(2) + '% 0 0 0)';
+      fill.style.webkitClipPath = 'inset(' + (100 - p*100).toFixed(2) + '% 0 0 0)';
+      trackFill.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    }
+
+    function finish(){
+      if(done) return; done = true;
+      loader.classList.add('is-charged');           // pulse the mark
+      setTimeout(function(){
+        loader.classList.add('is-done');             // lift the panel
+        var endMs = reduce ? 420 : 950;
+        setTimeout(function(){
+          root.classList.remove('loading');
+          loader.setAttribute('aria-hidden','true');
+          if(loader.parentNode) loader.parentNode.removeChild(loader);
+          window.dispatchEvent(new CustomEvent('hs:loaded'));
+        }, endMs);
+      }, reduce ? 120 : 320);
+    }
+
+    function tick(ts){
+      if(start === null) start = ts;
+      var t = Math.min((ts - start) / DURATION, 1);
+      render(ease(t));
+      if(t < 1){ requestAnimationFrame(tick); }
+      else { finish(); }
+    }
+
+    // kick off after a paint so entrance transitions register
+    requestAnimationFrame(function(){
+      loader.classList.add('is-in');
+      requestAnimationFrame(tick);
+    });
+
+    // safety net: never trap the user
+    setTimeout(function(){ if(!done){ render(1); finish(); } }, DURATION + 4000);
+  })();
+</script>
+
+<!-- ============================ NAV ============================ -->
+<header class="site-header">
+  <div class="navbar">
+    <div class="nav-inner">
+        <a class="brandmark" href="index.html" aria-label="Hemang Sharma home">
+          <span class="hs">
+            <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+              <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+            </svg>
+          </span>
+          <span class="name">HEMANG SHARMA</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="Projects.html" class="active">Projects</a>
+          <a href="About.html">About</a>
+        </nav>
+      <div class="nav-right">
+        <a class="btn-resume" href="#" data-resume>View Resume
+          <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="nav-toggle" aria-label="Open menu" data-menu-open><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile sheet -->
+<div class="mobile-sheet" id="mobileSheet">
+  <div class="mobile-sheet-top">
+    <span class="mobile-brand">
+      <span class="hs">
+        <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+          <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+        </svg>
+      </span>
+      <span class="name">HEMANG SHARMA</span>
+    </span>
+    <button class="mobile-sheet-close" aria-label="Close menu" data-menu-close>×</button>
+  </div>
+  <nav>
+    <a href="index.html" data-menu-close>Home</a>
+    <a href="Projects.html" class="active" data-menu-close>Projects</a>
+    <a href="About.html" data-menu-close>About</a>
+  </nav>
+  <a class="btn-resume" href="#" data-resume>View Resume
+    <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+
+<main id="top">
+
+<section class="cs-hero">
+  <div class="cs-container">
+    <a class="cs-back" href="Projects.html">
+      <svg viewBox="0 0 18 18" fill="none"><path d="M11 4 6 9l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to projects
+    </a>
+    <div class="cs-meta reveal">
+      <span>Enterprise</span><span class="dot"></span>
+      <span>Customer Experience Platform</span><span class="dot"></span>
+      <span>2024</span>
+    </div>
+    <img class="cs-wordmark-logo reveal" src="assets/logos/bosch.svg" alt="Bosch">
+    <div class="cs-hero-cols reveal">
+      <h1>One customer, five teams,<br>one <em>screen.</em></h1>
+      <p class="cs-overview">An internal Customer Experience Platform that brings orders, returns, projects, and escalations into a single connected view, so any team at Bosch can step into a customer conversation with the full picture. Designed end to end as a concept, from journey mapping with the business team through to the final interface.</p>
+    </div>
+    <div class="cs-hero-img reveal">
+      <img src="assets/img/bosch-hero-hq.png" alt="Bosch CXP dashboard concept: customer overview with milestone progress, fulfilment and returns metrics, and accounts that need attention, over a pixel-art forest backdrop">rt forest backdrop">
+    </div>
+    <div class="cs-metastrip reveal" style="grid-template-columns:repeat(4,1fr)">
+      <div class="cs-metaitem"><div class="label">Role</div><div class="value">UI/UX Designer</div></div>
+      <div class="cs-metaitem"><div class="label">Team</div><div class="value">Solo designer</div></div>
+      <div class="cs-metaitem"><div class="label">Duration</div><div class="value">1 month</div></div>
+      <div class="cs-metaitem"><div class="label">Stage</div><div class="value">Ideation &amp; Concept</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Problem</span></div>
+    <h2 class="cs-h reveal">Five teams, five tools, <em>one customer in the middle.</em></h2>
+    <p class="cs-sub reveal">Bosch's customer interactions are naturally complex. Sales, quality, engineering, logistics, and finance all touch the same accounts, but they don't see the same picture.</p>
+    <div class="cs-prob reveal">
+      <div class="cs-frag"><svg width="100%" height="auto" viewBox="0 0 600 480" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Schibsted Grotesk',system-ui,sans-serif" role="img" aria-label="Five Bosch teams — Sales, Engineering, Logistics, Quality, Finance — connected to each other but with no shared view of the customer in the centre">
+  <defs><marker id="bd" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto-start-reverse"><path d="M0 0 L6.5 3 L0 6 z" fill="#B49A8E"/></marker></defs>
+  <!-- ring connectors (peer to peer) -->
+  <g stroke="#CBB6A9" stroke-width="1.5" marker-start="url(#bd)" marker-end="url(#bd)">
+    <line x1="325.6" y1="110.9" x2="411.3" y2="173.1"/>
+    <line x1="433.3" y1="240.8" x2="400.6" y2="341.7"/>
+    <line x1="343" y1="383.5" x2="237" y2="383.5"/>
+    <line x1="179.4" y1="341.7" x2="146.7" y2="240.8"/>
+    <line x1="168.7" y1="173.1" x2="254.4" y2="110.9"/>
+  </g>
+  <!-- centre: customer, no shared view -->
+  <circle cx="290" cy="250" r="68" fill="none" stroke="#5C2435" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <circle cx="290" cy="230" r="24" fill="#F2E6DD"/>
+  <circle cx="290" cy="224" r="7" fill="#5C2435"/>
+  <path d="M278 242a12 12 0 0 1 24 0z" fill="#5C2435"/>
+  <text x="290" y="278" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.3" fill="#5C2435">CUSTOMER</text>
+  <text x="290" y="295" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-style="italic" font-size="11.5" fill="#5C2435">no shared view</text>
+  <!-- SALES (top) -->
+  <circle cx="290" cy="85" r="34" fill="#FFFFFF" stroke="#DCC8BC" stroke-width="1.25"/>
+  <g transform="translate(290,85)" fill="#5C2435"><circle cx="-6" cy="-5" r="4.6"/><circle cx="6" cy="-5" r="4.6"/><path d="M-14.5 9c0-5.2 3.8-8.4 8.5-8.4s8.5 3.2 8.5 8.4z"/><path d="M-2.5 9c0-5.2 3.8-8.4 8.5-8.4s8.5 3.2 8.5 8.4z"/></g>
+  <text x="290" y="137" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="0.6" fill="#2A1A20">SALES</text>
+  <text x="290" y="152" text-anchor="middle" font-size="10.5" fill="#8A7680">(CRM)</text>
+  <!-- ENGINEERING (upper right) — label to the RIGHT -->
+  <circle cx="446.9" cy="199" r="34" fill="#FFFFFF" stroke="#DCC8BC" stroke-width="1.25"/>
+  <g transform="translate(446.9,199)" stroke="#5C2435" stroke-width="2" stroke-linecap="round"><circle r="7" fill="none"/><line x1="0" y1="-11.5" x2="0" y2="-7.5"/><line x1="0" y1="7.5" x2="0" y2="11.5"/><line x1="-11.5" y1="0" x2="-7.5" y2="0"/><line x1="7.5" y1="0" x2="11.5" y2="0"/><line x1="-8.1" y1="-8.1" x2="-5.3" y2="-5.3"/><line x1="5.3" y1="5.3" x2="8.1" y2="8.1"/><line x1="8.1" y1="-8.1" x2="5.3" y2="-5.3"/><line x1="-5.3" y1="5.3" x2="-8.1" y2="8.1"/></g>
+  <circle cx="446.9" cy="199" r="2.2" fill="#5C2435"/>
+  <text x="490" y="195" text-anchor="start" font-size="12.5" font-weight="600" letter-spacing="0.6" fill="#2A1A20">ENGINEERING</text>
+  <text x="490" y="211" text-anchor="start" font-size="10.5" fill="#8A7680">(PLM)</text>
+  <!-- LOGISTICS (lower right) — label below -->
+  <circle cx="387" cy="383.5" r="34" fill="#FFFFFF" stroke="#DCC8BC" stroke-width="1.25"/>
+  <g transform="translate(387,383.5)"><g fill="none" stroke="#5C2435" stroke-width="2" stroke-linejoin="round"><rect x="-8.5" y="-7" width="15" height="14" rx="1.5"/><line x1="-8.5" y1="-1.5" x2="6.5" y2="-1.5"/><line x1="-1" y1="-7" x2="-1" y2="-1.5"/></g><path d="M10 0h6.5m-2.6-2.6 2.6 2.6-2.6 2.6" fill="none" stroke="#B0593C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="387" y="437" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="0.6" fill="#2A1A20">LOGISTICS</text>
+  <text x="387" y="452" text-anchor="middle" font-size="10.5" fill="#8A7680">(SAP)</text>
+  <!-- QUALITY (lower left) — label below -->
+  <circle cx="193" cy="383.5" r="34" fill="#FFFFFF" stroke="#DCC8BC" stroke-width="1.25"/>
+  <g transform="translate(193,383.5)"><path d="M0 -9.5l9 3.4v5.6c0 6.7-5.6 9.9-9 11.1-3.4-1.2-9-4.4-9-11.1v-5.6z" fill="none" stroke="#5C2435" stroke-width="2" stroke-linejoin="round"/><path d="M-4.2 1.6l2.8 2.8 5-5.5" fill="none" stroke="#3E7A6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="193" y="437" text-anchor="middle" font-size="12.5" font-weight="600" letter-spacing="0.6" fill="#2A1A20">QUALITY</text>
+  <text x="193" y="452" text-anchor="middle" font-size="10.5" fill="#8A7680">(QMS)</text>
+  <!-- FINANCE (upper left) — label to the LEFT -->
+  <circle cx="133.1" cy="199" r="34" fill="#FFFFFF" stroke="#DCC8BC" stroke-width="1.25"/>
+  <g transform="translate(133.1,199)" stroke="#5C2435" stroke-width="1.8"><ellipse cy="7" rx="9.5" ry="3.3" fill="#F2E6DD"/><path d="M-9.5 7v-7" fill="none"/><path d="M9.5 7v-7" fill="none"/><ellipse cy="3" rx="9.5" ry="3.3" fill="#FFFFFF"/><path d="M-9.5 3v-7" fill="none"/><path d="M9.5 3v-7" fill="none"/><ellipse cy="-4" rx="9.5" ry="3.3" fill="#F2E6DD"/></g>
+  <text x="89" y="195" text-anchor="end" font-size="12.5" font-weight="600" letter-spacing="0.6" fill="#2A1A20">FINANCE</text>
+  <text x="89" y="211" text-anchor="end" font-size="10.5" fill="#8A7680">(ERP)</text>
+</svg></div>
+      <div class="cs-signals">
+        <div class="cs-signal"><span class="lbl">Signal 01</span><h4>No single view of the customer</h4><p>Different teams worked in different systems. Even the people serving the same account were looking at different versions of it.</p></div>
+        <div class="cs-signal"><span class="lbl">Signal 02</span><h4>Conversations got lost between teams</h4><p>Communications were hard to track once they moved across functions. Important context disappeared in the handover.</p></div>
+        <div class="cs-signal"><span class="lbl">Signal 03</span><h4>Escalations landed at the wrong door</h4><p>Without shared visibility, escalations often reached the wrong point of contact, costing time and trust.</p></div>
+      </div>
+    </div>
+    <div class="cs-callout reveal">
+      <span class="lbl">The cost</span>
+      <p style="font-family: Newsreader; font-size: 19px">Lower satisfaction. Missed opportunities. Slower response times. All tracing back to the same root: nobody had the full picture in one place.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section soft">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Guiding Principle</span></div>
+    <div class="cs-principle-feature reveal">
+      <div class="cs-principle-tag"><span class="dot"></span><span>The 30-second rule</span></div>
+      <h2 class="cs-principle-quote">What does someone at Bosch need to know in the next <em>30 seconds</em> to help this customer?</h2>
+      <p class="cs-principle-context">Mapping the existing journey with the Business Development team, one moment kept coming up: even senior leaders struggled to grasp a customer's context when the account manager wasn't around. That observation became the question every screen had to answer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">Research &amp; Strategy</span></div>
+    <h2 class="cs-h reveal">How I scoped <em>the work.</em></h2>
+    <p class="cs-sub reveal">Two parallel tracks shaped the early thinking: understanding real workflows, and planning the product across more than one phase.</p>
+    <div class="cs-subkicker reveal">Two parallel tracks</div>
+    <div class="cs-research reveal">
+      <div class="cs-rcard"><span class="lbl">Track 01 · Discovery</span><h3>Walking the journey with the BD team.</h3><p>I worked alongside Business Development to map the existing customer journey end to end, walking through real account scenarios, not abstract user flows.</p><p>The most useful sessions weren't about what data the system needed to show. They were about which signals actually influenced decisions in a live conversation.</p></div>
+      <div class="cs-rcard"><span class="lbl">Track 02 · Strategy</span><h3>Designed for two phases, not one.</h3><p>Phase 1 focused on internal Bosch users, the teams who felt the information gaps most directly. Phase 2 was scoped to extend the same experience outward to customers themselves.</p><p>That meant the design had to be flexible enough to face both directions without being rebuilt for either.</p></div>
+    </div>
+    <div class="cs-divider reveal"></div>
+    <div class="cs-subkicker reveal">Built to roll out in two phases</div>
+    <div class="cs-phases reveal">
+      <div class="cs-phase"><span class="lbl">Phase 01 · Active</span><h4>Internal — clarity for Bosch teams.</h4><p>Bring orders, returns, projects, escalations, and interactions into one place for sales, quality, engineering, logistics, and finance.</p></div>
+      <div class="cs-phase-arrow">&rarr;</div>
+      <div class="cs-phase future"><span class="lbl">Phase 02 · Planned</span><h4>External — extend to the customer.</h4><p>Open a connected view back to the customer side, building on the same foundations established in Phase 1.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section soft">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Design</span></div>
+    <h2 class="cs-h reveal">Four decisions <em>that shaped CXP.</em></h2>
+    <p class="cs-sub reveal">Each one came back to the 30-second rule: surface what matters, hide what doesn't, never make someone hunt for context.</p>
+    <div class="cs-bento reveal">
+      <div class="cs-bento-col">
+        <article class="cs-dec">
+          <span class="dtag">Decision 01</span>
+          <h3>A landing view designed for <em>attention</em>, not navigation.</h3>
+          <p>The dashboard surfaces milestone progress, fulfilment, returns, and collaboration insights at a glance, while flagging which customers need attention right now, so users land on signal, not a menu.</p>
+          <div class="cs-dec-art"><img src="assets/img/bosch-dec1.svg" alt="CXP dashboard landing view: milestone progress, fulfilment and returns metrics, and a panel of customers that need attention right now"></div>
+        </article>
+        <article class="cs-dec">
+          <span class="dtag">Decision 02</span>
+          <h3>One customer, <em>one screen.</em></h3>
+          <p>Selecting an account opens a tabbed view where metrics, returns, projects, orders, opportunities, payments, and support details all live in one connected place, organised, not crowded.</p>
+          <div class="cs-dec-art"><img src="assets/img/bosch-dec2.svg" alt="Customer detail view with tabs for metrics, orders, returns, projects, payments and support — all on one connected screen"></div>
+        </article>
+      </div>
+      <div class="cs-bento-col">
+        <article class="cs-dec">
+          <span class="dtag">Decision 03</span>
+          <h3>Status that <em>tells a story.</em></h3>
+          <p>For orders and returns, the timeline doesn't just show stages. It highlights delays, explains why they happened, and surfaces who's responsible. The context comes with the status.</p>
+          <div class="cs-dec-art"><img src="assets/img/bosch-dec3.svg" alt="Order and return status timeline that highlights a delayed stage, explains why it happened, and names who is responsible"></div>
+        </article>
+        <article class="cs-dec">
+          <span class="dtag">Decision 04</span>
+          <h3>Two layouts, <em>one experience.</em></h3>
+          <p>For the customer detail view, I explored both a structured tab-based metric layout and a card-driven visual one, testing how the experience scales as accounts get larger and information gets denser.</p>
+          <div class="cs-dec-art"><img src="assets/img/bosch-dec4.svg" alt="Two explorations of the customer detail view side by side: a structured tab-based metric layout and a card-driven visual layout"></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">A Closer Look</span></div>
+    <h2 class="cs-h reveal">When a status update <em>needs to do more</em> than show a status.</h2>
+    <p class="cs-sub reveal">Most return and order timelines only tell you where something is. CXP's timeline tells you whether the journey is on track, where it's stuck, and who can move it forward, all without leaving the screen.</p>
+    <div class="cs-status-layout reveal">
+      <div class="cs-status-frame">
+        <img src="assets/img/bosch-status.svg" alt="CXP order status timeline: Request received, Return sales order created, Quality approval, then a Dispatched stage flagged 5 days over SLA with a follow-up action and the owner named, and a pending Part received stage">
+      </div>
+      <div class="cs-annotations">
+        <div class="cs-annotation"><span class="lbl">Why this works · 01</span><h5>Delay is shown, not buried.</h5><p>The over-SLA stage gets a colour change, a clear time-vs-target read-out, and a specific action, not a generic warning.</p></div>
+        <div class="cs-annotation"><span class="lbl">Why this works · 02</span><h5>Accountability has a name.</h5><p>Every stage shows who owns it. When something stalls, the next action, "Follow up with Divyansh", is one click, not a search.</p></div>
+        <div class="cs-annotation"><span class="lbl">Why this works · 03</span><h5>Context comes with the status.</h5><p>Each stage carries its own short description so users understand why it exists, not just that it happened.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section soft">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">Working with the business team</span></div>
+    <div class="cs-reflection reveal">
+      <span class="lbl">Designed around real decisions, not assumed ones</span>
+      <p>"Before moving into design, I spent time with stakeholders across sales, quality, and operations, not just to understand what data needed to be shown, but to find out which metrics actually influenced decisions. That distinction shaped everything from the dashboard down to individual customer profiles, and it kept the experience grounded in real workflows rather than guesswork."</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section dark">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">Impact &amp; Outlook</span></div>
+    <h2 class="cs-h reveal">From owned by one team, <em>to shared across them.</em></h2>
+    <p class="cs-sub reveal">CXP is concept-stage today. What it represents, and the shift it sets up, matters more than any single screen.</p>
+    <div class="cs-impact reveal">
+      <div class="prose">
+        <p>The most important thing the design did was reframe customer experience as a layer the whole organisation contributes to, rather than something held by a single account manager. Anyone, whether they regularly manage an account or not, should be able to step into a conversation with confidence in under a minute.</p>
+        <p>The rollout begins with the internal teams that experience the information gaps most directly, then expands outward. The foundations were built so Phase 2 doesn't require starting over.</p>
+      </div>
+      <div class="cs-impact-stats">
+        <div class="cs-istat"><span class="lbl">Goal</span><div class="big">Customer context in <em>under a minute.</em></div><p>Anyone at Bosch, regardless of how often they touch an account.</p></div>
+        <div class="cs-istat"><span class="lbl">Shift</span><div class="big">From <em>one-owner</em> to a shared layer.</div><p>Different functions can access, trust, and contribute together.</p></div>
+        <div class="cs-istat"><span class="lbl">Next</span><div class="big">Foundations ready for <em>Phase 2.</em></div><p>The same architecture extends outward to customers themselves.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-cta-wrap after-dark">
+  <div class="cs-container">
+    <div class="cs-cta reveal">
+      <h2>Selected work shown here. Happy to walk through <em>the rest.</em></h2>
+      <p>Some screens and workflows aren't public due to confidentiality. Happy to share the full set in conversation.</p>
+      <div class="cs-actions">
+        <button class="cs-btn primary cs-copy-email" type="button" data-copy-email="kshamahemang@gmail.com">
+          <svg viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M3 11V3.5A1.5 1.5 0 0 1 4.5 2H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span class="lbl">kshamahemang@gmail.com</span>
+          <span class="copied-msg">Copied to clipboard</span>
+        </button>
+        <a class="cs-btn ghost" href="Projects.html">Next project <svg viewBox="0 0 18 18" fill="none"><path d="M4 14 14 4M14 4H6.5M14 4v7.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="row">
+          <span class="hs">
+            <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+              <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+            </svg>
+          </span>
+          <span class="name">HEMANG SHARMA</span>
+        </div>
+        <div class="sub">Product Designer | UI UX Designer</div>
+        <div class="footer-contact">
+          <button class="footer-email" id="emailBtn" data-email="kshamahemang@gmail.com">
+            kshamahemang@gmail.com <span class="copied">Copied!</span>
+          </button>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/hemangsharma24/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            </a>
+            <a href="https://www.behance.net/hemangsharma24" target="_blank" rel="noopener" aria-label="Behance">
+              <svg viewBox="0 0 32 32" fill="currentColor"><path d="M10.9707 20.0133H8V17.3333H11.0147C13.5187 17.3333 13.6853 20.0133 10.9707 20.0133ZM19.9813 16.444H24.0053C23.8493 14.1573 20.3653 13.808 19.9813 16.444ZM10.9093 12H8V14.6667H11.1853C13.416 14.6667 13.768 12 10.9093 12ZM32 6.66667V25.3333C32 29.0147 29.016 32 25.3333 32H6.66667C2.984 32 0 29.0147 0 25.3333V6.66667C0 2.98533 2.984 0 6.66667 0H25.3333C29.016 0 32 2.98533 32 6.66667ZM18.6667 10.6667H25.3333V9.33333H18.6667V10.6667ZM13.9307 15.4907C16.4733 14.192 16.38 9.424 11.5133 9.352H5.33333V22.656H11.0813C17.1107 22.656 17.008 16.6107 13.9307 15.4907ZM26.58 16.2933C26.2147 13.9427 24.5427 12.36 21.8027 12.36C19.0107 12.36 17.3333 14.1467 17.3333 17.6227C17.3333 21.1307 19.156 22.6667 21.888 22.6667C24.62 22.6667 26.0293 21.1533 26.4213 20H23.6067C22.6253 21.14 19.7493 20.6947 19.9173 18.196H26.664C26.6773 17.3507 26.648 16.744 26.58 16.2933Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a class="btn-resume" href="#" data-resume>View Resume
+        <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-wordmark">
+      <img src="assets/hemang-pixel-wordmark.svg" alt="HEMANG">
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; June 2026, Hemang Sharma</span>
+      <span>Designed through ideas, iterations and late nights &#7508; &#7509; &#7508;</span>
+    </div>
+  </div>
+</footer>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#5C2435"/><text x="50" y="64" font-family="Georgia, serif" font-size="30" fill="#FBF6F0" text-anchor="middle">GA</text></svg>
+</template>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

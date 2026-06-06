@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolna.ai — Website in 14 Days · Hemang Sharma</title>
+<meta name="description" content="Case study: redesigning Bolna.ai's website in two weeks ahead of their Y Combinator launch — starting with sitemap and competitor research, not pixels.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Big+Shoulders+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/casestudy.css">
+<style id="ld-critical">
+  #loader{display:none}
+  html.loading{overflow:hidden}
+  html.loading body{overflow:hidden}
+  html.loading #loader{display:flex}
+</style>
+<script>
+  (function(){
+    try{
+      var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+      var isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+      var seen = false;
+      try { seen = !!sessionStorage.getItem('hs_loaded'); } catch(e){}
+      if(!seen || isReload){ document.documentElement.classList.add('loading'); }
+    }catch(e){}
+  })();
+</script>
+</head>
+<body class="cs-body">
+
+<!-- ============================ LOADER ============================ -->
+<div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+  <div class="ld-vignette" aria-hidden="true"></div>
+  <div class="ld-top">
+    <span class="ld-tag">PORTFOLIO</span>
+    <span class="ld-tag">&copy; 2026</span>
+  </div>
+
+  <div class="ld-center">
+    <div class="ld-mono" aria-hidden="true">
+      <svg class="ghost" viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+        <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+      </svg>
+      <div class="ld-fill" id="ldFill">
+        <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+          <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="ld-name" id="ldName" aria-hidden="true"></div>
+    <div class="ld-role">PRODUCT &amp; UI/UX DESIGNER</div>
+  </div>
+
+  <div class="ld-bottom">
+    <div class="ld-track"><span class="ld-track-fill" id="ldTrackFill"></span></div>
+    <div class="ld-count"><span id="ldCount">0</span><i>%</i></div>
+  </div>
+</div>
+<script>
+  (function(){
+    var root = document.documentElement;
+    var loader = document.getElementById('loader');
+    if(!loader) return;
+    var NAME = 'HEMANG SHARMA';
+
+    // Build name letters with stagger index
+    var nameEl = document.getElementById('ldName');
+    for(var i=0;i<NAME.length;i++){
+      var ch = NAME[i];
+      var s = document.createElement('span');
+      s.className = 'ld-ltr' + (ch === ' ' ? ' sp' : '');
+      s.style.setProperty('--i', i);
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      nameEl.appendChild(s);
+    }
+
+    // If we decided NOT to show the loader, clean up instantly.
+    if(!root.classList.contains('loading')){ loader.parentNode && loader.parentNode.removeChild(loader); return; }
+    try { sessionStorage.setItem('hs_loaded','1'); } catch(e){}
+
+    var fill = document.getElementById('ldFill');
+    var trackFill = document.getElementById('ldTrackFill');
+    var countEl = document.getElementById('ldCount');
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var DURATION = reduce ? 600 : 2000;
+    var start = null, done = false;
+
+    // easeOutExpo for a fast-then-settle feel
+    function ease(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+    function render(p){ // p: 0..1
+      var pct = Math.round(p * 100);
+      countEl.textContent = pct;
+      fill.style.clipPath = 'inset(' + (100 - p*100).toFixed(2) + '% 0 0 0)';
+      fill.style.webkitClipPath = 'inset(' + (100 - p*100).toFixed(2) + '% 0 0 0)';
+      trackFill.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    }
+
+    function finish(){
+      if(done) return; done = true;
+      loader.classList.add('is-charged');           // pulse the mark
+      setTimeout(function(){
+        loader.classList.add('is-done');             // lift the panel
+        var endMs = reduce ? 420 : 950;
+        setTimeout(function(){
+          root.classList.remove('loading');
+          loader.setAttribute('aria-hidden','true');
+          if(loader.parentNode) loader.parentNode.removeChild(loader);
+          window.dispatchEvent(new CustomEvent('hs:loaded'));
+        }, endMs);
+      }, reduce ? 120 : 320);
+    }
+
+    function tick(ts){
+      if(start === null) start = ts;
+      var t = Math.min((ts - start) / DURATION, 1);
+      render(ease(t));
+      if(t < 1){ requestAnimationFrame(tick); }
+      else { finish(); }
+    }
+
+    // kick off after a paint so entrance transitions register
+    requestAnimationFrame(function(){
+      loader.classList.add('is-in');
+      requestAnimationFrame(tick);
+    });
+
+    // safety net: never trap the user
+    setTimeout(function(){ if(!done){ render(1); finish(); } }, DURATION + 4000);
+  })();
+</script>
+
+<!-- ============================ NAV ============================ -->
+<header class="site-header">
+  <div class="navbar">
+    <div class="nav-inner">
+        <a class="brandmark" href="index.html" aria-label="Hemang Sharma home">
+          <span class="hs">
+            <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+              <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+            </svg>
+          </span>
+          <span class="name">HEMANG SHARMA</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="Projects.html" class="active">Projects</a>
+          <a href="About.html">About</a>
+        </nav>
+      <div class="nav-right">
+        <a class="btn-resume" href="#" data-resume>View Resume
+          <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="nav-toggle" aria-label="Open menu" data-menu-open><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile sheet -->
+<div class="mobile-sheet" id="mobileSheet">
+  <div class="mobile-sheet-top">
+    <span class="mobile-brand">
+      <span class="hs">
+        <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+          <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+        </svg>
+      </span>
+      <span class="name">HEMANG SHARMA</span>
+    </span>
+    <button class="mobile-sheet-close" aria-label="Close menu" data-menu-close>×</button>
+  </div>
+  <nav>
+    <a href="index.html" data-menu-close>Home</a>
+    <a href="Projects.html" class="active" data-menu-close>Projects</a>
+    <a href="About.html" data-menu-close>About</a>
+  </nav>
+  <a class="btn-resume" href="#" data-resume>View Resume
+    <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+
+<main id="top">
+
+<section class="cs-hero">
+  <div class="cs-container">
+    <a class="cs-back" href="Projects.html">
+      <svg viewBox="0 0 18 18" fill="none"><path d="M11 4 6 9l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to projects
+    </a>
+    <div class="cs-herotag reveal"><span class="live"></span><span>Bolna.ai · Voice AI for India · Live for YC launch</span></div>
+    <div class="cs-hero-cols reveal">
+      <h1>From sitemap to launch,<br>in <em>14 days.</em></h1>
+      <p class="cs-overview">Bolna.ai is a Voice AI platform built for India. Ahead of their Y Combinator announcement, they had two weeks to replace a website that hadn't kept up with the company. I led the redesign end to end, starting with structure, not screens.</p>
+    </div>
+    <div class="cs-hero-img reveal">
+      <img src="assets/img/bolna-hero-hq.png" alt="Bolna.ai homepage redesign: an All-in-One Platform for Voice Intelligence, shown in a browser over a pixel-art forest-and-sea backdrop">
+    </div>
+    <div class="cs-metastrip reveal">
+      <div class="cs-metaitem"><div class="label">Role</div><div class="value">UI Designer (Freelance)</div></div>
+      <div class="cs-metaitem"><div class="label">Team</div><div class="value">Founders + Me</div></div>
+      <div class="cs-metaitem"><div class="label">Duration</div><div class="value">2 weeks</div></div>
+      <div class="cs-metaitem"><div class="label">Stage</div><div class="value">Live</div></div>
+      <div class="cs-metaitem"><div class="label">Context</div><div class="value">YC announcement</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Constraint</span></div>
+    <h2 class="cs-h reveal">Two weeks <em>wasn't a design problem.</em></h2>
+    <p class="cs-sub reveal">It was a prioritisation problem. With timelines that tight, every decision either creates momentum or quietly costs it.</p>
+    <div class="cs-constraint reveal">
+      <div>
+        <div class="cs-statement">The company had evolved. <em>The website hadn't.</em></div>
+        <div class="cs-prose">
+          <p>The messaging felt outdated. The structure couldn't carry a growing product ecosystem. The visual language no longer reflected the credibility of a YC-backed company about to step in front of a much larger audience.</p>
+          <p>Inside a short window, I had to understand the Voice AI space, learn the product, align with stakeholders, and ship a site that worked for three different visitors at once.</p>
+        </div>
+      </div>
+      <div class="cs-audience">
+        <span class="lbl">Three audiences, one home page</span>
+        <ul>
+          <li><span class="n">01</span><div><h5>Enterprise customers</h5><p>Looking for credibility, scale signals, and proof the product can carry their use case.</p></div></li>
+          <li><span class="n">02</span><div><h5>Developers</h5><p>Wanting documentation, APIs, and a fast route to the technical detail.</p></div></li>
+          <li><span class="n">03</span><div><h5>Casual visitors</h5><p>Curious about Voice AI in India, needing a clear, plain-language entry point.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section soft">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">Before Opening Figma</span></div>
+    <h2 class="cs-h reveal">Starting with the sitemap, <em>not the pixels.</em></h2>
+    <p class="cs-sub reveal">The first thing I pushed back on was jumping straight into screens. Two parallel pieces had to happen before Figma made sense: defining the structure everything else would hang from, and understanding the field Bolna was about to step into.</p>
+    <div class="cs-pfgrid reveal">
+      <div class="cs-pf">
+        <span class="step">Step 01</span>
+        <h3>The <em>sitemap</em> first.</h3>
+        <p>What pages existed, how users moved between them, what content deserved prominence, what could live deeper. Getting that structure right early gave the design work a frame to push against, and meant no painful reshuffling once we hit high-fidelity.</p>
+        <div class="cs-pf-art"><svg viewBox="0 0 480 250" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Schibsted Grotesk',sans-serif">
+  <!-- root -->
+  <rect x="200" y="12" width="80" height="30" rx="8" fill="#5C2435"/>
+  <text x="240" y="31" text-anchor="middle" font-size="10" font-weight="600" letter-spacing="0.8" fill="#FBF6F0">HOME</text>
+  <!-- vertical bus -->
+  <path d="M240 42 V60" stroke="#C9B6AE" stroke-width="1.2"/>
+  <path d="M70 60 H410" stroke="#C9B6AE" stroke-width="1.2"/>
+  <path d="M70 60 V74 M170 60 V74 M310 60 V74 M410 60 V74" stroke="#C9B6AE" stroke-width="1.2"/>
+  <!-- primary nodes -->
+  <g>
+    <rect x="26" y="74" width="88" height="30" rx="7" fill="#FFFFFF" stroke="#E2D2CB"/>
+    <text x="70" y="93" text-anchor="middle" font-size="9.5" font-weight="600" letter-spacing="0.4" fill="#2A1A20">PRODUCT</text>
+    <rect x="126" y="74" width="88" height="30" rx="7" fill="#FFFFFF" stroke="#E2D2CB"/>
+    <text x="170" y="93" text-anchor="middle" font-size="9.5" font-weight="600" letter-spacing="0.4" fill="#2A1A20">USE CASES</text>
+    <rect x="266" y="74" width="88" height="30" rx="7" fill="#FFFFFF" stroke="#E2D2CB"/>
+    <text x="310" y="93" text-anchor="middle" font-size="9.5" font-weight="600" letter-spacing="0.4" fill="#2A1A20">DEVELOPERS</text>
+    <rect x="366" y="74" width="88" height="30" rx="7" fill="#FFFFFF" stroke="#E2D2CB"/>
+    <text x="410" y="93" text-anchor="middle" font-size="9.5" font-weight="600" letter-spacing="0.4" fill="#2A1A20">COMPANY</text>
+  </g>
+  <!-- child connectors (orthogonal) -->
+  <path d="M70 104 V120 M170 104 V120 M310 104 V120 M410 104 V120" stroke="#E2D2CB" stroke-width="1"/>
+  <!-- children -->
+  <g font-size="8" fill="#756070" letter-spacing="0.3">
+    <rect x="34" y="120" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="70" y="133" text-anchor="middle">Features</text>
+    <rect x="34" y="146" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="70" y="159" text-anchor="middle">Voices</text>
+    <rect x="134" y="120" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="170" y="133" text-anchor="middle">Sales</text>
+    <rect x="134" y="146" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="170" y="159" text-anchor="middle">Support</text>
+    <rect x="274" y="120" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="310" y="133" text-anchor="middle">Docs</text>
+    <rect x="274" y="146" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="310" y="159" text-anchor="middle">API</text>
+    <rect x="374" y="120" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="410" y="133" text-anchor="middle">About</text>
+    <rect x="374" y="146" width="72" height="20" rx="5" fill="#F7EEEC" stroke="#EADCD4"/><text x="410" y="159" text-anchor="middle">Careers</text>
+  </g>
+  <path d="M40 196 H440" stroke="#EADCD4" stroke-width="1"/>
+  <text x="240" y="216" text-anchor="middle" font-family="'Newsreader',serif" font-style="italic" font-size="12" fill="#5C2435">Illustrative sitemap — refined with the founders</text>
+  <text x="240" y="234" text-anchor="middle" font-size="8" letter-spacing="1.2" fill="#9C8A90">3 PRIMARY PATHS · 2 LEVELS DEEP · ROOM TO GROW</text>
+</svg></div>
+      </div>
+      <div class="cs-pf">
+        <span class="step">Step 02</span>
+        <h3>Then the <em>landscape.</em></h3>
+        <p>A fast review of Voice AI sites, both global names and Indian players. The question wasn't who looked best. It was where Bolna should align with familiar industry patterns, and where it had a real opportunity to stand apart.</p>
+        <div class="cs-pf-art"><svg viewBox="0 0 480 250" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Schibsted Grotesk',sans-serif">
+  <!-- plot frame -->
+  <rect x="58" y="20" width="372" height="172" rx="6" fill="#FFFFFF" stroke="#EADCD4"/>
+  <!-- gridlines -->
+  <path d="M244 20 V192 M58 106 H430" stroke="#EFE4DE" stroke-width="1"/>
+  <path d="M151 20 V192 M337 20 V192 M58 63 H430 M58 149 H430" stroke="#F4ECE8" stroke-width="1"/>
+  <!-- axis arrows + labels -->
+  <text x="64" y="15" font-size="8.5" font-weight="600" letter-spacing="0.6" fill="#756070">CHARACTER &#8593;</text>
+  <text x="372" y="210" font-size="8.5" font-weight="600" letter-spacing="0.6" fill="#756070">DEPTH &#8594;</text>
+  <!-- quadrant hints -->
+  <g font-size="7.5" letter-spacing="0.5" fill="#B7A6AC">
+    <text x="150" y="40" text-anchor="middle">EXPRESSIVE · LIGHT</text>
+    <text x="338" y="40" text-anchor="middle">EXPRESSIVE · DEEP</text>
+    <text x="150" y="180" text-anchor="middle">PLAIN · LIGHT</text>
+    <text x="338" y="180" text-anchor="middle">PLAIN · DEEP</text>
+  </g>
+  <!-- competitor dots -->
+  <g>
+    <circle cx="120" cy="120" r="6" fill="#D8C8C0"/><text x="120" y="139" text-anchor="middle" font-size="8" fill="#9C8A90">A</text>
+    <circle cx="185" cy="78" r="6" fill="#D8C8C0"/><text x="185" y="65" text-anchor="middle" font-size="8" fill="#9C8A90">B</text>
+    <circle cx="360" cy="150" r="6" fill="#D8C8C0"/><text x="360" y="169" text-anchor="middle" font-size="8" fill="#9C8A90">C</text>
+    <circle cx="300" cy="128" r="6" fill="#D8C8C0"/><text x="300" y="147" text-anchor="middle" font-size="8" fill="#9C8A90">D</text>
+    <circle cx="372" cy="92" r="6" fill="#D8C8C0"/><text x="372" y="79" text-anchor="middle" font-size="8" fill="#9C8A90">E</text>
+  </g>
+  <!-- bolna sweet spot -->
+  <circle cx="300" cy="78" r="22" fill="none" stroke="#B0593C" stroke-width="1" stroke-dasharray="3 3" opacity="0.55"/>
+  <circle cx="300" cy="78" r="12" fill="#5C2435"/>
+  <text x="300" y="81.5" text-anchor="middle" font-size="7.5" font-weight="600" letter-spacing="0.4" fill="#FBF6F0">BOLNA</text>
+  <text x="240" y="232" text-anchor="middle" font-family="'Newsreader',serif" font-style="italic" font-size="12" fill="#5C2435">Where to align. Where to stand apart.</text>
+</svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Sprint</span></div>
+    <h2 class="cs-h reveal">Fast feedback loops, <em>not perfect deliverables.</em></h2>
+    <p class="cs-sprint-intro reveal">With two weeks to ship, I optimised for momentum. Low-fidelity wireframes built for discussion, not polish, went in front of founders, product, and engineering early. By the time high-fidelity designs landed, the core decisions had already been reviewed multiple times. No surprises at the end.</p>
+    <div class="cs-sprint reveal">
+      <div class="cs-sprint-grid">
+        <div class="cs-sprint-hd rl"></div><div class="cs-sprint-hd">D1</div><div class="cs-sprint-hd">D2</div><div class="cs-sprint-hd">D3</div><div class="cs-sprint-hd">D4</div><div class="cs-sprint-hd">D5</div><div class="cs-sprint-hd">D6</div><div class="cs-sprint-hd">D7</div><div class="cs-sprint-hd mark">D8</div><div class="cs-sprint-hd">D9</div><div class="cs-sprint-hd">D10</div><div class="cs-sprint-hd">D11</div><div class="cs-sprint-hd">D12</div><div class="cs-sprint-hd">D13</div><div class="cs-sprint-hd">D14</div>
+        <div class="cs-sprint-rl">Discovery</div><div class="cs-sprint-cell" style="grid-column:2 / span 3"><div class="cs-bar"></div></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-rl">Sitemap</div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell" style="grid-column:3 / span 3"><div class="cs-bar"></div></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-rl">Competitor scan</div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell" style="grid-column:3 / span 2"><div class="cs-bar"></div></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-rl">Wireframes</div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell" style="grid-column:5 / span 4"><div class="cs-bar"></div></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-rl">High-fidelity</div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell" style="grid-column:8 / span 6"><div class="cs-bar"></div></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-rl">Founder reviews</div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell" style="grid-column:4 / span 11"><div class="cs-bar ghost"></div></div><div class="cs-sprint-cell"></div><div class="cs-sprint-rl">Dev &amp; launch</div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell"></div><div class="cs-sprint-cell" style="grid-column:11 / span 5"><div class="cs-bar"></div></div>
+      </div>
+      <div class="cs-sprint-legend">
+        <span><span class="cs-sw solid"></span> Focused work</span>
+        <span><span class="cs-sw ghost"></span> Ongoing review loop</span>
+        <span>D8 — wireframes signed off, high-fi begins</span>
+        <span>D14 — live for YC</span>
+      </div>
+    </div>
+    <div class="cs-callout reveal" style="margin-top:44px">
+      <span class="lbl">The principle</span>
+      <p>Show something, align on it, keep moving. Done beats perfect when the launch date doesn't move.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section soft">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Live Site</span></div>
+    <h2 class="cs-h reveal">A site that <em>reflected the moment.</em></h2>
+    <p class="cs-sub reveal">Best experienced live, or in the embedded Figma prototype below. Designed for desktop, so open it on a larger screen for the intended view.</p>
+    <div class="cs-figframe reveal">
+      <div class="cs-figbar">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="ttl">Bolna.ai · Figma Prototype</div>
+        <div class="badge">Embed</div>
+      </div>
+      <div class="cs-figwrap">
+        <iframe src="https://embed.figma.com/proto/Wee0TvmA8lI6o4g5tO5VEZ/Bolna.ai?node-id=593-128&viewport=254%2C95%2C0.33&scaling=min-zoom&content-scaling=fixed&page-id=593%3A127&embed-host=share" allowfullscreen loading="lazy" title="Bolna.ai Figma prototype"></iframe>
+      </div>
+    </div>
+    <div class="cs-figmeta reveal">
+      <div class="l">Designed for web. Open the live site for the full experience.</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="live-link" href="https://embed.figma.com/proto/Wee0TvmA8lI6o4g5tO5VEZ/Bolna.ai?node-id=593-128&viewport=254%2C95%2C0.33&scaling=min-zoom&content-scaling=fixed&page-id=593%3A127&embed-host=share" target="_blank" rel="noopener">Open prototype in Figma
+          <svg viewBox="0 0 18 18" fill="none"><path d="M4 14 14 4M14 4H6.5M14 4v7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="live-link" href="https://bolna.ai" target="_blank" rel="noopener" style="background:transparent;color:var(--ink);border:1px solid var(--border)">Visit bolna.ai
+          <svg viewBox="0 0 18 18" fill="none"><path d="M4 14 14 4M14 4H6.5M14 4v7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section dark">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">Working with the founders</span></div>
+    <h2 class="cs-h reveal">The kind of project you remember <em>for the people.</em></h2>
+    <p class="cs-sub reveal">A two-week timeline only works when trust is already there. Bolna's team treated me as part of the team from day one, and that made every decision faster.</p>
+    <div class="cs-trustq reveal">
+      <p><span class="qm">&ldquo;</span>When I pushed for decisions, start with the sitemap, simplify scope here, the founders were open, asked thoughtful questions, and trusted the process. That trust is the only reason a two-week launch was possible at all.<span class="qm">&rdquo;</span></p>
+    </div>
+    <div class="cs-trustpts reveal">
+      <div class="cs-trustpt"><span class="lbl">Founders</span><h4>Decisive, open to pushback.</h4><p>Strategic calls landed in the same conversation they were raised. Nothing got stuck waiting for next week.</p></div>
+      <div class="cs-trustpt"><span class="lbl">Developers</span><h4>Context, not assumptions.</h4><p>Working alongside the engineers helped me understand the product as it actually worked, so the design didn't promise things it couldn't ship.</p></div>
+      <div class="cs-trustpt"><span class="lbl">Across the team</span><h4>Feedback that moved.</h4><p>Reviews happened in parallel, not in series. Founders, product, and engineering stayed aligned without long redesign cycles.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">What Outlasted</span></div>
+    <h2 class="cs-h reveal">The site shipped. <em>The thinking stayed.</em></h2>
+    <p class="cs-sub reveal">The website went live in time for the YC announcement, but the part I'm proudest of isn't a visual decision.</p>
+    <div class="cs-callout reveal" style="margin-bottom:40px">
+      <span class="lbl">The real outcome</span>
+      <p>The sitemap and competitor work kept guiding the team after the project ended. The foundation outlasted the redesign, which felt like a sign that the thinking behind it was built to last.</p>
+    </div>
+    <div class="cs-outcome reveal">
+      <div class="cs-ocell"><span class="lbl">Launched</span><div class="big">On time, for the <em>YC moment.</em></div><div class="desc">Site went live ahead of the Y Combinator announcement without slipping the deadline.</div></div>
+      <div class="cs-ocell"><span class="lbl">Carried forward</span><div class="big"><em>Sitemap</em> &amp; research still in use.</div><div class="desc">The structure and positioning work kept guiding the team's content and product decisions past launch.</div></div>
+      <div class="cs-ocell"><span class="lbl">Set up for</span><div class="big">A bigger <em>moment.</em></div><div class="desc">Bolna entered YC with a website that reflected who the company had become, not where it had been.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-cta-wrap">
+  <div class="cs-container">
+    <div class="cs-cta reveal">
+      <h2>Selected work shown here. The full prototype is best <em>experienced live.</em></h2>
+      <p>Happy to walk through the design decisions, the wireframes, and the parts that didn't make it past day three.</p>
+      <div class="cs-actions">
+        <button class="cs-btn primary cs-copy-email" type="button" data-copy-email="kshamahemang@gmail.com">
+          <svg viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M3 11V3.5A1.5 1.5 0 0 1 4.5 2H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span class="lbl">kshamahemang@gmail.com</span>
+          <span class="copied-msg">Copied to clipboard</span>
+        </button>
+        <a class="cs-btn ghost" href="https://embed.figma.com/proto/Wee0TvmA8lI6o4g5tO5VEZ/Bolna.ai?node-id=593-128&viewport=254%2C95%2C0.33&scaling=min-zoom&content-scaling=fixed&page-id=593%3A127&embed-host=share" target="_blank" rel="noopener">View the prototype <svg viewBox="0 0 18 18" fill="none"><path d="M4 14 14 4M14 4H6.5M14 4v7.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="cs-btn ghost" href="https://bolna.ai" target="_blank" rel="noopener">Visit bolna.ai <svg viewBox="0 0 18 18" fill="none"><path d="M4 14 14 4M14 4H6.5M14 4v7.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="row">
+          <span class="hs">
+            <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+              <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+            </svg>
+          </span>
+          <span class="name">HEMANG SHARMA</span>
+        </div>
+        <div class="sub">Product Designer | UI UX Designer</div>
+        <div class="footer-contact">
+          <button class="footer-email" id="emailBtn" data-email="kshamahemang@gmail.com">
+            kshamahemang@gmail.com <span class="copied">Copied!</span>
+          </button>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/hemangsharma24/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            </a>
+            <a href="https://www.behance.net/hemangsharma24" target="_blank" rel="noopener" aria-label="Behance">
+              <svg viewBox="0 0 32 32" fill="currentColor"><path d="M10.9707 20.0133H8V17.3333H11.0147C13.5187 17.3333 13.6853 20.0133 10.9707 20.0133ZM19.9813 16.444H24.0053C23.8493 14.1573 20.3653 13.808 19.9813 16.444ZM10.9093 12H8V14.6667H11.1853C13.416 14.6667 13.768 12 10.9093 12ZM32 6.66667V25.3333C32 29.0147 29.016 32 25.3333 32H6.66667C2.984 32 0 29.0147 0 25.3333V6.66667C0 2.98533 2.984 0 6.66667 0H25.3333C29.016 0 32 2.98533 32 6.66667ZM18.6667 10.6667H25.3333V9.33333H18.6667V10.6667ZM13.9307 15.4907C16.4733 14.192 16.38 9.424 11.5133 9.352H5.33333V22.656H11.0813C17.1107 22.656 17.008 16.6107 13.9307 15.4907ZM26.58 16.2933C26.2147 13.9427 24.5427 12.36 21.8027 12.36C19.0107 12.36 17.3333 14.1467 17.3333 17.6227C17.3333 21.1307 19.156 22.6667 21.888 22.6667C24.62 22.6667 26.0293 21.1533 26.4213 20H23.6067C22.6253 21.14 19.7493 20.6947 19.9173 18.196H26.664C26.6773 17.3507 26.648 16.744 26.58 16.2933Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a class="btn-resume" href="#" data-resume>View Resume
+        <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-wordmark">
+      <img src="assets/hemang-pixel-wordmark.svg" alt="HEMANG">
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; June 2026, Hemang Sharma</span>
+      <span>Designed through ideas, iterations and late nights &#7508; &#7509; &#7508;</span>
+    </div>
+  </div>
+</footer>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#5C2435"/><text x="50" y="64" font-family="Georgia, serif" font-size="30" fill="#FBF6F0" text-anchor="middle">GA</text></svg>
+</template>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

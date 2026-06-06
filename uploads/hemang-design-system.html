@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemang Sharma — Portfolio Design System & Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ---------- Brand: Burgundy ramp ---------- */
+  --burgundy-900:#3A1620;
+  --burgundy-800:#4A1C2A;
+  --burgundy-700:#5C2435;   /* PRIMARY */
+  --burgundy-600:#71324A;
+  --burgundy-300:#C9A6B2;
+  --burgundy-100:#EADCE0;
+  --burgundy-50:#F6EEF1;
+
+  /* ---------- Paper & surfaces ---------- */
+  --paper:#FBF6F0;          /* page background */
+  --surface:#FFFFFF;        /* cards */
+  --surface-2:#F4ECE2;      /* alt / muted blocks */
+
+  /* ---------- Ink (text) ---------- */
+  --ink:#2A1A20;            /* primary text */
+  --ink-2:#5E4953;          /* secondary text */
+  --ink-3:#756070;          /* muted / meta */
+
+  /* ---------- Accent (terracotta, used sparingly) ---------- */
+  --accent:#C2562F;
+  --accent-ink:#8F3C1E;     /* accent text on light */
+  --accent-tint:#F7E6DC;
+
+  /* ---------- Category accents (card top-bar only) ---------- */
+  --cat-terracotta:#B0593C;
+  --cat-plum:#7E4B63;
+  --cat-teal:#3E7A6E;
+  --cat-sage:#6E7A4B;
+
+  /* ---------- Borders ---------- */
+  --border:rgba(58,22,32,.12);
+  --border-strong:rgba(58,22,32,.24);
+
+  /* ---------- Radius ---------- */
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+
+  /* ---------- Shadow (restrained) ---------- */
+  --shadow-card:0 1px 2px rgba(58,22,32,.04), 0 10px 30px rgba(58,22,32,.06);
+
+  /* ---------- Spacing (8px base) ---------- */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px;
+  --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+
+  /* ---------- Type ---------- */
+  --font-display:'Fraunces', Georgia, serif;
+  --font-ui:'Hanken Grotesk', system-ui, sans-serif;
+
+  --container:1180px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-ui);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 24px}
+
+/* ---- Top bar ---- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--burgundy-700);color:var(--paper);
+  border-bottom:1px solid var(--burgundy-800);
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brandmark{font-family:var(--font-ui);font-weight:700;letter-spacing:.12em;font-size:15px;text-transform:uppercase}
+.topbar nav{display:flex;gap:28px;font-size:13px;letter-spacing:.02em}
+.topbar nav a{color:var(--burgundy-300);text-decoration:none;transition:color .18s}
+.topbar nav a:hover,.topbar nav a.active{color:var(--paper)}
+.topbar nav a.active{position:relative}
+.topbar nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:2px;background:var(--accent)}
+
+/* ---- Hero of the guide ---- */
+.guide-hero{padding:var(--s-9) 0 var(--s-7)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:var(--s-4)}
+.guide-hero h1{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(38px,6vw,64px);line-height:1.04;letter-spacing:-.01em;color:var(--burgundy-900);
+  max-width:18ch;margin-bottom:var(--s-5);
+}
+.guide-hero p{font-size:19px;line-height:1.6;color:var(--ink-2);max-width:62ch}
+
+/* ---- Section scaffold ---- */
+section.block{padding:var(--s-8) 0;border-top:1px solid var(--border)}
+.sec-label{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s-3)}
+section.block h2{
+  font-family:var(--font-display);font-weight:500;font-size:clamp(26px,3.4vw,34px);
+  line-height:1.15;letter-spacing:-.01em;color:var(--burgundy-900);margin-bottom:var(--s-5);
+}
+section.block h3{font-size:18px;font-weight:600;color:var(--ink);margin:var(--s-6) 0 var(--s-3)}
+section.block p{color:var(--ink-2);max-width:70ch;margin-bottom:var(--s-3)}
+section.block ul{color:var(--ink-2);max-width:70ch;margin:0 0 var(--s-3) 20px}
+section.block li{margin-bottom:6px}
+strong{color:var(--ink);font-weight:600}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.86em;background:var(--surface-2);padding:2px 6px;border-radius:6px;color:var(--burgundy-800)}
+
+/* ---- Principle cards ---- */
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s-4)}
+.principle{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s-5)}
+.principle .n{font-family:var(--font-display);font-size:24px;color:var(--accent);margin-bottom:var(--s-2)}
+.principle h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.principle p{font-size:14px;margin:0;color:var(--ink-2)}
+
+/* ---- Color swatches ---- */
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s-4)}
+.swatch{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;background:var(--surface)}
+.swatch .chip{height:84px}
+.swatch .meta{padding:12px 14px}
+.swatch .name{font-size:13px;font-weight:600}
+.swatch .hex{font-family:ui-monospace,monospace;font-size:12px;color:var(--ink-3);margin:2px 0 6px}
+.swatch .use{font-size:12px;color:var(--ink-2);line-height:1.45}
+
+/* ---- Type specimens ---- */
+.spec{border-bottom:1px dashed var(--border);padding:var(--s-4) 0;display:grid;grid-template-columns:1fr 200px;gap:var(--s-4);align-items:baseline}
+.spec .demo{color:var(--ink)}
+.spec .info{font-size:12px;color:var(--ink-3);font-family:ui-monospace,monospace;line-height:1.6;text-align:right}
+.t-hero{font-family:var(--font-display);font-weight:500;font-size:56px;line-height:1.04;letter-spacing:-.01em;color:var(--burgundy-900)}
+.t-h2{font-family:var(--font-display);font-weight:500;font-size:30px;line-height:1.15}
+.t-h3{font-weight:600;font-size:22px;line-height:1.3}
+.t-bodyL{font-size:19px;line-height:1.6;color:var(--ink-2)}
+.t-body{font-size:16px;line-height:1.65;color:var(--ink-2)}
+.t-meta{font-size:14px;font-weight:500;color:var(--ink-2)}
+.t-cap{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---- Buttons ---- */
+.btn{font-family:var(--font-ui);font-weight:600;font-size:15px;border-radius:var(--r-md);
+  padding:12px 22px;cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;gap:8px;
+  transition:background .18s, transform .12s, border-color .18s, color .18s;text-decoration:none}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(92,36,53,.35)}
+.btn-primary{background:var(--burgundy-700);color:var(--paper)}
+.btn-primary:hover{background:var(--burgundy-800);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{background:transparent;border-color:var(--border-strong);color:var(--burgundy-700)}
+.btn-secondary:hover{background:var(--burgundy-50);border-color:var(--burgundy-700)}
+.btn-ghost{background:transparent;color:var(--burgundy-700);padding:10px 14px}
+.btn-ghost:hover{background:var(--burgundy-50)}
+.tlink{color:var(--burgundy-700);font-weight:600;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .18s,color .18s}
+.tlink:hover{color:var(--accent-ink);border-bottom-color:var(--accent)}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:var(--s-4) 0}
+.btn-note{font-size:13px;color:var(--ink-3);max-width:60ch}
+
+/* ---- Spacing scale viz ---- */
+.space-row{display:flex;align-items:center;gap:14px;margin-bottom:8px;font-size:13px;color:var(--ink-2)}
+.space-bar{background:var(--accent-tint);border-left:3px solid var(--accent);height:18px}
+.space-row code{min-width:90px}
+
+/* ---- Redesigned project card ---- */
+.pcard{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-card)}
+.pcard .body{flex:1;padding:32px;border-top:4px solid var(--cat-plum)}
+.pcard .idx{font-size:12px;color:var(--ink-3);margin-bottom:10px}
+.tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tag{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--burgundy-700);background:var(--burgundy-50);padding:4px 10px;border-radius:var(--r-pill)}
+.pcard h4{font-family:var(--font-display);font-weight:500;font-size:24px;line-height:1.2;color:var(--burgundy-900);margin-bottom:10px}
+.pcard .desc{font-size:15px;color:var(--ink-2);line-height:1.55;max-width:46ch;margin-bottom:16px}
+.metric{display:inline-flex;align-items:center;gap:8px;background:var(--accent-tint);color:var(--accent-ink);
+  font-size:13px;font-weight:600;padding:7px 13px;border-radius:var(--r-md);margin-bottom:16px}
+.metric svg{width:15px;height:15px}
+.role{font-size:12px;color:var(--ink-3);margin-bottom:20px}
+.pcard .thumb{flex:0 0 42%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;
+  color:var(--ink-3);font-size:12px}
+.pcard .thumb span{border:1px dashed var(--border-strong);border-radius:8px;padding:24px 30px}
+
+/* ---- Token block ---- */
+.tokens{background:var(--burgundy-900);color:#EAD9DE;border-radius:var(--r-lg);padding:var(--s-5);overflow:auto}
+.tokens pre{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.7;white-space:pre}
+.tokens .c{color:#C9A6B2}
+.tabset{display:flex;gap:8px;margin-bottom:var(--s-3)}
+.tabset button{font-family:var(--font-ui);font-size:13px;font-weight:600;padding:8px 16px;border-radius:var(--r-pill);
+  border:1px solid var(--border-strong);background:var(--surface);color:var(--burgundy-700);cursor:pointer}
+.tabset button.on{background:var(--burgundy-700);color:var(--paper);border-color:var(--burgundy-700)}
+.hidden{display:none}
+
+/* ---- Misc ---- */
+.callout{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:0 var(--r-md) var(--r-md) 0;padding:var(--s-4) var(--s-5);margin:var(--s-4) 0}
+.callout p{margin:0;color:var(--ink-2)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-6)}
+.do{border-color:var(--cat-teal)}.dont{border-color:var(--cat-terracotta)}
+.minihead{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.do .minihead{color:var(--cat-teal)} .dont .minihead{color:var(--cat-terracotta)}
+footer{padding:var(--s-8) 0;border-top:1px solid var(--border);color:var(--ink-3);font-size:13px}
+
+@media(max-width:760px){
+  .topbar nav{display:none}
+  .spec{grid-template-columns:1fr}.spec .info{text-align:left}
+  .t-hero{font-size:38px}.t-h2{font-size:24px}
+  .pcard{flex-direction:column}.pcard .thumb{flex:0 0 200px}
+  .two-col{grid-template-columns:1fr}
+  section.block{padding:var(--s-7) 0}
+  .guide-hero{padding:var(--s-7) 0 var(--s-6)}
+}
+@media(prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .6s ease forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="brandmark">Hemang Sharma</span>
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+      <a href="#" style="color:var(--paper)">Resume ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap guide-hero reveal">
+  <div class="eyebrow">Design System &amp; Style Guide · v1.0</div>
+  <h1>A warm, editorial system built for case-study storytelling.</h1>
+  <p>This guide defines the visual language for hemangsharma.com — a portfolio whose job is to make a recruiter understand who you are, see proof you ship outcomes, and want to read a case study, all within the first scroll. Every token below is rendered live in the system it documents.</p>
+</div>
+
+<!-- 1. DIRECTION -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">01 · Design Direction</div>
+    <h2>Warm Editorial Minimal</h2>
+    <p>Not Modern-SaaS (too cold for your voice), not maximalist (fights scanning). The direction is <strong>editorial</strong> — like a well-set design magazine: a confident serif for statements, a clean grotesque for everything functional, generous whitespace, and restraint with color so the <strong>work</strong> is the loudest thing on the page. It suits a designer who also writes reflections and poetry, and it reads as senior and considered to a hiring manager.</p>
+    <h3>Brand personality</h3>
+    <p>Considered, warm, candid, outcome-driven. Confident without shouting. The burgundy gives it gravity and warmth; the cream keeps it human rather than clinical.</p>
+    <h3>Guiding principles</h3>
+    <div class="principles">
+      <div class="principle"><div class="n">01</div><h4>Outcomes over process</h4><p>Every project leads with a result a recruiter can grasp in one glance, not a paragraph about method.</p></div>
+      <div class="principle"><div class="n">02</div><h4>Let the work be the color</h4><p>Surfaces stay neutral. Product screenshots supply the vibrancy. One accent, used sparingly.</p></div>
+      <div class="principle"><div class="n">03</div><h4>Scan first, read second</h4><p>Title → tag → metric → CTA must communicate before any body copy is read.</p></div>
+      <div class="principle"><div class="n">04</div><h4>One system, repeated</h4><p>Cards, buttons, and spacing repeat identically. Consistency itself signals systems thinking.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. COLOR -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">02 · Color System</div>
+    <h2>Anchored on burgundy &amp; cream</h2>
+    <p>Your existing nav already establishes burgundy on cream — this system formalizes it into a ramp and adds exactly one accent. White text on the burgundy primary measures ~13.8:1; primary ink on paper measures well past AAA. Color encodes meaning, never decoration.</p>
+
+    <h3>Brand &amp; accent</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--burgundy-700)"></div><div class="meta"><div class="name">Primary — Burgundy 700</div><div class="hex">#5C2435</div><div class="use">Buttons, nav, links, headings on light. The brand anchor.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--burgundy-800)"></div><div class="meta"><div class="name">Primary Hover — 800</div><div class="hex">#4A1C2A</div><div class="use">Hover/active state for primary buttons &amp; the header bar.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--burgundy-900)"></div><div class="meta"><div class="name">Burgundy 900</div><div class="hex">#3A1620</div><div class="use">Display headings, footer background, code blocks.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="meta"><div class="name">Accent — Terracotta</div><div class="hex">#C2562F</div><div class="use">Used sparingly: metric highlights, the active-nav underline, link hover. Never for body text.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--accent-tint);border-bottom:1px solid var(--border)"></div><div class="meta"><div class="name">Accent Tint</div><div class="hex">#F7E6DC</div><div class="use">Background for metric chips so the number reads warm but legible (paired with Accent-Ink).</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--accent-ink)"></div><div class="meta"><div class="name">Accent Ink</div><div class="hex">#8F3C1E</div><div class="use">Text on accent tint — keeps the metric ≥4.5:1 for AA.</div></div></div>
+    </div>
+
+    <h3>Backgrounds, surfaces &amp; borders</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--paper);border-bottom:1px solid var(--border)"></div><div class="meta"><div class="name">Paper (page bg)</div><div class="hex">#FBF6F0</div><div class="use">The default canvas. Warm, not stark white.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--surface);border-bottom:1px solid var(--border)"></div><div class="meta"><div class="name">Surface (cards)</div><div class="hex">#FFFFFF</div><div class="use">Cards and raised blocks lift gently off the paper.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--surface-2)"></div><div class="meta"><div class="name">Surface-2 (muted)</div><div class="hex">#F4ECE2</div><div class="use">Thumbnail backdrops, code chips, alt sections.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--burgundy-50)"></div><div class="meta"><div class="name">Burgundy 50</div><div class="hex">#F6EEF1</div><div class="use">Tag pills &amp; secondary-button hover fill.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#fff;border:1px solid var(--border)"></div><div class="meta"><div class="name">Border (hairline)</div><div class="hex">rgba(58,22,32,.12)</div><div class="use">Default 1px separators &amp; card outlines.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#fff;border:1px solid var(--border-strong)"></div><div class="meta"><div class="name">Border Strong</div><div class="hex">rgba(58,22,32,.24)</div><div class="use">Secondary-button outline &amp; hover emphasis.</div></div></div>
+    </div>
+
+    <h3>Text colors</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600">Aa</div><div class="meta"><div class="name">Ink — Primary</div><div class="hex">#2A1A20 · ~14:1</div><div class="use">Headings &amp; primary body. Warm near-black.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--paper);color:var(--ink-2);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600">Aa</div><div class="meta"><div class="name">Ink — Secondary</div><div class="hex">#5E4953 · ~7:1</div><div class="use">Descriptions, intro paragraphs, supporting copy.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--paper);color:var(--ink-3);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600">Aa</div><div class="meta"><div class="name">Ink — Muted</div><div class="hex">#756070 · ~5:1</div><div class="use">Meta, dates, captions, indices. Still AA at body size.</div></div></div>
+    </div>
+
+    <h3>Category accents — card top-bar only</h3>
+    <p>To keep the four project cards distinct without four loud backgrounds, give each a single 4px top-border in a <em>muted</em> tone. This is the only place these appear.</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--cat-terracotta)"></div><div class="meta"><div class="name">Terracotta</div><div class="hex">#B0593C</div><div class="use">e.g. Food Delivery / GINTAA</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--cat-plum)"></div><div class="meta"><div class="name">Plum</div><div class="hex">#7E4B63</div><div class="use">e.g. Insurance AI / FNOL</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--cat-teal)"></div><div class="meta"><div class="name">Teal</div><div class="hex">#3E7A6E</div><div class="use">e.g. Enterprise / Bosch CXP</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--cat-sage)"></div><div class="meta"><div class="name">Sage</div><div class="hex">#6E7A4B</div><div class="use">e.g. Web / Bolna</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. TYPOGRAPHY -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">03 · Typography</div>
+    <h2>Fraunces + Hanken Grotesk</h2>
+    <p><strong>Fraunces</strong> (a warm, optical-sized serif) carries the hero and section headings — it gives the editorial character and matches your reflective voice without sacrificing readability. <strong>Hanken Grotesk</strong> handles all UI, labels, and body: friendly, highly legible, and not the over-used Inter. Both are free on Google Fonts. The scale below follows a ~1.25 ratio.</p>
+
+    <div class="spec"><div class="demo t-hero">I take AI products 0→1</div><div class="info">Hero / H1<br>Fraunces 500<br>56px · LH 1.04<br>tracking −0.01em<br>mobile 38px</div></div>
+    <div class="spec"><div class="demo t-h2">Featured Projects</div><div class="info">Section / H2<br>Fraunces 500<br>30px · LH 1.15<br>mobile 24px</div></div>
+    <div class="spec"><div class="demo t-h3">FNOL — Insurance First Notice of Loss</div><div class="info">Project title / H3<br>Hanken 600 (or Fraunces 500)<br>22px · LH 1.3<br>mobile 19px</div></div>
+    <div class="spec"><div class="demo t-bodyL">A guided, AI-assisted intake that adapts as the claim unfolds.</div><div class="info">Body Large / intro<br>Hanken 400<br>19px · LH 1.6</div></div>
+    <div class="spec"><div class="demo t-body">Most insurance systems still ask agents to fill in rigid forms. This rethinks that first step into a conversation.</div><div class="info">Body<br>Hanken 400<br>16px · LH 1.65</div></div>
+    <div class="spec"><div class="demo t-meta">Founding designer, OverseeAI · Dec 2024 – Jun 2026</div><div class="info">Meta / small<br>Hanken 500<br>14px · LH 1.5</div></div>
+    <div class="spec" style="border-bottom:none"><div class="demo t-cap">Insurance · AI Product · 0→1</div><div class="info">Caption / tag<br>Hanken 600<br>12px · UPPER<br>tracking 0.06em</div></div>
+
+    <div class="callout"><p><strong>Rule:</strong> only two type families and never more than two weights visible in one component. Headings use Fraunces; if a project title needs to feel more UI-like next to tags, Hanken 600 at 22px is the approved alternate.</p></div>
+  </div>
+</section>
+
+<!-- 4. CTA -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">04 · CTA System</div>
+    <h2>Four button tiers, one verb each</h2>
+
+    <h3>Primary — the one action per view</h3>
+    <div class="btn-row">
+      <a class="btn btn-primary">View case study <span>↗</span></a>
+      <a class="btn btn-primary">Let's work together</a>
+    </div>
+    <p class="btn-note"><code>bg #5C2435 · text #FBF6F0 · padding 12/22 · radius 12 · 15px/600 · hover → #4A1C2A + −1px lift · focus ring 3px rgba(92,36,53,.35)</code></p>
+
+    <h3>Secondary — supporting action</h3>
+    <div class="btn-row">
+      <a class="btn btn-secondary">Download résumé</a>
+      <a class="btn btn-secondary">See all projects</a>
+    </div>
+    <p class="btn-note"><code>transparent · 1px #3A1620/24 border · text #5C2435 · hover → fill #F6EEF1 + border #5C2435</code></p>
+
+    <h3>Ghost — low-emphasis / nav-level</h3>
+    <div class="btn-row">
+      <a class="btn btn-ghost">Contact me</a>
+      <a class="btn btn-ghost">Back to top</a>
+    </div>
+    <p class="btn-note"><code>no border/bg · text #5C2435 · padding 10/14 · hover → fill #F6EEF1</code></p>
+
+    <h3>Text link — inline &amp; card CTAs</h3>
+    <div class="btn-row">
+      <a class="tlink">Read case study →</a>
+      <a class="tlink">View on Behance ↗</a>
+    </div>
+    <p class="btn-note"><code>text #5C2435 · 600 · hover → color #8F3C1E + 1.5px underline #C2562F</code> — use this for the per-card CTA so cards stay light.</p>
+
+    <div class="callout"><p><strong>Hierarchy rule:</strong> exactly one Primary per screen section. Hero = Primary "View work" + Secondary "Download résumé". Each project card = a single Text-link CTA. The contact section = Primary "Let's work together". Never stack two primaries.</p></div>
+  </div>
+</section>
+
+<!-- 5. LAYOUT -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">05 · Layout &amp; Spacing</div>
+    <h2>8-point system, 1180px container</h2>
+    <ul>
+      <li><strong>Container:</strong> max-width <code>1180px</code>, side gutters <code>24px</code> desktop / <code>16px</code> mobile.</li>
+      <li><strong>Grid:</strong> 12 columns, <code>24px</code> gutter. Hero splits 7/5 (statement / tags). Project cards are full-bleed within the container, content half + thumbnail half (≈58/42).</li>
+      <li><strong>Section spacing:</strong> <code>96px</code> vertical padding desktop, <code>56px</code> mobile, with a 1px hairline divider between major sections.</li>
+      <li><strong>Card padding:</strong> <code>32px</code> desktop, <code>20px</code> mobile.</li>
+      <li><strong>Component gaps:</strong> <code>12px</code> within a group (tags, button rows), <code>24px</code> between groups.</li>
+    </ul>
+    <h3>Spacing scale</h3>
+    <div class="space-row"><code>--s-1 4</code><div class="space-bar" style="width:4px"></div></div>
+    <div class="space-row"><code>--s-2 8</code><div class="space-bar" style="width:8px"></div></div>
+    <div class="space-row"><code>--s-3 12</code><div class="space-bar" style="width:12px"></div></div>
+    <div class="space-row"><code>--s-4 16</code><div class="space-bar" style="width:16px"></div></div>
+    <div class="space-row"><code>--s-5 24</code><div class="space-bar" style="width:24px"></div></div>
+    <div class="space-row"><code>--s-6 32</code><div class="space-bar" style="width:32px"></div></div>
+    <div class="space-row"><code>--s-7 48</code><div class="space-bar" style="width:48px"></div></div>
+    <div class="space-row"><code>--s-8 64</code><div class="space-bar" style="width:64px"></div></div>
+    <div class="space-row"><code>--s-9 96</code><div class="space-bar" style="width:96px"></div></div>
+    <div class="space-row"><code>--s-10 128</code><div class="space-bar" style="width:128px"></div></div>
+    <p style="margin-top:16px"><strong>Radius:</strong> <code>8 / 12 / 16 / pill</code>. <strong>Shadow:</strong> editorial-minimal means borders do most of the work; cards get only a whisper of shadow (<code>0 10px 30px rgba(58,22,32,.06)</code>).</p>
+  </div>
+</section>
+
+<!-- 6. PROJECT CARDS -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">06 · Featured Project Cards</div>
+    <h2>One template, four projects</h2>
+    <p>Light surface, single muted top-accent, and a fixed content order so the four cards read as one system. Max description length: <strong>one line, ≤140 characters.</strong> The metric chip is the most important element — it carries the outcome above the fold.</p>
+
+    <div class="pcard reveal">
+      <div class="body">
+        <div class="idx">02</div>
+        <div class="tagrow"><span class="tag">Insurance</span><span class="tag">AI Product</span><span class="tag">0→1</span></div>
+        <h4>FNOL — Insurance First Notice of Loss</h4>
+        <p class="desc">Turned a rigid insurance intake form into a guided, AI-assisted conversation that adapts as the claim unfolds.</p>
+        <div class="metric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg>Live with a US insurer · 95% daily active use</div>
+        <div class="role">Founding designer, OverseeAI</div>
+        <a class="tlink">Read case study →</a>
+      </div>
+      <div class="thumb"><span>product screenshot</span></div>
+    </div>
+
+    <h3>Content structure (top → bottom)</h3>
+    <ul>
+      <li><strong>Index</strong> — <code>01</code> muted, for rhythm.</li>
+      <li><strong>2–3 tags</strong> — domain · type · scope. Pill style, never more than three.</li>
+      <li><strong>Title</strong> — product name + what it is, one line.</li>
+      <li><strong>Description</strong> — one line, ≤140 chars, the "what + for whom".</li>
+      <li><strong>Metric chip</strong> — one quantified outcome. The single most scannable element.</li>
+      <li><strong>Role</strong> — "Sole designer" / "Founding designer" — answers a recruiter's first question.</li>
+      <li><strong>CTA</strong> — text-link "Read case study →".</li>
+      <li><strong>Thumbnail</strong> — fills the opposite 42%; alternate sides per card for rhythm.</li>
+    </ul>
+    <div class="callout"><p><strong>What to cut:</strong> the current 3–4 line paragraphs. Move that narrative into the case study itself, where it belongs. The card's only job is to earn the click.</p></div>
+  </div>
+</section>
+
+<!-- 7. NAV -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">07 · Navigation &amp; Header</div>
+    <h2>Quiet, sticky, one accent cue</h2>
+    <ul>
+      <li><strong>Style:</strong> sticky burgundy bar (already your instinct), full name as wordmark — drop the vowel-stripped variant; clarity beats cleverness for recruiters.</li>
+      <li><strong>Active state:</strong> a 2px terracotta underline under the current page (shown in this guide's own header) — the single place the accent appears in the nav.</li>
+      <li><strong>Hover:</strong> inactive links lighten from Burgundy-300 to full cream over 180ms.</li>
+      <li><strong>Resume:</strong> keep it visually distinct (brighter) since it's a common recruiter target, but as a Secondary-weight cue, not a second Primary.</li>
+      <li><strong>Mobile:</strong> collapse to a hamburger → full-height sheet, links at 20px with 16px vertical rhythm, Primary "Let's work together" pinned at the bottom of the sheet.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8. SECTION BY SECTION -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">08 · Section-by-Section</div>
+    <h2>Applying the system to each block</h2>
+
+    <h3>Hero</h3>
+    <p>Add a credibility line (years + "live with a US insurer") and a 3-up outcomes band. Demote to one Primary + one Secondary CTA. Replace the pixel avatar with an "HS" monogram or headshot; keep the pixel art for the personal footer.</p>
+
+    <h3>Featured Projects</h3>
+    <p>Adopt the single light-card template above. The screenshots become the only saturated color on the page.</p>
+
+    <h3>Work Experience</h3>
+    <p>Keep the clean three-column rows but reconcile dates with the résumé (OverseeAI ends Jun 2026, Divum ends Nov 2024). Add a thin hairline and a muted section background (<code>--surface-2</code>) so it reads as a distinct "résumé" block.</p>
+
+    <h3>Company logo wall</h3>
+    <p>Move it directly under the hero — these are recognizable brands and belong where credibility is built. Fix the broken <code>{param}</code> and text-only "Dyson" tiles; normalize all logos to a single grayscale tone at equal optical size so none dominates.</p>
+
+    <h3>Testimonials</h3>
+    <p>Strong already. Replace the four tinted card backgrounds with the neutral surface + a small accent quote-mark, for consistency with the new card system. Two columns desktop, one mobile.</p>
+
+    <h3>Locked / confidential work</h3>
+    <p>Turn the dead-end into a soft CTA: "Happy to walk through these confidentially → Get in touch."</p>
+
+    <h3>Personal + contact footer</h3>
+    <p>Keep the warmth. Make the email a Primary "Let's work together" action; keep copy-to-clipboard as a secondary affordance. Fix the <code>~ -^</code> sign-off glyph.</p>
+  </div>
+</section>
+
+<!-- 9. ACCESSIBILITY -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">09 · Accessibility &amp; Readability</div>
+    <h2>AA as the floor, AAA where easy</h2>
+    <div class="two-col">
+      <div class="callout do"><div class="minihead">Built in</div><p>All text/background pairs in this guide clear WCAG AA (most clear AAA). Primary ink ~14:1, secondary ~7:1, muted ~5:1, metric chip ~4.6:1, white-on-burgundy ~13.8:1.</p></div>
+      <div class="callout dont"><div class="minihead">Watch for</div><p>Don't drop muted text below 14px on paper. Don't put body copy in the terracotta accent. Don't rely on the category color alone — always pair it with the text tag.</p></div>
+    </div>
+    <ul>
+      <li><strong>Focus:</strong> visible 3px focus ring on every interactive element (shown on the buttons above).</li>
+      <li><strong>Targets:</strong> minimum 44×44px tap area on mobile for nav and CTAs.</li>
+      <li><strong>Motion:</strong> all entrance animation wrapped in <code>prefers-reduced-motion</code>.</li>
+      <li><strong>Cognitive load:</strong> one-line card descriptions, one Primary per section, max 3 tags — all reduce what the eye must process.</li>
+      <li><strong>Line length:</strong> body capped at ~70ch for comfortable reading.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10. TOKENS -->
+<section class="block">
+  <div class="wrap">
+    <div class="sec-label">10 · Developer Deliverable</div>
+    <h2>Design tokens, ready to paste</h2>
+    <div class="tabset">
+      <button class="on" onclick="showTok('css',this)">CSS variables</button>
+      <button onclick="showTok('json',this)">JSON tokens</button>
+    </div>
+
+    <div class="tokens" id="tok-css">
+<pre><span class="c">:root {</span>
+  <span class="c">/* color — brand */</span>
+  --burgundy-900:#3A1620; --burgundy-800:#4A1C2A; --burgundy-700:#5C2435;
+  --burgundy-600:#71324A; --burgundy-300:#C9A6B2; --burgundy-100:#EADCE0; --burgundy-50:#F6EEF1;
+  <span class="c">/* color — accent */</span>
+  --accent:#C2562F; --accent-ink:#8F3C1E; --accent-tint:#F7E6DC;
+  <span class="c">/* color — surfaces */</span>
+  --paper:#FBF6F0; --surface:#FFFFFF; --surface-2:#F4ECE2;
+  <span class="c">/* color — ink */</span>
+  --ink:#2A1A20; --ink-2:#5E4953; --ink-3:#756070;
+  <span class="c">/* color — category accents (card top-bar only) */</span>
+  --cat-terracotta:#B0593C; --cat-plum:#7E4B63; --cat-teal:#3E7A6E; --cat-sage:#6E7A4B;
+  <span class="c">/* borders + radius + shadow */</span>
+  --border:rgba(58,22,32,.12); --border-strong:rgba(58,22,32,.24);
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+  --shadow-card:0 1px 2px rgba(58,22,32,.04), 0 10px 30px rgba(58,22,32,.06);
+  <span class="c">/* spacing (8pt) */</span>
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px;
+  --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+  <span class="c">/* type */</span>
+  --font-display:'Fraunces',Georgia,serif;
+  --font-ui:'Hanken Grotesk',system-ui,sans-serif;
+  --text-hero:56px; --text-h2:30px; --text-h3:22px;
+  --text-body-lg:19px; --text-body:16px; --text-meta:14px; --text-cap:12px;
+  --lh-tight:1.04; --lh-head:1.15; --lh-body:1.65;
+  --container:1180px;
+<span class="c">}</span></pre>
+    </div>
+
+    <div class="tokens hidden" id="tok-json">
+<pre>{
+  <span class="c">"color"</span>: {
+    "primary": "#5C2435", "primaryHover": "#4A1C2A", "primaryDeep": "#3A1620",
+    "accent": "#C2562F", "accentInk": "#8F3C1E", "accentTint": "#F7E6DC",
+    "paper": "#FBF6F0", "surface": "#FFFFFF", "surface2": "#F4ECE2",
+    "ink": "#2A1A20", "inkSecondary": "#5E4953", "inkMuted": "#756070",
+    "category": { "terracotta":"#B0593C","plum":"#7E4B63","teal":"#3E7A6E","sage":"#6E7A4B" },
+    "border": "rgba(58,22,32,0.12)", "borderStrong": "rgba(58,22,32,0.24)"
+  },
+  <span class="c">"radius"</span>: { "sm":8, "md":12, "lg":16, "pill":999 },
+  <span class="c">"space"</span>: { "1":4,"2":8,"3":12,"4":16,"5":24,"6":32,"7":48,"8":64,"9":96,"10":128 },
+  <span class="c">"font"</span>: { "display":"Fraunces", "ui":"Hanken Grotesk" },
+  <span class="c">"type"</span>: {
+    "hero":   { "size":56, "lh":1.04, "weight":500, "tracking":"-0.01em", "mobile":38 },
+    "h2":     { "size":30, "lh":1.15, "weight":500, "mobile":24 },
+    "h3":     { "size":22, "lh":1.3,  "weight":600, "mobile":19 },
+    "bodyLg": { "size":19, "lh":1.6,  "weight":400 },
+    "body":   { "size":16, "lh":1.65, "weight":400 },
+    "meta":   { "size":14, "lh":1.5,  "weight":500 },
+    "caption":{ "size":12, "lh":1.4,  "weight":600, "tracking":"0.06em", "transform":"uppercase" }
+  },
+  <span class="c">"button"</span>: {
+    "primary":   { "bg":"#5C2435","text":"#FBF6F0","pad":"12px 22px","radius":12,"hover":"#4A1C2A" },
+    "secondary": { "bg":"transparent","border":"#3A1620 24%","text":"#5C2435","hover":"#F6EEF1" },
+    "ghost":     { "bg":"transparent","text":"#5C2435","pad":"10px 14px","hover":"#F6EEF1" },
+    "textLink":  { "text":"#5C2435","hover":"#8F3C1E","underline":"#C2562F" }
+  }
+}</pre>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Hemang Sharma — Portfolio Design System v1.0 · Warm Editorial Minimal · Fraunces + Hanken Grotesk on burgundy &amp; cream.</div>
+</footer>
+
+<script>
+function showTok(which, btn){
+  document.getElementById('tok-css').classList.toggle('hidden', which!=='css');
+  document.getElementById('tok-json').classList.toggle('hidden', which!=='json');
+  document.querySelectorAll('.tabset button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FNOL — AI Claims Workspace · Hemang Sharma</title>
+<meta name="description" content="Case study: an AI-first FNOL claims workspace concept for insurance carriers, designed and prototyped entirely in Claude.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Big+Shoulders+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/casestudy.css">
+<style id="ld-critical">
+  #loader{display:none}
+  html.loading{overflow:hidden}
+  html.loading body{overflow:hidden}
+  html.loading #loader{display:flex}
+</style>
+<script>
+  (function(){
+    try{
+      var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+      var isReload = nav ? nav.type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+      var seen = false;
+      try { seen = !!sessionStorage.getItem('hs_loaded'); } catch(e){}
+      if(!seen || isReload){ document.documentElement.classList.add('loading'); }
+    }catch(e){}
+  })();
+</script>
+</head>
+<body class="cs-body">
+
+<!-- ============================ LOADER ============================ -->
+<div id="loader" role="status" aria-live="polite" aria-label="Loading portfolio">
+  <div class="ld-vignette" aria-hidden="true"></div>
+  <div class="ld-top">
+    <span class="ld-tag">PORTFOLIO</span>
+    <span class="ld-tag">&copy; 2026</span>
+  </div>
+
+  <div class="ld-center">
+    <div class="ld-mono" aria-hidden="true">
+      <svg class="ghost" viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+        <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+      </svg>
+      <div class="ld-fill" id="ldFill">
+        <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+          <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="ld-name" id="ldName" aria-hidden="true"></div>
+    <div class="ld-role">PRODUCT &amp; UI/UX DESIGNER</div>
+  </div>
+
+  <div class="ld-bottom">
+    <div class="ld-track"><span class="ld-track-fill" id="ldTrackFill"></span></div>
+    <div class="ld-count"><span id="ldCount">0</span><i>%</i></div>
+  </div>
+</div>
+<script>
+  (function(){
+    var root = document.documentElement;
+    var loader = document.getElementById('loader');
+    if(!loader) return;
+    var NAME = 'HEMANG SHARMA';
+
+    // Build name letters with stagger index
+    var nameEl = document.getElementById('ldName');
+    for(var i=0;i<NAME.length;i++){
+      var ch = NAME[i];
+      var s = document.createElement('span');
+      s.className = 'ld-ltr' + (ch === ' ' ? ' sp' : '');
+      s.style.setProperty('--i', i);
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      nameEl.appendChild(s);
+    }
+
+    // If we decided NOT to show the loader, clean up instantly.
+    if(!root.classList.contains('loading')){ loader.parentNode && loader.parentNode.removeChild(loader); return; }
+    try { sessionStorage.setItem('hs_loaded','1'); } catch(e){}
+
+    var fill = document.getElementById('ldFill');
+    var trackFill = document.getElementById('ldTrackFill');
+    var countEl = document.getElementById('ldCount');
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var DURATION = reduce ? 600 : 2000;
+    var start = null, done = false;
+
+    // easeOutExpo for a fast-then-settle feel
+    function ease(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+
+    function render(p){ // p: 0..1
+      var pct = Math.round(p * 100);
+      countEl.textContent = pct;
+      fill.style.clipPath = 'inset(' + (100 - p*100).toFixed(2) + '% 0 0 0)';
+      fill.style.webkitClipPath = 'inset(' + (100 - p*100).toFixed(2) + '% 0 0 0)';
+      trackFill.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    }
+
+    function finish(){
+      if(done) return; done = true;
+      loader.classList.add('is-charged');           // pulse the mark
+      setTimeout(function(){
+        loader.classList.add('is-done');             // lift the panel
+        var endMs = reduce ? 420 : 950;
+        setTimeout(function(){
+          root.classList.remove('loading');
+          loader.setAttribute('aria-hidden','true');
+          if(loader.parentNode) loader.parentNode.removeChild(loader);
+          window.dispatchEvent(new CustomEvent('hs:loaded'));
+        }, endMs);
+      }, reduce ? 120 : 320);
+    }
+
+    function tick(ts){
+      if(start === null) start = ts;
+      var t = Math.min((ts - start) / DURATION, 1);
+      render(ease(t));
+      if(t < 1){ requestAnimationFrame(tick); }
+      else { finish(); }
+    }
+
+    // kick off after a paint so entrance transitions register
+    requestAnimationFrame(function(){
+      loader.classList.add('is-in');
+      requestAnimationFrame(tick);
+    });
+
+    // safety net: never trap the user
+    setTimeout(function(){ if(!done){ render(1); finish(); } }, DURATION + 4000);
+  })();
+</script>
+
+<!-- ============================ NAV ============================ -->
+<header class="site-header">
+  <div class="navbar">
+    <div class="nav-inner">
+        <a class="brandmark" href="index.html" aria-label="Hemang Sharma home">
+          <span class="hs">
+            <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+              <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+            </svg>
+          </span>
+          <span class="name">HEMANG SHARMA</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="Projects.html" class="active">Projects</a>
+          <a href="About.html">About</a>
+        </nav>
+      <div class="nav-right">
+        <a class="btn-resume" href="#" data-resume>View Resume
+          <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="nav-toggle" aria-label="Open menu" data-menu-open><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile sheet -->
+<div class="mobile-sheet" id="mobileSheet">
+  <div class="mobile-sheet-top">
+    <span class="mobile-brand">
+      <span class="hs">
+        <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+          <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+        </svg>
+      </span>
+      <span class="name">HEMANG SHARMA</span>
+    </span>
+    <button class="mobile-sheet-close" aria-label="Close menu" data-menu-close>×</button>
+  </div>
+  <nav>
+    <a href="index.html" data-menu-close>Home</a>
+    <a href="Projects.html" class="active" data-menu-close>Projects</a>
+    <a href="About.html" data-menu-close>About</a>
+  </nav>
+  <a class="btn-resume" href="#" data-resume>View Resume
+    <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+
+<main id="top">
+
+<section class="cs-hero">
+  <div class="cs-container">
+    <a class="cs-back" href="Projects.html">
+      <svg viewBox="0 0 18 18" fill="none"><path d="M11 4 6 9l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to projects
+    </a>
+    <div class="cs-meta reveal">
+      <span>Claims Insurance</span><span class="dot"></span>
+      <span>Concept Project</span><span class="dot"></span>
+      <span>Designed in Claude</span><span class="dot"></span>
+      <span>2026</span>
+    </div>
+    <img class="cs-wordmark reveal" src="assets/logos/lumen-claims.svg" alt="Lumen Claims" style="height:30px">
+    <div class="cs-hero-cols reveal">
+      <h1>A claims workspace,<br>designed in <span style="color:var(--burgundy)">Claude</span>.</h1>
+      <p class="cs-overview">An AI-first FNOL (First Notice of Loss) concept for insurance carriers, designed and prototyped entirely in Claude rather than Figma. Stakeholders didn't review screens. They opened a working product and used it the same way an agent would, which changed how every decision got made.</p>
+    </div>
+    <div class="cs-hero-img reveal">
+      <img src="assets/img/fnol-hero-hq.png" alt="Lumen Claims workspace: claims overview dashboard with FNOL intake queue, quality scorecard, and an active catastrophe-event panel, over a pixel-art forest backdrop">st backdrop">
+    </div>
+    <div class="cs-metastrip reveal" style="grid-template-columns:repeat(4,1fr)">
+      <div class="cs-metaitem"><div class="label">Role</div><div class="value">Founding UI/UX Designer</div></div>
+      <div class="cs-metaitem"><div class="label">Team</div><div class="value">Solo designer</div></div>
+      <div class="cs-metaitem"><div class="label">Tools</div><div class="value">Claude — design + code</div></div>
+      <div class="cs-metaitem"><div class="label">Year</div><div class="value">2026</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Problem</span></div>
+    <h2 class="cs-h reveal">FNOL today is <em>a data-entry problem</em> during someone's worst day.</h2>
+    <p class="cs-sub reveal">Most carriers treat First Notice of Loss as a form to fill out. Agents are handed rigid templates exactly when policyholders are overwhelmed, distracted, and missing half the information. A few patterns kept showing up.</p>
+    <div class="cs-grid4 reveal">
+      <div class="cs-cell"><div class="num">01</div><h4>Everything is expected upfront</h4><p>The system asks for complete information even when only partial details are available, including what the caller doesn't have yet.</p></div>
+      <div class="cs-cell"><div class="num">02</div><h4>Information arrives gradually</h4><p>Claims surface over hours, sometimes days. But the intake form treats it as a single, linear capture.</p></div>
+      <div class="cs-cell"><div class="num">03</div><h4>Manual entry breeds errors</h4><p>Agents copy data between tools. Small mistakes early multiply into bigger problems downstream.</p></div>
+      <div class="cs-cell"><div class="num">04</div><h4>Critical context is invisible</h4><p>If a catastrophe event is active in the policyholder's area, the agent finds out later, if at all.</p></div>
+    </div>
+    <p class="cs-caption reveal">Each small gap at intake <em>compounded</em> into a larger problem further down the claim's journey.</p>
+  </div>
+</section>
+
+<section class="cs-section soft">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">A Different Way to Design</span></div>
+    <h2 class="cs-h reveal">Skipping Figma, <em>on purpose.</em></h2>
+    <p class="cs-sub reveal">Traditional handoffs hit the same wall: stakeholders interpret static screens differently and fill the gaps with their own assumptions. What gets approved isn't always what gets built. So I designed and prototyped the entire workspace inside Claude, building a real, clickable experience in code instead of flat mockups. Three things changed because of that.</p>
+    <div class="cs-principles reveal">
+      <div class="cs-principle"><div class="num">01</div><h3>Pressure-test the problem first.</h3><p>I used Claude to challenge the framing before designing anything. The questions it pushed back with shaped what the workspace actually needed to solve.</p></div>
+      <div class="cs-principle"><div class="num">02</div><h3>Prototype directly in code.</h3><p>Working states, real form behaviour, assistant flows, conditional logic. Not static screens, but something stakeholders could open in a browser and use.</p></div>
+      <div class="cs-principle"><div class="num">03</div><h3>Feedback as conversation.</h3><p>Assistant tone, hierarchy, or alert behaviour could be tried, seen, and refined within the same session, not across a multi-day redesign cycle.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">Three Product Decisions</span></div>
+    <h2 class="cs-h reveal">Three calls that <em>shaped the workspace.</em></h2>
+    <p class="cs-sub reveal">The brief was open. These are the choices that gave the product its shape.</p>
+
+    <div class="cs-decision reveal">
+      <div class="cs-decision-info">
+        <span class="cs-dec-num">Decision 01</span>
+        <h3>An assistant, <em>not a form.</em></h3>
+        <p><span class="lumen-pill"><span class="dot"></span>Lumen</span> The left pane is a guided FNOL flow that opens with a single question, "what kind of incident occurred?", and unfolds from there.</p>
+        <p>Agents can switch to Classic mode at any moment. The AI is a co-pilot, never a gatekeeper, so the system feels like it's working with the agent rather than waiting on them.</p>
+      </div>
+      <div class="cs-decision-visual"><svg class="dec-svg" viewBox="0 0 520 390" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Schibsted Grotesk', system-ui, sans-serif">
+  <rect x="12" y="60" width="496" height="318" rx="20" fill="#F7EEEC"/>
+  <rect x="298" y="26" width="202" height="36" rx="18" fill="#FFFFFF" stroke="#E2CFC6"/>
+  <text x="316" y="49" font-size="13.5" font-weight="600" fill="#5C2435">Switch to Classic Mode</text>
+  <rect x="466" y="37" width="18" height="15" rx="3" fill="#F2E8EE" stroke="#7E4B63"/>
+  <rect x="469" y="41" width="11" height="1.6" rx="0.8" fill="#7E4B63"/>
+  <rect x="469" y="44.6" width="11" height="1.6" rx="0.8" fill="#7E4B63"/>
+  <rect x="469" y="48.2" width="7" height="1.6" rx="0.8" fill="#7E4B63"/>
+  <rect x="28" y="84" width="252" height="282" rx="16" fill="#FFFFFF" stroke="#EADCD4"/>
+  <circle cx="58" cy="116" r="13" fill="#F2E8EE"/>
+  <path d="M58 105 Q59.2 114 67 116 Q59.2 118 58 127 Q56.8 118 49 116 Q56.8 114 58 105 Z" fill="#7E4B63"/>
+  <circle cx="67" cy="124" r="6" fill="#5C2435"/>
+  <text x="67" y="126.6" font-size="7" font-weight="700" fill="#FBF6F0" text-anchor="middle">L</text>
+  <rect x="80" y="110" width="118" height="6" rx="3" fill="#2A1A20"/>
+  <rect x="80" y="122" width="76" height="5" rx="2.5" fill="#CDBBC2"/>
+  <rect x="50" y="146" width="178" height="48" rx="14" fill="#F2E8EE"/>
+  <text x="66" y="167" font-size="13" fill="#3A2630">What kind of incident</text>
+  <text x="66" y="184" font-size="13" fill="#3A2630">occurred?</text>
+  <rect x="86" y="208" width="166" height="34" rx="14" fill="#5C2435"/>
+  <text x="169" y="229.5" font-size="13" fill="#FBF6F0" text-anchor="middle">It was a car accident.</text>
+  <rect x="50" y="256" width="188" height="48" rx="14" fill="#F2E8EE"/>
+  <text x="66" y="277" font-size="13" fill="#3A2630">Okay, car accident.</text>
+  <text x="66" y="294" font-size="13" fill="#3A2630">Where did this happen?</text>
+  <rect x="72" y="318" width="180" height="34" rx="14" fill="#5C2435"/>
+  <text x="162" y="339.5" font-size="13" fill="#FBF6F0" text-anchor="middle">On Main St and First Ave.</text>
+  <rect x="312" y="92" width="184" height="256" rx="14" fill="#FBF6F0" stroke="#EADCD4"/>
+  <rect x="330" y="112" width="70" height="6" rx="3" fill="#2A1A20"/>
+  <rect x="330" y="132" width="150" height="28" rx="7" fill="#FFFFFF" stroke="#E7D8D0"/>
+  <text x="342" y="150" font-size="12" fill="#B7A6AC">Incident Type</text>
+  <rect x="330" y="168" width="150" height="28" rx="7" fill="#FFFFFF" stroke="#B58A98"/>
+  <text x="342" y="186" font-size="12" font-weight="600" fill="#2A1A20">car accident</text>
+  <rect x="330" y="204" width="150" height="28" rx="7" fill="#FFFFFF" stroke="#E7D8D0"/>
+  <text x="342" y="222" font-size="12" fill="#B7A6AC">Location</text>
+  <rect x="330" y="240" width="150" height="28" rx="7" fill="#FFFFFF" stroke="#B58A98"/>
+  <text x="342" y="258" font-size="12" font-weight="600" fill="#2A1A20">Main St and First Ave.</text>
+  <rect x="330" y="300" width="150" height="28" rx="7" fill="#EFE2DB"/>
+  <rect x="392" y="312" width="26" height="4" rx="2" fill="#9C8478"/>
+  <path d="M252 225 C286 225 296 182 330 182" stroke="#7E4B63" stroke-width="1.5" fill="none" opacity="0.55"/>
+  <circle cx="252" cy="225" r="3" fill="#7E4B63"/><circle cx="330" cy="182" r="3" fill="#7E4B63"/>
+  <path d="M252 335 C292 335 296 254 330 254" stroke="#7E4B63" stroke-width="1.5" fill="none" opacity="0.55"/>
+  <circle cx="252" cy="335" r="3" fill="#7E4B63"/><circle cx="330" cy="254" r="3" fill="#7E4B63"/>
+</svg></div>
+    </div>
+
+    <div class="cs-decision rev reveal">
+      <div class="cs-decision-info">
+        <span class="cs-dec-num">Decision 02</span>
+        <h3>A form that <em>knows what it knows.</em></h3>
+        <p>Sections collapse and expand based on completion. Policy details auto-fill from lookup. Each section reports its own state, Complete, 3 of 4, Optional, so agents always know where they are.</p>
+        <p>Drafts auto-save on every keystroke. The claim survives any interruption, because intake never goes smoothly the first time.</p>
+      </div>
+      <div class="cs-decision-visual"><svg class="dec-svg" viewBox="0 0 520 390" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Schibsted Grotesk', system-ui, sans-serif">
+  <rect x="14" y="22" width="492" height="346" rx="20" fill="#F7EEEC"/>
+  <rect x="74" y="42" width="372" height="306" rx="16" fill="#FFFFFF" stroke="#EADCD4"/>
+  <text x="96" y="78" font-size="14" font-weight="600" fill="#2A1A20">First Notice of Loss</text>
+  <rect x="322" y="64" width="104" height="22" rx="11" fill="#E7F0EC"/>
+  <circle cx="338" cy="75" r="3.2" fill="#3E7A6E"/>
+  <text x="347" y="79" font-size="11" font-weight="600" fill="#2E6457">Draft saved</text>
+  <rect x="96" y="98" width="328" height="40" rx="10" fill="#FBF6F0" stroke="#EADCD4"/>
+  <path d="M112 113 l5 5 -5 5" stroke="#8B756B" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="128" y="123" font-size="12.5" font-weight="500" fill="#2A1A20">Policyholder</text>
+  <rect x="338" y="108" width="72" height="20" rx="10" fill="#E7F0EC"/>
+  <path d="M349 118 l3 3 5 -6" stroke="#2E6457" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="362" y="121.5" font-size="10.5" font-weight="600" fill="#2E6457">Complete</text>
+  <rect x="96" y="146" width="328" height="142" rx="10" fill="#FFFFFF" stroke="#B58A98"/>
+  <path d="M111 161 l5 5 5 -5" stroke="#5C2435" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="128" y="170" font-size="12.5" font-weight="600" fill="#2A1A20">Incident details</text>
+  <rect x="350" y="156" width="58" height="20" rx="10" fill="#F7E6DC"/>
+  <text x="379" y="169.5" font-size="10.5" font-weight="600" fill="#8F3C1E" text-anchor="middle">3 of 4</text>
+  <text x="112" y="198" font-size="10" font-weight="600" letter-spacing="0.06em" fill="#9C8A90">DATE &amp; TIME</text>
+  <rect x="112" y="204" width="296" height="26" rx="7" fill="#FBF6F0" stroke="#E7D8D0"/>
+  <text x="124" y="221" font-size="12" fill="#2A1A20">Apr 12, 2026 · 3:40 PM</text>
+  <rect x="338" y="209" width="62" height="16" rx="8" fill="#EEE7F0"/>
+  <text x="369" y="220" font-size="9" font-weight="600" fill="#7E4B63" text-anchor="middle">auto-filled</text>
+  <text x="112" y="248" font-size="10" font-weight="600" letter-spacing="0.06em" fill="#9C8A90">DAMAGE DESCRIPTION</text>
+  <rect x="112" y="254" width="296" height="26" rx="7" fill="#FFFFFF" stroke="#5C2435"/>
+  <rect x="124" y="261" width="1.6" height="12" rx="0.8" fill="#5C2435"/>
+  <rect x="96" y="298" width="328" height="40" rx="10" fill="#FBF6F0" stroke="#EADCD4"/>
+  <path d="M112 313 l5 5 -5 5" stroke="#8B756B" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="128" y="323" font-size="12.5" font-weight="500" fill="#2A1A20">Supporting documents</text>
+  <rect x="350" y="308" width="60" height="20" rx="10" fill="#EDE2DC"/>
+  <text x="380" y="321.5" font-size="10.5" font-weight="600" fill="#8B756B" text-anchor="middle">Optional</text>
+</svg></div>
+    </div>
+
+    <div class="cs-decision reveal">
+      <div class="cs-decision-info">
+        <span class="cs-dec-num">Decision 03</span>
+        <h3>Intelligence at <em>the edge of attention.</em></h3>
+        <p>A right-side panel runs quietly alongside intake: a live claim-quality scorecard, severity routing recommendations, and automatic detection of active catastrophe events.</p>
+        <p>When an incident location falls inside <strong>CAT-26-IL-04</strong>'s storm window, <span class="lumen-pill"><span class="dot"></span>Lumen</span> surfaces it without being asked. The intelligence is there when needed, invisible when not.</p>
+      </div>
+      <div class="cs-decision-visual"><svg class="dec-svg" viewBox="0 0 520 390" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Schibsted Grotesk', system-ui, sans-serif">
+  <rect x="14" y="38" width="492" height="322" rx="20" fill="#F7EEEC"/>
+  <rect x="30" y="58" width="298" height="302" rx="14" fill="#FFFFFF" stroke="#EADCD4"/>
+  <text x="50" y="90" font-size="12.5" font-weight="600" fill="#9C8A90">Claim intake</text>
+  <rect x="50" y="104" width="258" height="22" rx="6" fill="#F4ECE7"/>
+  <rect x="50" y="134" width="258" height="22" rx="6" fill="#F4ECE7"/>
+  <rect x="50" y="178" width="258" height="30" rx="7" fill="#FFFFFF" stroke="#D9A38F"/>
+  <circle cx="66" cy="193" r="4" fill="#B0593C"/>
+  <text x="80" y="197" font-size="11.5" fill="#6B544B">Incident location · Rockford, IL</text>
+  <rect x="50" y="222" width="258" height="22" rx="6" fill="#F4ECE7"/>
+  <rect x="50" y="252" width="258" height="22" rx="6" fill="#F4ECE7"/>
+  <rect x="50" y="282" width="170" height="22" rx="6" fill="#F4ECE7"/>
+  <path d="M308 193 C334 193 332 250 360 256" stroke="#7E4B63" stroke-width="1.5" stroke-dasharray="4 4" fill="none" opacity="0.6"/>
+  <rect x="346" y="58" width="150" height="302" rx="14" fill="#FFFFFF" stroke="#E2CFC6"/>
+  <text x="364" y="88" font-size="10" font-weight="600" letter-spacing="0.09em" fill="#9C8A90">CLAIM QUALITY</text>
+  <text x="363" y="120" font-family="Newsreader, serif" font-size="34" font-weight="500" fill="#2A1A20">87</text>
+  <text x="399" y="120" font-size="11" fill="#9C8A90">/100</text>
+  <rect x="364" y="130" width="116" height="6" rx="3" fill="#EFE2DB"/>
+  <rect x="364" y="130" width="101" height="6" rx="3" fill="#3E7A6E"/>
+  <text x="364" y="162" font-size="10" font-weight="600" letter-spacing="0.09em" fill="#9C8A90">SEVERITY ROUTING</text>
+  <rect x="364" y="170" width="74" height="22" rx="11" fill="#F7E6DC"/>
+  <text x="401" y="184.5" font-size="11" font-weight="600" fill="#8F3C1E" text-anchor="middle">High</text>
+  <rect x="364" y="208" width="116" height="124" rx="11" fill="#5C2435"/>
+  <circle cx="380" cy="230" r="4" fill="#FBF6F0"><animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/></circle>
+  <text x="390" y="233" font-size="8.5" font-weight="700" letter-spacing="0.12em" fill="#C6DDD0">CAT ALERT</text>
+  <text x="380" y="256" font-family="Newsreader, serif" font-size="14" font-weight="500" fill="#FBF6F0">CAT-26-IL-04</text>
+  <rect x="380" y="266" width="84" height="3.5" rx="1.75" fill="#FBF6F0" opacity="0.55"/>
+  <rect x="380" y="275" width="66" height="3.5" rx="1.75" fill="#FBF6F0" opacity="0.55"/>
+  <path d="M380 300 q4 -8 12 -4 q2 -7 10 -4 q7 -1 6 7 l-30 0 q-3 -1 2 -6 Z" fill="#FBF6F0" opacity="0.18"/>
+  <path d="M404 304 l-5 8 4 0 -5 8" stroke="#C6DDD0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="364" y="350" font-size="10.5" fill="#9C8A90">Detected automatically</text>
+</svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section soft">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">The Prototype</span></div>
+    <h2 class="cs-h reveal">Not a mockup. <em>A working product.</em></h2>
+    <p class="cs-sub reveal">Built inside Claude with real form behaviour, conditional logic, and the Lumen assistant. Stakeholders opened it in a browser and used it, the same way an agent would.</p>
+    <div class="cs-video reveal" id="protoVideo">
+      <video class="cs-vid" playsinline preload="metadata" poster="assets/img/fnol-hero-hq.png">
+        <source src="assets/video/fnol-walkthrough.mp4" type="video/mp4">
+      </video>
+      <button class="cs-play" type="button" aria-label="Play prototype walkthrough"><span class="disc"></span></button>
+      <span class="cs-vcap">Prototype walkthrough — best experienced live</span>
+    </div>
+    <div class="cs-proto-meta">
+      <span class="l">Best experienced live — happy to share the working prototype in interviews.</span>
+      <span class="r">Built in Claude</span>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section dark">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">What Reviews Became</span></div>
+    <h2 class="cs-h reveal">From approvals, <em>to conversations.</em></h2>
+    <p class="cs-sub reveal">Teams from claims operations, product, and engineering arrived with different expectations. The prototype gave everyone a shared experience to react to, and that changed how alignment happened.</p>
+    <div class="cs-shift reveal">
+      <div class="cs-shift-col before">
+        <span class="lbl">Before</span>
+        <h3>Static screens. Different interpretations.</h3>
+        <p>Stakeholders fill the gaps with their own assumptions. What gets approved isn't always what gets built, and alignment takes weeks.</p>
+      </div>
+      <div class="cs-shift-arrow">&rarr;</div>
+      <div class="cs-shift-col after">
+        <span class="lbl">After</span>
+        <h3>One product. One reaction surface.</h3>
+        <p>Decisions on assistant tone, hierarchy, and alert behaviour were made by interacting with the product. Uncertainty dropped fast because people reacted to the thing itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-section">
+  <div class="cs-container">
+    <div class="cs-kicker reveal"><span class="label">Reflection</span></div>
+    <h2 class="cs-h reveal">What this <em>proved to me.</em></h2>
+    <p class="cs-sub reveal">A short list of things I would carry into the next project.</p>
+    <div class="cs-reflection reveal">
+      <span class="lbl">The takeaway</span>
+      <p>"When the goal is alignment, a clickable AI-built prototype can be more effective than a polished Figma flow. It closes interpretation gaps, because people react to the product itself, not their assumptions about it."</p>
+    </div>
+    <div class="cs-takeaways reveal">
+      <div class="cs-takeaway"><h4>Prototype before polish.</h4><p>The vision became real once stakeholders could open it. The screens mattered less than the experience of using them.</p></div>
+      <div class="cs-takeaway"><h4>AI is a design partner.</h4><p>Claude pressure-tested ideas, generated working states, and let the design respond to feedback the same hour it arrived.</p></div>
+      <div class="cs-takeaway"><h4>Alignment beats perfection.</h4><p>The win wasn't a pristine spec. It was teams arriving at decisions together, faster, on something real.</p></div>
+      <div class="cs-takeaway"><h4>The medium changes the conversation.</h4><p>Static review meetings became hands-on walkthroughs. The shape of feedback changed because the artifact did.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-cta-wrap">
+  <div class="cs-container">
+    <div class="cs-cta reveal">
+      <h2>Selected work shown here. The prototype is best <em>experienced live.</em></h2>
+      <p>Some flows and details aren't public. I'm glad to share the working prototype and walk through the rest in conversation.</p>
+      <div class="cs-actions">
+        <button class="cs-btn primary cs-copy-email" type="button" data-copy-email="kshamahemang@gmail.com">
+          <svg viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M3 11V3.5A1.5 1.5 0 0 1 4.5 2H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span class="lbl">kshamahemang@gmail.com</span>
+          <span class="copied-msg">Copied to clipboard</span>
+        </button>
+        <a class="cs-btn ghost" href="Projects.html">Next project <svg viewBox="0 0 18 18" fill="none"><path d="M4 14 14 4M14 4H6.5M14 4v7.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="row">
+          <span class="hs">
+            <svg viewBox="0 0 60.87 82.07" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M27.2,76.02c-.09-1.11-.96-2.07-2-2.05-2.62,0-4.03,0-6.65,0-1.13.09-2.25-.98-2.22-2.24v-17.44c0-1.27,1.03-2.3,2.3-2.3,2.96,0,6.22,0,8.52,0,1-.03,1.94.73,1.94,1.6-.01,1.11.02,4.02-.01,5.13-.05.84-.99,1.48-1.92,1.5-1.18,0,.2-.02-.99,0-.94.01-1.73.8-1.7,1.61,0,1.08-.02,2.17,0,3.25.02.84.91,1.54,1.86,1.51,3.54,0,4.52,0,8.06,0,.71.02,1.38-.37,1.69-.92.26-.41.18-.89.19-1.33,0-5.1,0-12,0-17.11.04-.87-.88-1.68-1.88-1.66-4.48,0-10.23,0-15.32,0-1.52,0-2.74-1.23-2.74-2.75V10.45c0-1.18.95-2.21,2.03-2.22,2.68-.01,4.16,0,6.84,0,1.1.03,1.99-1.08,2.02-2.24.01-1.36,0-2.15,0-3.52.06-1.05-.57-2.14-1.5-2.45C16.59,0,12.3.02,3.17.01c-.6.01-1.21-.06-1.81.06C.59.44-.04,1.32,0,2.27c0,1.44,0,2.29,0,3.72,0,1.17.94,2.29,2.03,2.24,2.62-.01,1.45-.02,4.08,0,1.16-.03,2.18,1.17,2.08,2.43v60.86c.08,1.25-.91,2.5-2.09,2.43-2.62,0-1.45,0-4.08,0-1.03,0-1.97.94-2.02,2.07-.02,1.49,0,2.21,0,3.7-.04,1.22.94,2.36,2.06,2.33,9.26.01,13.68,0,22.93,0,1.19.1,2.25-1.09,2.22-2.36,0-1.49.03-2.2-.01-3.68Z"/>
+              <path d="M60.85,76.03c-.06-1.13-1-2.08-2.02-2.07-2.62,0-1.45,0-4.08,0-1.17.06-2.17-1.18-2.09-2.43V10.66c-.09-1.26.92-2.46,2.08-2.43,2.62-.01,1.45,0,4.08,0,1.1.05,2.03-1.07,2.03-2.24,0-1.43,0-2.29,0-3.72.04-.96-.59-1.83-1.36-2.2-.6-.12-1.21-.05-1.81-.06-9.13.01-13.42,0-22.56.01-.93.31-1.56,1.4-1.5,2.45.01,1.36,0,2.15,0,3.52.03,1.16.92,2.27,2.02,2.24,2.68,0,4.16-.01,6.84,0,1.08,0,2.02,1.04,2.03,2.22v17.95c0,1.44-1.16,2.61-2.61,2.61-2.55,0-6.55,0-8.35,0-1,.03-1.94-.73-1.94-1.6.01-1.11-.02-4,.01-5.11.05-.84.99-1.48,1.92-1.5,1.18,0,.04.02,1.22,0,.94-.01,1.73-.8,1.7-1.61,0-1.08.02-2.17,0-3.25-.02-.84-.91-1.54-1.86-1.51-3.54,0-4.76,0-8.3,0-.71-.02-1.38.37-1.69.92-.26.41-.18.89-.19,1.33,0,5.1,0,11.98,0,17.09-.04.87.88,1.68,1.88,1.66,4.46,0,10.51,0,15.59,0,1.44,0,2.61,1.17,2.61,2.61v31.71c.02,1.26-1.1,2.33-2.22,2.24-2.62-.01-4.03,0-6.65,0-1.04-.02-1.91.94-2,2.05-.04,1.49,0,2.2-.01,3.68-.03,1.28,1.03,2.46,2.22,2.36,9.26,0,13.68,0,22.93,0,1.12.03,2.11-1.11,2.06-2.33,0-1.49,0-2.21,0-3.7Z"/>
+            </svg>
+          </span>
+          <span class="name">HEMANG SHARMA</span>
+        </div>
+        <div class="sub">Product Designer | UI UX Designer</div>
+        <div class="footer-contact">
+          <button class="footer-email" id="emailBtn" data-email="kshamahemang@gmail.com">
+            kshamahemang@gmail.com <span class="copied">Copied!</span>
+          </button>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/hemangsharma24/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            </a>
+            <a href="https://www.behance.net/hemangsharma24" target="_blank" rel="noopener" aria-label="Behance">
+              <svg viewBox="0 0 32 32" fill="currentColor"><path d="M10.9707 20.0133H8V17.3333H11.0147C13.5187 17.3333 13.6853 20.0133 10.9707 20.0133ZM19.9813 16.444H24.0053C23.8493 14.1573 20.3653 13.808 19.9813 16.444ZM10.9093 12H8V14.6667H11.1853C13.416 14.6667 13.768 12 10.9093 12ZM32 6.66667V25.3333C32 29.0147 29.016 32 25.3333 32H6.66667C2.984 32 0 29.0147 0 25.3333V6.66667C0 2.98533 2.984 0 6.66667 0H25.3333C29.016 0 32 2.98533 32 6.66667ZM18.6667 10.6667H25.3333V9.33333H18.6667V10.6667ZM13.9307 15.4907C16.4733 14.192 16.38 9.424 11.5133 9.352H5.33333V22.656H11.0813C17.1107 22.656 17.008 16.6107 13.9307 15.4907ZM26.58 16.2933C26.2147 13.9427 24.5427 12.36 21.8027 12.36C19.0107 12.36 17.3333 14.1467 17.3333 17.6227C17.3333 21.1307 19.156 22.6667 21.888 22.6667C24.62 22.6667 26.0293 21.1533 26.4213 20H23.6067C22.6253 21.14 19.7493 20.6947 19.9173 18.196H26.664C26.6773 17.3507 26.648 16.744 26.58 16.2933Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a class="btn-resume" href="#" data-resume>View Resume
+        <svg viewBox="0 0 16 16" fill="none"><path d="M5 11 11 5M11 5H6M11 5v5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-wordmark">
+      <img src="assets/hemang-pixel-wordmark.svg" alt="HEMANG">
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; June 2026, Hemang Sharma</span>
+      <span>Designed through ideas, iterations and late nights &#7508; &#7509; &#7508;</span>
+    </div>
+  </div>
+</footer>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#5C2435"/><text x="50" y="64" font-family="Georgia, serif" font-size="30" fill="#FBF6F0" text-anchor="middle">GA</text></svg>
+</template>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

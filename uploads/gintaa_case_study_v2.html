@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GINTAA — Delivery Partner App · Hemang Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #F4ECDF;
+    --bg-soft:   #FBF6EC;
+    --ink:       #1A1310;
+    --ink-2:     #3A2E26;
+    --muted:     #7A6B5F;
+    --line:      #E5D9C6;
+    --line-2:    #D8C8B0;
+    --accent:    #A6361F;
+    --accent-2:  #C9522E;
+    --accent-bg: #F7E4D8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  /* Typography */
+  .display, h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  p { color: var(--ink-2); }
+
+  /* Layout */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .narrow { max-width: 780px; }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 236, 223, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1180px; margin: 0 auto;
+  }
+  nav .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 500; letter-spacing: -0.02em;
+  }
+  nav .logo span { color: var(--accent); }
+  nav .links { display: flex; gap: 28px; align-items: center; }
+  nav .links a {
+    color: var(--ink-2); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--accent); }
+  nav .cta {
+    padding: 8px 16px; border: 1px solid var(--ink);
+    border-radius: 100px; font-size: 13px; font-weight: 500;
+    color: var(--ink) !important; transition: all 0.2s;
+  }
+  nav .cta:hover { background: var(--ink); color: var(--bg) !important; }
+
+  /* Section base */
+  section { padding: 90px 0; position: relative; }
+  section.tight { padding: 60px 0; }
+  section.dark { background: var(--ink); color: var(--bg); }
+  section.dark h2, section.dark h3 { color: var(--bg); }
+  section.dark p { color: rgba(244, 236, 223, 0.8); }
+  section.soft { background: var(--bg-soft); }
+
+  .kicker {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px; color: var(--accent);
+  }
+  .kicker .num, .kicker .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .kicker .line { flex: 0 0 32px; height: 1px; background: var(--accent); }
+  section.dark .kicker { color: var(--accent-2); }
+  section.dark .kicker .line { background: var(--accent-2); }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 70px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 30%, rgba(201, 82, 46, 0.08), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 10% 80%, rgba(166, 54, 31, 0.06), transparent 70%);
+  }
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 36px;
+    display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  }
+  .hero-meta .dot {
+    width: 4px; height: 4px; background: var(--accent);
+    border-radius: 50%; display: inline-block;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 7.5vw, 96px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+    font-weight: 350;
+    max-width: 14ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .hero .lede {
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.5;
+    max-width: 620px;
+    color: var(--ink-2);
+    margin-bottom: 48px;
+  }
+
+  .hero-image {
+    position: relative; width: 100%;
+    aspect-ratio: 16 / 8;
+    background: linear-gradient(135deg, var(--accent-bg) 0%, #E8D4C0 100%);
+    border-radius: 4px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-2);
+  }
+  .hero-image::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(166, 54, 31, 0.15), transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(201, 82, 46, 0.12), transparent 50%);
+  }
+  .placeholder { position: relative; z-index: 1; text-align: center; padding: 20px; }
+  .placeholder .mono { color: var(--accent); display: block; margin-bottom: 8px; }
+  .placeholder .desc {
+    font-family: 'Fraunces', serif; font-style: italic;
+    color: var(--ink-2); font-size: 16px;
+  }
+
+  .meta-strip {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+    padding-top: 32px; border-top: 1px solid var(--line);
+  }
+  .meta-item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .meta-item .value {
+    font-family: 'Fraunces', serif; font-size: 16px;
+    color: var(--ink); line-height: 1.3;
+  }
+
+  /* Section header */
+  .sec-h {
+    font-size: clamp(34px, 4.2vw, 52px);
+    line-height: 1.05;
+    margin-bottom: 16px;
+    font-weight: 350;
+  }
+  .sec-h em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .sec-sub {
+    font-size: 17px; color: var(--muted);
+    max-width: 580px; margin-bottom: 48px;
+  }
+  section.dark .sec-sub { color: rgba(244, 236, 223, 0.6); }
+
+  /* Problem grid */
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line);
+    border-radius: 4px; overflow: hidden;
+  }
+  .problem-cell {
+    background: var(--bg-soft); padding: 32px 28px;
+  }
+  .problem-cell .num {
+    font-family: 'Fraunces', serif;
+    font-size: 36px; line-height: 1;
+    color: var(--accent); margin-bottom: 16px;
+    font-weight: 350;
+  }
+  .problem-cell h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px; margin-bottom: 8px;
+    font-weight: 500; line-height: 1.25;
+  }
+  .problem-cell p {
+    font-size: 14px; line-height: 1.55; color: var(--muted);
+  }
+
+  /* Role section */
+  .role-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: start;
+  }
+  .role-grid p {
+    font-size: 17px; line-height: 1.65; margin-bottom: 16px;
+  }
+
+  .role-card {
+    background: var(--bg-soft); border: 1px solid var(--line);
+    border-radius: 4px; padding: 32px;
+  }
+  .role-list { list-style: none; }
+  .role-list li {
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .role-list li:last-child { border-bottom: none; }
+  .role-list .check {
+    flex: 0 0 20px; height: 20px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; margin-top: 2px;
+  }
+  .role-list .check.muted { background: var(--muted); }
+  .role-list .text {
+    font-size: 15px; line-height: 1.5; color: var(--ink-2);
+  }
+  .role-list .text .label-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-left: 8px;
+  }
+
+  /* Principles */
+  .principles {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .principle {
+    background: var(--bg-soft); border: 1px solid var(--line);
+    border-radius: 4px; padding: 32px 28px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .principle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(26,19,16,0.06);
+  }
+  .principle .num {
+    font-family: 'Fraunces', serif;
+    font-size: 44px; line-height: 1;
+    color: var(--accent); margin-bottom: 18px;
+    font-weight: 300;
+  }
+  .principle h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px; line-height: 1.25;
+    margin-bottom: 10px; font-weight: 400;
+  }
+  .principle p {
+    font-size: 14px; line-height: 1.6; color: var(--muted);
+  }
+
+  /* Solution / flows */
+  .flow-block {
+    display: grid; grid-template-columns: 300px 1fr;
+    gap: 60px; align-items: start;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .flow-block:last-of-type { border-bottom: none; }
+
+  .flow-info .mono {
+    color: var(--accent); margin-bottom: 12px; display: block;
+  }
+  .flow-info h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px; line-height: 1.15;
+    margin-bottom: 14px; font-weight: 400;
+  }
+  .flow-info p {
+    font-size: 15px; line-height: 1.65; color: var(--ink-2);
+  }
+
+  .flow-screens {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .phone {
+    aspect-ratio: 9 / 19;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 24px; padding: 10px;
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    background: linear-gradient(180deg, var(--accent-bg) 0%, #FBF6EC 100%);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 14px; text-align: center;
+  }
+  .phone-screen .mono {
+    color: var(--muted); font-size: 9px;
+  }
+  .phone-cap {
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+    text-align: center;
+  }
+
+  /* Working with team */
+  .team-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .team-card {
+    padding: 32px;
+    background: rgba(244, 236, 223, 0.04);
+    border: 1px solid rgba(244, 236, 223, 0.15);
+    border-radius: 4px;
+  }
+  .team-card .mono {
+    color: var(--accent-2); margin-bottom: 14px; display: block;
+  }
+  .team-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; margin-bottom: 14px;
+    color: var(--bg); font-weight: 400;
+  }
+  .team-card p {
+    font-size: 15px; line-height: 1.65;
+    color: rgba(244, 236, 223, 0.75);
+  }
+
+  /* Outcome */
+  .outcome-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: var(--line); border: 1px solid var(--line);
+    border-radius: 4px; overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .outcome-cell {
+    background: var(--accent-bg); padding: 36px 28px;
+  }
+  .outcome-cell .mono {
+    color: var(--accent); margin-bottom: 10px; display: block;
+  }
+  .outcome-cell .big {
+    font-family: 'Fraunces', serif;
+    font-size: 28px; line-height: 1.1;
+    color: var(--ink); margin-bottom: 8px;
+    font-weight: 400; letter-spacing: -0.02em;
+  }
+  .outcome-cell .big em {
+    color: var(--accent); font-style: italic;
+  }
+  .outcome-cell .desc {
+    font-size: 13px; line-height: 1.5; color: var(--ink-2);
+  }
+
+  .reflection {
+    padding: 36px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  .reflection .mono {
+    color: var(--accent); margin-bottom: 14px; display: block;
+  }
+  .reflection p {
+    font-family: 'Fraunces', serif;
+    font-size: 19px; line-height: 1.5;
+    color: var(--ink); font-style: italic;
+    font-weight: 350;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--ink); color: var(--bg);
+    padding: 80px 0 40px; margin-top: 0;
+  }
+  footer h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.15; color: var(--bg);
+    margin-bottom: 20px; font-weight: 350;
+    max-width: 700px;
+  }
+  footer h2 em {
+    color: var(--accent-2); font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  footer .lede {
+    font-size: 16px; color: rgba(244, 236, 223, 0.65);
+    margin-bottom: 36px; max-width: 540px;
+  }
+  footer .actions {
+    display: flex; gap: 14px; margin-bottom: 56px; flex-wrap: wrap;
+  }
+  footer .btn {
+    padding: 13px 22px; border-radius: 100px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  footer .btn.primary { background: var(--accent-2); color: #fff; }
+  footer .btn.primary:hover { background: var(--accent); }
+  footer .btn.ghost {
+    background: transparent; color: var(--bg);
+    border: 1px solid rgba(244, 236, 223, 0.3);
+  }
+  footer .btn.ghost:hover { background: rgba(244, 236, 223, 0.08); }
+  footer .bottom {
+    border-top: 1px solid rgba(244, 236, 223, 0.15);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(244, 236, 223, 0.45);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    nav.top .inner { padding: 14px 20px; }
+    nav .links { gap: 14px; }
+    nav .links a:not(.cta) { display: none; }
+    section { padding: 60px 0; }
+    .hero { padding: 40px 0 50px; }
+    .meta-strip { grid-template-columns: repeat(2, 1fr); }
+    .problem-grid { grid-template-columns: 1fr 1fr; }
+    .role-grid { grid-template-columns: 1fr; gap: 32px; }
+    .principles { grid-template-columns: 1fr; }
+    .flow-block { grid-template-columns: 1fr; gap: 28px; padding: 36px 0; }
+    .team-grid { grid-template-columns: 1fr; }
+    .outcome-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="top">
+  <div class="inner">
+    <a href="#" class="logo">Hemang<span>.</span></a>
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+      <a href="#" class="cta">View Resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 01 · HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-meta">
+      <span>GINTAA · Delivery Partner App</span>
+      <span class="dot"></span>
+      <span>2024</span>
+      <span class="dot"></span>
+      <span>Mobile · iOS + Android</span>
+    </div>
+
+    <h1>
+      Designed for the<br>
+      <em>moments between</em><br>
+      deliveries.
+    </h1>
+
+    <p class="lede">
+      A mobile app for GINTAA's on-ground delivery partners — built around how they actually work: quickly, one-handed, with limited attention between trips.
+    </p>
+
+    <div class="hero-image">
+      <div class="placeholder">
+        <span class="mono">[ Hero image ]</span>
+        <span class="desc">3 phone mockups showing the live app —<br>or a photo of the app in real-world use</span>
+      </div>
+    </div>
+
+    <div class="meta-strip">
+      <div class="meta-item">
+        <div class="label">Role</div>
+        <div class="value">UI/UX Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Team</div>
+        <div class="value">UX Lead + Me</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Duration</div>
+        <div class="value">1 month, 15 days</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Platform</div>
+        <div class="value">iOS &amp; Android</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Status</div>
+        <div class="value">Live in production</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · THE PROBLEM ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">01</span>
+      <span class="line"></span>
+      <span class="label">The Problem</span>
+    </div>
+    <h2 class="sec-h">A delivery partner's day<br>is <em>constantly moving.</em></h2>
+    <p class="sec-sub">They check earnings between deliveries, accept tasks while on the go, and need to understand order details within seconds. The app had to do four things really well.</p>
+
+    <div class="problem-grid">
+      <div class="problem-cell">
+        <div class="num">01</div>
+        <h4>Onboarding without friction</h4>
+        <p>Get new partners verified and ready to take their first order.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="num">02</div>
+        <h4>Glanceable tasks</h4>
+        <p>Active orders readable in the few seconds between deliveries.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="num">03</div>
+        <h4>Trustworthy earnings</h4>
+        <p>Clear answers to "how much did I make and when do I get paid."</p>
+      </div>
+      <div class="problem-cell">
+        <div class="num">04</div>
+        <h4>Discoverable benefits</h4>
+        <p>Make incentives and perks easy to find without adding noise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · MY ROLE ============ -->
+<section class="soft">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">02</span>
+      <span class="line"></span>
+      <span class="label">My Role</span>
+    </div>
+    <h2 class="sec-h">What I owned, and <em>who I worked with.</em></h2>
+    <p class="sec-sub">A small team with clear scope. Most of my time went into the mobile app, with the admin portal running alongside it.</p>
+
+    <div class="role-grid">
+      <div>
+        <p>I worked closely with the GINTAA team and the Product Manager to understand the business and the brief — what the network looked like, how partners moved through the system, where things broke today.</p>
+        <p>From there I explored the partner experience to find the moments where small friction did the most damage. That shaped the design direction for both the mobile app and the supporting admin flows.</p>
+        <p>Through the build, I stayed involved with engineering to keep the final experience close to the design intent.</p>
+      </div>
+
+      <div class="role-card">
+        <div class="mono" style="color: var(--accent); margin-bottom: 18px;">Scope of work</div>
+        <ul class="role-list">
+          <li>
+            <span class="check">✓</span>
+            <span class="text">Mobile app — full end-to-end design <span class="label-tag">Primary focus</span></span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span class="text">Supporting admin flows <span class="label-tag">Withheld — NDA</span></span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span class="text">Working sessions with PM and team lead</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span class="text">Implementation reviews with engineering</span>
+          </li>
+          <li>
+            <span class="check muted">·</span>
+            <span class="text">56+ screens designed across the experience</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · HOW I APPROACHED IT ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">03</span>
+      <span class="line"></span>
+      <span class="label">Approach</span>
+    </div>
+    <h2 class="sec-h">Three principles<br><em>held the app together.</em></h2>
+    <p class="sec-sub">Most decisions came back to these. They were simple, but they kept the experience honest in the moments partners had the least attention.</p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="num">01</div>
+        <h3>Hierarchy first.</h3>
+        <p>On most screens, one action or piece of information matters more than the rest. The layout had to surface that first — everything else falls in line behind it.</p>
+      </div>
+      <div class="principle">
+        <div class="num">02</div>
+        <h3>Glanceable, not dense.</h3>
+        <p>Partners check the app for a few seconds at a time. Information had to land in that window without stripping out what they actually needed.</p>
+      </div>
+      <div class="principle">
+        <div class="num">03</div>
+        <h3>Familiar over clever.</h3>
+        <p>Status, earnings, and action patterns repeat across screens so partners never re-learn the app moving between flows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · THE SOLUTION ============ -->
+<section class="soft">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">04</span>
+      <span class="line"></span>
+      <span class="label">The Solution</span>
+    </div>
+    <h2 class="sec-h">Five flows that<br><em>shape the daily experience.</em></h2>
+    <p class="sec-sub">A walk-through of the parts that matter most. Each flow has one design intent it stays true to.</p>
+
+    <!-- Flow 1: Onboarding -->
+    <div class="flow-block">
+      <div class="flow-info">
+        <span class="mono">Flow 01</span>
+        <h3>Onboarding</h3>
+        <p>Verification and setup, broken into smaller steps so progress stays safe even if a partner drops off mid-flow and comes back later. The goal was getting partners to their first task quickly, without the form feeling heavy.</p>
+      </div>
+      <div class="flow-screens">
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Sign up ]</span></div></div>
+          <div class="phone-cap">01 · Sign up</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Verify ]</span></div></div>
+          <div class="phone-cap">02 · Verify</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Ready ]</span></div></div>
+          <div class="phone-cap">03 · Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow 2: Task management -->
+    <div class="flow-block">
+      <div class="flow-info">
+        <span class="mono">Flow 02</span>
+        <h3>Task management</h3>
+        <p>A scannable view of what needs attention next, ranked by what's active right now. Anything that wasn't immediately useful moved off the primary surface so the screen stayed easy to read.</p>
+      </div>
+      <div class="flow-screens">
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Task list ]</span></div></div>
+          <div class="phone-cap">01 · List</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Accept ]</span></div></div>
+          <div class="phone-cap">02 · Accept</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ In progress ]</span></div></div>
+          <div class="phone-cap">03 · Active</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow 3: Order tracking -->
+    <div class="flow-block">
+      <div class="flow-info">
+        <span class="mono">Flow 03</span>
+        <h3>Order tracking</h3>
+        <p>Pickup and drop details organised by what partners reach for first — the address, the apartment number, the COD amount. Status pills reuse the same vocabulary across the app, so the screen needs no learning.</p>
+      </div>
+      <div class="flow-screens">
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Pickup ]</span></div></div>
+          <div class="phone-cap">01 · Pickup</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ On route ]</span></div></div>
+          <div class="phone-cap">02 · En route</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Delivered ]</span></div></div>
+          <div class="phone-cap">03 · Delivered</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow 4: Earnings -->
+    <div class="flow-block">
+      <div class="flow-info">
+        <span class="mono">Flow 04</span>
+        <h3>Earnings</h3>
+        <p>One clear number first — today's earnings — then the breakdown underneath for partners who want to see how it adds up. Payout timelines stay visible so partners aren't guessing when the money lands.</p>
+      </div>
+      <div class="flow-screens">
+        <div>
+          <div class="phone"><div class="phone-screen"><div><span class="mono" style="display: block; margin-bottom: 8px;">[ Today ]</span><span style="font-family: 'Fraunces', serif; font-size: 24px; color: var(--ink);">₹1,210</span></div></div></div>
+          <div class="phone-cap">01 · Today</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ This week ]</span></div></div>
+          <div class="phone-cap">02 · Week</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Breakdown ]</span></div></div>
+          <div class="phone-cap">03 · Detail</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow 5: Benefits -->
+    <div class="flow-block">
+      <div class="flow-info">
+        <span class="mono">Flow 05</span>
+        <h3>Partner benefits</h3>
+        <p>Incentives and perks made easy to discover. The tricky part was discoverability without noise — benefits surface when they're relevant rather than living in a separate tab partners would forget.</p>
+      </div>
+      <div class="flow-screens">
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Surfaced ]</span></div></div>
+          <div class="phone-cap">01 · On home</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Detail ]</span></div></div>
+          <div class="phone-cap">02 · Detail</div>
+        </div>
+        <div>
+          <div class="phone"><div class="phone-screen"><span class="mono">[ Claim ]</span></div></div>
+          <div class="phone-cap">03 · Claim</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · WORKING WITH THE TEAM ============ -->
+<section class="dark">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">05</span>
+      <span class="line"></span>
+      <span class="label">Working with the team</span>
+    </div>
+    <h2 class="sec-h" style="color: var(--bg);">Design held up<br><em>through development.</em></h2>
+    <p class="sec-sub">The hand-off is where most of the design intent usually gets lost. So I treated implementation as part of the design — not the end of it.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <span class="mono">With Product</span>
+        <h3>Aligned early, often.</h3>
+        <p>I worked with the PM and team lead to understand business requirements and how operations actually ran. That context shaped what got prioritised and what stayed simple — design decisions matched real operational needs, not assumed ones.</p>
+      </div>
+      <div class="team-card">
+        <span class="mono">With Engineering</span>
+        <h3>Stayed close to the build.</h3>
+        <p>I reviewed builds, joined technical discussions, and refined designs when backend constraints affected the experience. The goal was that what shipped felt the same as what was designed — which doesn't happen on its own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 · OUTCOME ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">06</span>
+      <span class="line"></span>
+      <span class="label">Outcome</span>
+    </div>
+    <h2 class="sec-h">Live, in production,<br><em>and in active use.</em></h2>
+    <p class="sec-sub">Shipping was the start, not the end. The work I'm most proud of is the parts that don't show up in screenshots.</p>
+
+    <div class="outcome-row">
+      <div class="outcome-cell">
+        <span class="mono">Shipped to</span>
+        <div class="big"><em>iOS</em> &amp; Android</div>
+        <div class="desc">Available on both app stores. In active daily use by GINTAA's partner network.</div>
+      </div>
+      <div class="outcome-cell">
+        <span class="mono">Scope delivered</span>
+        <div class="big"><em>56+</em> screens</div>
+        <div class="desc">Across mobile and supporting admin flows. End-to-end design coverage.</div>
+      </div>
+      <div class="outcome-cell">
+        <span class="mono">Timeline</span>
+        <div class="big"><em>45</em> days</div>
+        <div class="desc">From kickoff to live release, including iterative review through development.</div>
+      </div>
+    </div>
+
+    <div class="reflection">
+      <span class="mono">What I'd carry forward</span>
+      <p>"The most valuable part of this project wasn't a specific screen — it was learning that good design holds its shape through development only when you stay involved. The hand-off is the easy part. The work after it is where it shows."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <h2>Selected work shown here.<br>Happy to walk through <em>the rest.</em></h2>
+    <p class="lede">
+      Some of the screens and flows aren't public due to confidentiality. I'm happy to walk through the full set in conversation.
+    </p>
+
+    <div class="actions">
+      <a href="mailto:kshamahemang@gmail.com" class="btn primary">kshamahemang@gmail.com</a>
+      <a href="#" class="btn ghost">View resume</a>
+      <a href="#" class="btn ghost">Next project →</a>
+    </div>
+
+    <div class="bottom">
+      <span>© 2026 Hemang Sharma</span>
+      <span>Product Designer · UI/UX</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

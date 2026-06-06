@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FNOL — Designed in Claude · Hemang Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #F4ECDF;
+    --bg-soft:   #FBF6EC;
+    --ink:       #1A1310;
+    --ink-2:     #3A2E26;
+    --muted:     #7A6B5F;
+    --line:      #E5D9C6;
+    --line-2:    #D8C8B0;
+    --accent:    #A6361F;
+    --accent-2:  #C9522E;
+    --accent-bg: #F7E4D8;
+    --ai-tint:   #EDE4F0; /* very subtle lavender for "AI" moments */
+    --ai-accent: #6B4A7C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9999;
+    opacity: 0.35; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  /* Typography */
+  .display, h1, h2, h3, h4 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  p { color: var(--ink-2); }
+
+  /* Layout */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 236, 223, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1180px; margin: 0 auto;
+  }
+  nav .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 500; letter-spacing: -0.02em;
+  }
+  nav .logo span { color: var(--accent); }
+  nav .links { display: flex; gap: 28px; align-items: center; }
+  nav .links a {
+    color: var(--ink-2); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--accent); }
+  nav .cta {
+    padding: 8px 16px; border: 1px solid var(--ink);
+    border-radius: 100px; font-size: 13px; font-weight: 500;
+    color: var(--ink) !important; transition: all 0.2s;
+  }
+  nav .cta:hover { background: var(--ink); color: var(--bg) !important; }
+
+  /* Section base */
+  section { padding: 90px 0; position: relative; }
+  section.tight { padding: 60px 0; }
+  section.dark { background: var(--ink); color: var(--bg); }
+  section.dark h2, section.dark h3 { color: var(--bg); }
+  section.dark p { color: rgba(244, 236, 223, 0.8); }
+  section.soft { background: var(--bg-soft); }
+
+  .kicker {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px; color: var(--accent);
+  }
+  .kicker .num, .kicker .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .kicker .line { flex: 0 0 32px; height: 1px; background: var(--accent); }
+  section.dark .kicker { color: var(--accent-2); }
+  section.dark .kicker .line { background: var(--accent-2); }
+
+  .sec-h {
+    font-size: clamp(34px, 4.2vw, 52px);
+    line-height: 1.05;
+    margin-bottom: 16px;
+    font-weight: 350;
+  }
+  .sec-h em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .sec-sub {
+    font-size: 17px; color: var(--muted);
+    max-width: 620px; margin-bottom: 48px;
+  }
+  section.dark .sec-sub { color: rgba(244, 236, 223, 0.6); }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 80px 0 70px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 30%, rgba(201, 82, 46, 0.08), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 10% 80%, rgba(107, 74, 124, 0.05), transparent 70%);
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-tag .pulse {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+    font-weight: 350;
+    max-width: 15ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .hero .lede {
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.55;
+    max-width: 660px;
+    color: var(--ink-2);
+    margin-bottom: 48px;
+  }
+
+  /* Browser window mockup */
+  .browser {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-soft);
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 60px rgba(26, 19, 16, 0.08), 0 2px 8px rgba(26, 19, 16, 0.04);
+  }
+  .browser-chrome {
+    height: 36px;
+    background: linear-gradient(180deg, #ECE1CC 0%, #E5D9C6 100%);
+    border-bottom: 1px solid var(--line-2);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 10px;
+  }
+  .browser-dots { display: flex; gap: 6px; }
+  .browser-dots span {
+    width: 11px; height: 11px; border-radius: 50%;
+  }
+  .browser-dots span:nth-child(1) { background: #E96E5C; }
+  .browser-dots span:nth-child(2) { background: #E8B84F; }
+  .browser-dots span:nth-child(3) { background: #5CC273; }
+  .browser-url {
+    flex: 1;
+    background: rgba(255,255,255,0.5);
+    border-radius: 100px;
+    padding: 4px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin: 0 14px;
+    max-width: 320px;
+    text-align: center;
+  }
+  .browser-body {
+    height: calc(100% - 36px);
+    background: linear-gradient(135deg, var(--accent-bg) 0%, #EFD7C5 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .browser-body::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(166, 54, 31, 0.12), transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(107, 74, 124, 0.08), transparent 50%);
+  }
+  .placeholder { position: relative; z-index: 1; text-align: center; padding: 20px; }
+  .placeholder .mono { color: var(--accent); display: block; margin-bottom: 8px; }
+  .placeholder .desc {
+    font-family: 'Fraunces', serif; font-style: italic;
+    color: var(--ink-2); font-size: 16px;
+  }
+
+  .meta-strip {
+    margin-top: 56px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    padding-top: 32px; border-top: 1px solid var(--line);
+  }
+  .meta-item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .meta-item .value {
+    font-family: 'Fraunces', serif; font-size: 16px;
+    color: var(--ink); line-height: 1.3;
+  }
+
+  /* ============ PROBLEM (signal grid) ============ */
+  .signals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .signal {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 28px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .signal .marker {
+    flex: 0 0 28px; height: 28px;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+  .signal h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .signal p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .signals-caption {
+    margin-top: 40px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-2);
+    text-align: center;
+    max-width: 660px;
+    margin-left: auto; margin-right: auto;
+  }
+  .signals-caption em {
+    font-style: normal; color: var(--accent);
+  }
+
+  /* ============ WHY CLAUDE — methodology ============ */
+  .method-intro {
+    font-size: 17px;
+    line-height: 1.65;
+    max-width: 760px;
+    margin-bottom: 48px;
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .method-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 28px;
+  }
+  .method-card .mono {
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .method-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .method-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ============ THREE DECISIONS ============ */
+  .decision-block {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    padding: 56px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .decision-block:last-of-type { border-bottom: none; }
+  .decision-block.reverse {
+    direction: rtl;
+  }
+  .decision-block.reverse > * { direction: ltr; }
+
+  .decision-info .dec-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid var(--accent);
+    border-radius: 100px;
+  }
+  .decision-info h3 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 2.6vw, 34px);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .decision-info h3 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    color: var(--accent);
+  }
+  .decision-info p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    margin-bottom: 14px;
+  }
+  .decision-info .lumen-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--ai-tint);
+    color: var(--ai-accent);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-right: 6px;
+  }
+  .decision-info .lumen-pill .dot {
+    width: 5px; height: 5px;
+    background: var(--ai-accent);
+    border-radius: 50%;
+  }
+
+  .decision-visual {
+    aspect-ratio: 4 / 3;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* SVG inline visuals */
+  .dec-svg { width: 100%; height: 100%; }
+
+  /* ============ PROTOTYPE SHOWCASE ============ */
+  .proto-wrap {
+    margin-top: 16px;
+  }
+  .proto-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-soft);
+    border: 1px solid var(--line-2);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 60px rgba(26, 19, 16, 0.1), 0 2px 8px rgba(26, 19, 16, 0.04);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .proto-frame:hover { transform: translateY(-2px); }
+  .proto-body {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1A1310 0%, #2A1F1B 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .proto-body::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(201, 82, 46, 0.2), transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(107, 74, 124, 0.18), transparent 50%);
+  }
+  .play-button {
+    width: 80px; height: 80px;
+    background: rgba(244, 236, 223, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s;
+  }
+  .proto-frame:hover .play-button {
+    transform: scale(1.08);
+  }
+  .play-button::after {
+    content: "";
+    width: 0; height: 0;
+    border-left: 22px solid var(--ink);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    margin-left: 6px;
+  }
+  .proto-caption {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    color: rgba(244, 236, 223, 0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  .proto-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .proto-meta .left {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .proto-meta .right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* ============ BEFORE / AFTER alignment shift ============ */
+  .shift-grid {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .shift-col {
+    padding: 36px 32px;
+    border-radius: 4px;
+    border: 1px solid rgba(244, 236, 223, 0.15);
+    background: rgba(244, 236, 223, 0.03);
+  }
+  .shift-col.before {
+    opacity: 0.7;
+  }
+  .shift-col.after {
+    border-color: var(--accent-2);
+    background: rgba(201, 82, 46, 0.06);
+  }
+  .shift-col .mono {
+    margin-bottom: 14px;
+    display: block;
+  }
+  .shift-col.before .mono { color: rgba(244, 236, 223, 0.4); }
+  .shift-col.after .mono { color: var(--accent-2); }
+  .shift-col h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    color: var(--bg);
+    font-weight: 400;
+  }
+  .shift-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(244, 236, 223, 0.7);
+  }
+  .shift-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    color: var(--accent-2);
+    font-style: italic;
+  }
+
+  /* ============ REFLECTION ============ */
+  .reflection-quote {
+    padding: 56px 48px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    text-align: center;
+  }
+  .reflection-quote .mono {
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: block;
+  }
+  .reflection-quote q {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(22px, 2.5vw, 30px);
+    line-height: 1.35;
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 350;
+    quotes: none;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  .reflection-quote q::before { content: "\201C"; color: var(--accent); }
+  .reflection-quote q::after { content: "\201D"; color: var(--accent); }
+
+  .takeaways {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .takeaway {
+    padding: 24px 28px;
+    border-left: 2px solid var(--accent);
+    background: var(--bg-soft);
+    border-radius: 0 4px 4px 0;
+  }
+  .takeaway h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .takeaway p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--ink); color: var(--bg);
+    padding: 80px 0 40px;
+  }
+  footer h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.15; color: var(--bg);
+    margin-bottom: 20px; font-weight: 350;
+    max-width: 700px;
+  }
+  footer h2 em {
+    color: var(--accent-2); font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  footer .lede {
+    font-size: 16px; color: rgba(244, 236, 223, 0.65);
+    margin-bottom: 36px; max-width: 540px;
+  }
+  footer .actions {
+    display: flex; gap: 14px; margin-bottom: 56px; flex-wrap: wrap;
+  }
+  footer .btn {
+    padding: 13px 22px; border-radius: 100px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  footer .btn.primary { background: var(--accent-2); color: #fff; }
+  footer .btn.primary:hover { background: var(--accent); }
+  footer .btn.ghost {
+    background: transparent; color: var(--bg);
+    border: 1px solid rgba(244, 236, 223, 0.3);
+  }
+  footer .btn.ghost:hover { background: rgba(244, 236, 223, 0.08); }
+  footer .bottom {
+    border-top: 1px solid rgba(244, 236, 223, 0.15);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(244, 236, 223, 0.45);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    nav.top .inner { padding: 14px 20px; }
+    nav .links { gap: 14px; }
+    nav .links a:not(.cta) { display: none; }
+    section { padding: 60px 0; }
+    .hero { padding: 40px 0 50px; }
+    .meta-strip { grid-template-columns: repeat(2, 1fr); }
+    .signals { grid-template-columns: 1fr; }
+    .method-grid { grid-template-columns: 1fr; }
+    .decision-block { grid-template-columns: 1fr; gap: 28px; padding: 36px 0; }
+    .decision-block.reverse { direction: ltr; }
+    .shift-grid { grid-template-columns: 1fr; }
+    .shift-arrow { font-size: 28px; transform: rotate(90deg); }
+    .takeaways { grid-template-columns: 1fr; }
+    .reflection-quote { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="top">
+  <div class="inner">
+    <a href="#" class="logo">Hemang<span>.</span></a>
+    <div class="links">
+      <a href="#">Home</a>
+      <a href="#">Projects</a>
+      <a href="#">About</a>
+      <a href="#" class="cta">View Resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">
+      <span class="pulse"></span>
+      <span>Claims Insurance · Concept Project</span>
+    </div>
+
+    <h1>
+      A claims workspace,<br>
+      <em>designed in Claude.</em>
+    </h1>
+
+    <p class="lede">
+      An AI-first FNOL (First Notice of Loss) concept for insurance carriers — designed and prototyped entirely in Claude, not Figma. Stakeholders didn't review screens; they explored a working product.
+    </p>
+
+    <div class="browser">
+      <div class="browser-chrome">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">claims.gintaa-concept.app/intake/new</div>
+      </div>
+      <div class="browser-body">
+        <div class="placeholder">
+          <span class="mono">[ Hero screenshot ]</span>
+          <span class="desc">Workspace overview — Claims list,<br>scorecard, and Lumen assistant pane</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta-strip">
+      <div class="meta-item">
+        <div class="label">Role</div>
+        <div class="value">Founding UI/UX Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Team</div>
+        <div class="value">Solo Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Tools</div>
+        <div class="value">Claude · Design + Code</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Year</div>
+        <div class="value">2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 · THE PROBLEM ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">01</span>
+      <span class="line"></span>
+      <span class="label">The Problem</span>
+    </div>
+    <h2 class="sec-h">FNOL today is <em>a data-entry problem</em><br>during someone's worst day.</h2>
+    <p class="sec-sub">Most carriers approach First Notice of Loss as a form to fill out. Agents are handed rigid templates exactly when policyholders are overwhelmed, distracted, and missing half the information. A few patterns kept showing up.</p>
+
+    <div class="signals">
+      <div class="signal">
+        <div class="marker">01</div>
+        <div>
+          <h4>Agents expected to collect complete information upfront</h4>
+          <p>Even when only partial details are available — the system asks for everything, even what the caller doesn't have yet.</p>
+        </div>
+      </div>
+      <div class="signal">
+        <div class="marker">02</div>
+        <div>
+          <h4>Information arrives gradually — the system doesn't</h4>
+          <p>Claims surface over hours, sometimes days. But the intake form treats it as a single, linear capture.</p>
+        </div>
+      </div>
+      <div class="signal">
+        <div class="marker">03</div>
+        <div>
+          <h4>Manual entry across systems creates errors later</h4>
+          <p>Agents copy data between tools. Small mistakes early multiply into bigger problems downstream.</p>
+        </div>
+      </div>
+      <div class="signal">
+        <div class="marker">04</div>
+        <div>
+          <h4>Critical context isn't visible at intake</h4>
+          <p>If a catastrophe event is active in the policyholder's area, the agent finds out later — if at all.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="signals-caption">
+      Each small gap at intake <em>compounded</em> into a larger problem in the claim's journey.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 02 · WHY I DESIGNED IN CLAUDE ============ -->
+<section class="soft">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">02</span>
+      <span class="line"></span>
+      <span class="label">A Different Way to Design</span>
+    </div>
+    <h2 class="sec-h">Skipping Figma, <em>on purpose.</em></h2>
+    <p class="sec-sub">Traditional handoffs hit the same wall: stakeholders interpret static screens differently and fill the gaps with their own assumptions. What gets approved isn't always what gets built.</p>
+
+    <p class="method-intro">
+      So I tried something different. I designed and prototyped the entire workspace inside Claude — building a real, clickable experience in code rather than producing flat mockups. Three things changed because of that choice:
+    </p>
+
+    <div class="method-grid">
+      <div class="method-card">
+        <span class="mono">01 · Validate</span>
+        <h3>Pressure-test the problem first.</h3>
+        <p>I used Claude to challenge the framing before designing anything. The questions Claude pushed back with shaped what the workspace actually needed to solve.</p>
+      </div>
+      <div class="method-card">
+        <span class="mono">02 · Build</span>
+        <h3>Prototype directly in code.</h3>
+        <p>Working states, real form behavior, AI assistant flows, conditional logic — not static screens. The output was something stakeholders could open in a browser and use.</p>
+      </div>
+      <div class="method-card">
+        <span class="mono">03 · Iterate</span>
+        <h3>Feedback as conversation.</h3>
+        <p>Updates to assistant tone, hierarchy, or alert behavior could be tried, seen, and refined within the same session — not across a multi-day redesign cycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · THREE PRODUCT DECISIONS ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">03</span>
+      <span class="line"></span>
+      <span class="label">Three Product Decisions</span>
+    </div>
+    <h2 class="sec-h">Three calls that <em>shaped the workspace.</em></h2>
+    <p class="sec-sub">The brief was open. These are the choices that gave the product its shape.</p>
+
+    <!-- Decision 01: An assistant, not a form -->
+    <div class="decision-block">
+      <div class="decision-info">
+        <span class="dec-num">Decision 01</span>
+        <h3>An assistant, <em>not a form.</em></h3>
+        <p>
+          <span class="lumen-pill"><span class="dot"></span>Lumen</span>
+          The left pane is a guided FNOL flow that starts with one question — <em>"what kind of incident occurred?"</em> — and unfolds from there.
+        </p>
+        <p>Agents can switch to Classic mode at any moment. The AI is a co-pilot, never a gatekeeper. The goal was to make the system feel like it's working with the agent, not waiting on them.</p>
+      </div>
+      <div class="decision-visual">
+        <svg class="dec-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background panel -->
+          <rect x="20" y="30" width="170" height="240" rx="8" fill="#FBF6EC" stroke="#E5D9C6"/>
+          <!-- Lumen header -->
+          <circle cx="40" cy="55" r="10" fill="#6B4A7C"/>
+          <rect x="56" y="50" width="60" height="4" rx="2" fill="#1A1310"/>
+          <rect x="56" y="58" width="40" height="3" rx="1.5" fill="#7A6B5F"/>
+          <!-- Chat bubble (assistant) -->
+          <rect x="30" y="80" width="150" height="50" rx="10" fill="#EDE4F0"/>
+          <rect x="40" y="92" width="120" height="3" rx="1.5" fill="#6B4A7C" opacity="0.6"/>
+          <rect x="40" y="100" width="100" height="3" rx="1.5" fill="#6B4A7C" opacity="0.6"/>
+          <rect x="40" y="108" width="80" height="3" rx="1.5" fill="#6B4A7C" opacity="0.6"/>
+          <!-- User reply -->
+          <rect x="60" y="145" width="120" height="32" rx="10" fill="#A6361F"/>
+          <rect x="70" y="156" width="90" height="3" rx="1.5" fill="#FBF6EC"/>
+          <rect x="70" y="164" width="60" height="3" rx="1.5" fill="#FBF6EC"/>
+          <!-- Assistant reply -->
+          <rect x="30" y="190" width="150" height="40" rx="10" fill="#EDE4F0"/>
+          <rect x="40" y="202" width="120" height="3" rx="1.5" fill="#6B4A7C" opacity="0.6"/>
+          <rect x="40" y="210" width="90" height="3" rx="1.5" fill="#6B4A7C" opacity="0.6"/>
+          <rect x="40" y="218" width="70" height="3" rx="1.5" fill="#6B4A7C" opacity="0.6"/>
+          <!-- Typing dots -->
+          <circle cx="42" cy="248" r="2.5" fill="#6B4A7C" opacity="0.4"/>
+          <circle cx="52" cy="248" r="2.5" fill="#6B4A7C" opacity="0.6"/>
+          <circle cx="62" cy="248" r="2.5" fill="#6B4A7C" opacity="0.8"/>
+
+          <!-- Form panel -->
+          <rect x="210" y="30" width="170" height="240" rx="8" fill="#FFFFFF" stroke="#E5D9C6"/>
+          <rect x="222" y="50" width="80" height="4" rx="2" fill="#1A1310"/>
+          <rect x="222" y="70" width="146" height="20" rx="4" fill="#F4ECDF"/>
+          <rect x="222" y="100" width="146" height="20" rx="4" fill="#F4ECDF"/>
+          <rect x="222" y="130" width="146" height="20" rx="4" fill="#F4ECDF"/>
+          <rect x="222" y="160" width="146" height="20" rx="4" fill="#F4ECDF"/>
+          <rect x="222" y="190" width="146" height="20" rx="4" fill="#F4ECDF"/>
+          <rect x="222" y="220" width="146" height="20" rx="4" fill="#F4ECDF"/>
+          <!-- Classic mode label -->
+          <rect x="222" y="248" width="50" height="14" rx="7" fill="#E5D9C6"/>
+          <text x="247" y="258" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.5">CLASSIC</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Decision 02: A form that knows what it knows -->
+    <div class="decision-block reverse">
+      <div class="decision-info">
+        <span class="dec-num">Decision 02</span>
+        <h3>A form that <em>knows what it knows.</em></h3>
+        <p>Sections collapse and expand based on completion. Policy info auto-fills from policy lookup. Each section reports its own state — <em>3 of 4</em>, <em>Complete</em>, <em>Optional</em> — so agents always know where they are.</p>
+        <p>Drafts auto-save every keystroke. The claim survives any interruption, because intake never goes smoothly the first time.</p>
+      </div>
+      <div class="decision-visual">
+        <svg class="dec-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Policy info — auto-filled, complete -->
+          <rect x="40" y="30" width="320" height="50" rx="6" fill="#FBF6EC" stroke="#2E6B4A" stroke-width="1.5"/>
+          <rect x="52" y="44" width="80" height="4" rx="2" fill="#1A1310"/>
+          <rect x="52" y="56" width="120" height="3" rx="1.5" fill="#7A6B5F"/>
+          <rect x="52" y="64" width="100" height="3" rx="1.5" fill="#7A6B5F"/>
+          <rect x="290" y="46" width="56" height="18" rx="9" fill="#2E6B4A"/>
+          <text x="318" y="58" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#FBF6EC" letter-spacing="0.5">COMPLETE</text>
+
+          <!-- Incident details — in progress -->
+          <rect x="40" y="92" width="320" height="80" rx="6" fill="#FBF6EC" stroke="#A6361F" stroke-width="1.5"/>
+          <rect x="52" y="106" width="100" height="4" rx="2" fill="#1A1310"/>
+          <rect x="52" y="124" width="290" height="10" rx="3" fill="#FFFFFF" stroke="#E5D9C6"/>
+          <rect x="52" y="142" width="290" height="10" rx="3" fill="#FFFFFF" stroke="#E5D9C6"/>
+          <rect x="52" y="160" width="180" height="6" rx="2" fill="#A6361F" opacity="0.3"/>
+          <rect x="290" y="106" width="56" height="18" rx="9" fill="#A6361F"/>
+          <text x="318" y="118" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#FBF6EC" letter-spacing="0.5">3 OF 4</text>
+
+          <!-- Witness — collapsed -->
+          <rect x="40" y="184" width="320" height="32" rx="6" fill="#F4ECDF" stroke="#E5D9C6"/>
+          <rect x="52" y="198" width="80" height="4" rx="2" fill="#7A6B5F"/>
+          <rect x="290" y="194" width="56" height="14" rx="7" fill="#E5D9C6"/>
+          <text x="318" y="204" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#7A6B5F" letter-spacing="0.5">OPTIONAL</text>
+          <text x="346" y="204" font-family="Geist" font-size="10" fill="#7A6B5F">+</text>
+
+          <!-- Documents — collapsed -->
+          <rect x="40" y="228" width="320" height="32" rx="6" fill="#F4ECDF" stroke="#E5D9C6"/>
+          <rect x="52" y="242" width="80" height="4" rx="2" fill="#7A6B5F"/>
+          <text x="346" y="248" font-family="Geist" font-size="10" fill="#7A6B5F">+</text>
+
+          <!-- Autosave -->
+          <circle cx="50" cy="278" r="3" fill="#2E6B4A"/>
+          <text x="58" y="281" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F" letter-spacing="0.5">SAVED 2s AGO</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Decision 03: Intelligence at the edge of attention -->
+    <div class="decision-block">
+      <div class="decision-info">
+        <span class="dec-num">Decision 03</span>
+        <h3>Intelligence at <em>the edge of attention.</em></h3>
+        <p>A right-side panel runs quietly alongside the intake — a live Claim Quality scorecard, severity routing recommendations, and automatic detection of active catastrophe events.</p>
+        <p>When an incident location falls inside <strong>CAT-26-IL-04</strong>'s storm window, <span class="lumen-pill"><span class="dot"></span>Lumen</span> surfaces it without being asked. The intelligence is there when needed, invisible when not.</p>
+      </div>
+      <div class="decision-visual">
+        <svg class="dec-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Main content area (faded, indicating focus is on side panel) -->
+          <rect x="20" y="30" width="220" height="240" rx="8" fill="#FBF6EC" stroke="#E5D9C6" opacity="0.5"/>
+          <rect x="32" y="48" width="100" height="4" rx="2" fill="#1A1310" opacity="0.4"/>
+          <rect x="32" y="68" width="196" height="14" rx="3" fill="#F4ECDF"/>
+          <rect x="32" y="92" width="196" height="14" rx="3" fill="#F4ECDF"/>
+          <rect x="32" y="116" width="196" height="14" rx="3" fill="#F4ECDF"/>
+          <rect x="32" y="140" width="196" height="14" rx="3" fill="#F4ECDF"/>
+          <rect x="32" y="164" width="140" height="14" rx="3" fill="#F4ECDF"/>
+
+          <!-- Side panel (in focus) -->
+          <rect x="252" y="30" width="128" height="240" rx="8" fill="#FFFFFF" stroke="#A6361F" stroke-width="1.5"/>
+
+          <!-- Quality scorecard -->
+          <rect x="262" y="42" width="50" height="3" rx="1.5" fill="#7A6B5F"/>
+          <text x="262" y="68" font-family="Fraunces" font-size="22" fill="#1A1310" font-weight="500">87</text>
+          <text x="288" y="68" font-family="JetBrains Mono" font-size="7" fill="#7A6B5F">/100</text>
+          <rect x="262" y="76" width="108" height="4" rx="2" fill="#F4ECDF"/>
+          <rect x="262" y="76" width="94" height="4" rx="2" fill="#2E6B4A"/>
+
+          <!-- Severity tag -->
+          <rect x="262" y="98" width="50" height="3" rx="1.5" fill="#7A6B5F"/>
+          <rect x="262" y="108" width="60" height="16" rx="8" fill="#F7E4D8"/>
+          <text x="292" y="119" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#A6361F" letter-spacing="0.5">SEV 2</text>
+
+          <!-- CAT alert (the moment) -->
+          <rect x="262" y="142" width="108" height="80" rx="6" fill="#A6361F"/>
+          <circle cx="272" cy="156" r="3" fill="#FBF6EC">
+            <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <text x="280" y="159" font-family="JetBrains Mono" font-size="7" fill="#FBF6EC" letter-spacing="0.5">CAT ALERT</text>
+          <text x="270" y="178" font-family="Fraunces" font-size="11" fill="#FBF6EC" font-weight="500">CAT-26-IL-04</text>
+          <rect x="270" y="186" width="92" height="3" rx="1.5" fill="#FBF6EC" opacity="0.7"/>
+          <rect x="270" y="194" width="76" height="3" rx="1.5" fill="#FBF6EC" opacity="0.7"/>
+          <rect x="270" y="202" width="60" height="3" rx="1.5" fill="#FBF6EC" opacity="0.7"/>
+          <rect x="270" y="212" width="40" height="6" rx="3" fill="#FBF6EC" opacity="0.2"/>
+
+          <!-- Routing suggestion -->
+          <rect x="262" y="234" width="50" height="3" rx="1.5" fill="#7A6B5F"/>
+          <rect x="262" y="244" width="108" height="18" rx="4" fill="#F4ECDF"/>
+          <text x="316" y="256" text-anchor="middle" font-family="Geist" font-size="7" fill="#1A1310">Route → Cat Team</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · PROTOTYPE ============ -->
+<section class="soft">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">04</span>
+      <span class="line"></span>
+      <span class="label">The Prototype</span>
+    </div>
+    <h2 class="sec-h">Not a mockup. <em>A working product.</em></h2>
+    <p class="sec-sub">Built inside Claude with real form behavior, conditional logic, and the Lumen assistant. Stakeholders opened it in a browser and used it — the same way an agent would.</p>
+
+    <div class="proto-wrap">
+      <div class="proto-frame">
+        <div class="proto-body">
+          <div class="play-button"></div>
+          <div class="proto-caption">[ Prototype walkthrough · ~2 min ]</div>
+        </div>
+      </div>
+      <div class="proto-meta">
+        <div class="left">Best experienced live — happy to share the prototype in interviews.</div>
+        <div class="right">Built in Claude</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · STAKEHOLDER ALIGNMENT ============ -->
+<section class="dark">
+  <div class="container">
+    <div class="kicker">
+      <span class="num">05</span>
+      <span class="line"></span>
+      <span class="label">What Reviews Became</span>
+    </div>
+    <h2 class="sec-h" style="color: var(--bg);">From approvals,<br><em>to conversations.</em></h2>
+    <p class="sec-sub">Teams from claims operations, product, and engineering came in with different expectations. The prototype gave everyone a shared experience to react to — and that changed how alignment happened.</p>
+
+    <div class="shift-grid">
+      <div class="shift-col before">
+        <span class="mono">Before</span>
+        <h3>Static screens.<br>Different interpretations.</h3>
+        <p>Stakeholders fill the gaps with their own assumptions. What gets approved isn't always what gets built. Alignment takes weeks, sometimes longer.</p>
+      </div>
+      <div class="shift-arrow">→</div>
+      <div class="shift-col after">
+        <span class="mono">After</span>
+        <h3>One product.<br>One reaction surface.</h3>
+        <p>Decisions on assistant tone, information hierarchy, and alert behavior were made by interacting with the product. Uncertainty dropped quickly because people reacted to the thing itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · REFLECTION ============ -->
+<section>
+  <div class="container">
+    <div class="kicker">
+      <span class="num">06</span>
+      <span class="line"></span>
+      <span class="label">Reflection</span>
+    </div>
+    <h2 class="sec-h">What this <em>proved to me.</em></h2>
+    <p class="sec-sub">A short list of things I'd carry into the next project.</p>
+
+    <div class="reflection-quote">
+      <span class="mono">The takeaway</span>
+      <q>When the goal is alignment, a clickable AI-built prototype can often be more effective than a polished Figma flow. It reduces interpretation gaps because people react to the product itself, not their assumptions about it.</q>
+    </div>
+
+    <div class="takeaways">
+      <div class="takeaway">
+        <h4>Prototype before polish.</h4>
+        <p>The product vision became real once stakeholders could open it. The screens themselves mattered less than the experience of using them.</p>
+      </div>
+      <div class="takeaway">
+        <h4>AI is a design partner, not just a tool.</h4>
+        <p>Claude pressure-tested ideas, generated working states, and let the design respond to feedback the same hour it arrived.</p>
+      </div>
+      <div class="takeaway">
+        <h4>Alignment beats perfection.</h4>
+        <p>The win wasn't a pristine spec — it was teams arriving at decisions together, faster, on something real.</p>
+      </div>
+      <div class="takeaway">
+        <h4>The medium changes the conversation.</h4>
+        <p>Static review meetings became hands-on walkthroughs. The shape of feedback changed because the artifact did.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <h2>Selected work shown here.<br>The prototype is best <em>experienced live.</em></h2>
+    <p class="lede">
+      Some flows and details aren't public. Happy to share the working prototype and walk through the rest in conversation.
+    </p>
+
+    <div class="actions">
+      <a href="mailto:kshamahemang@gmail.com" class="btn primary">kshamahemang@gmail.com</a>
+      <a href="#" class="btn ghost">View resume</a>
+      <a href="#" class="btn ghost">Next project →</a>
+    </div>
+
+    <div class="bottom">
+      <span>© 2026 Hemang Sharma</span>
+      <span>Product Designer · UI/UX</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
